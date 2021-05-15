@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31213.239
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NitroxCalculator", "NitroxCalculator\NitroxCalculator.csproj", "{9E24DACF-64EB-4114-B2B2-DE550FD47DF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NitroxAndTrimixCalculatorLibrary", "NitroxandTrimixCalculatorLibrary\NitroxAndTrimixCalculatorLibrary.csproj", "{14D90A01-427B-4C09-BB6F-92253304C482}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NitroxAndTrimixCalculatorTests", "NitroxAndTrimixCalculatorTests\NitroxAndTrimixCalculatorTests.csproj", "{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{E80C9A94-4C54-4BC7-8C2B-1095BA673DD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{24C885C9-CCE1-406B-9940-C802C62B91C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D7D4DA9B-B79E-4C3A-8624-1116F8A6AB2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E24DACF-64EB-4114-B2B2-DE550FD47DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E24DACF-64EB-4114-B2B2-DE550FD47DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E24DACF-64EB-4114-B2B2-DE550FD47DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E24DACF-64EB-4114-B2B2-DE550FD47DF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D90A01-427B-4C09-BB6F-92253304C482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D90A01-427B-4C09-BB6F-92253304C482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D90A01-427B-4C09-BB6F-92253304C482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D90A01-427B-4C09-BB6F-92253304C482}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9E24DACF-64EB-4114-B2B2-DE550FD47DF7} = {24C885C9-CCE1-406B-9940-C802C62B91C5}
+		{14D90A01-427B-4C09-BB6F-92253304C482} = {E80C9A94-4C54-4BC7-8C2B-1095BA673DD2}
+		{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75} = {D7D4DA9B-B79E-4C3A-8624-1116F8A6AB2D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7905896D-4236-4C5A-A6FC-E802D85FFE8D}
+	EndGlobalSection
+EndGlobal

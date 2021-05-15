@@ -1,0 +1,60 @@
+﻿<Window x:Class="NitroxCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Nitrox Calculator" Height="345" Width="596" Background="#FFADF3AD" MinHeight="345" MaxHeight="345" MinWidth="600" Foreground="Black">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Menu x:Name="MainMenu" Height="20" VerticalAlignment="Top" Grid.ColumnSpan="3">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="mItemUpdateSystemList" Header="_Update Program List" ToolTip="Updates List of programs in Database, This usually takes up to a minute."  />
+                <MenuItem x:Name="mItemShowBackupSystems" IsCheckable="True" Header="_Show Archived Programs" ToolTip="Shows additional systems under the Systems menu that contain removed programs"  />
+                <MenuItem x:Name="mItemSite" Header="_Site" />
+                <Separator />
+                <MenuItem x:Name="ExitButton" Header="_Exit" Click="MenuItemExit"/>
+            </MenuItem>
+            <MenuItem Header="_Options">
+                <MenuItem Header="_Units">
+                    <MenuItem x:Name="MenuItemImperial" Header="_Imperial" IsCheckable="True" Click="ButtonSelectUnitsImperial"></MenuItem>
+                    <MenuItem x:Name="MenuItemMetric" Header="_Metric" IsCheckable="True"  Click="ButtonSelectUnitsMetric"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <GroupBox Grid.Column="0" Header="Starting Mix" Margin="5,25,5,0" VerticalAlignment="Top" Height="130">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Slider x:Name="SliderStartingPercentage" Grid.Column="0" Margin="10,75,10,0" Orientation="Horizontal" Minimum="0" Maximum="100" SmallChange="1" LargeChange="10" TickPlacement="BottomRight" TickFrequency="10" VerticalAlignment="Top" ValueChanged="SliderStartingPercentage_ValueChanged" Grid.RowSpan="2" Foreground="Black"/>
+                <Label Content="Ending Pressure:" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                <TextBox x:Name="TextStartPressure" Margin="115,14,35,0" Text="500" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2" TextChanged="TextPressure_TextChanged"/>
+                <Label Content="Ending Percentage:" HorizontalAlignment="Left" Margin="5,41,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                <TextBox x:Name="TextStartPercent" Margin="115,45,5,0" Text="32" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2" TextChanged="TextStartPercent_TextChanged"/>
+                <Label x:Name="LabelStartPressure" Content="Label" HorizontalAlignment="Right" Margin="0,10,5,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="0" Header="Requested Mix" Margin="5,160,5,0" Height="130" VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Slider x:Name="SliderEndingPercentage" Grid.Column="0" Margin="10,75,10,0" Orientation="Horizontal" Minimum="0" Maximum="100" SmallChange="1" LargeChange="10" TickPlacement="BottomRight" TickFrequency="10" VerticalAlignment="Top" ValueChanged="SliderEndingPercentage_ValueChanged" Grid.RowSpan="2" Foreground="Black"/>
+                <Label Content="Ending Pressure:" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                <TextBox x:Name="TextEndPressure" Margin="115,14,35,0" Text="3400" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2" TextChanged="TextPressure_TextChanged"/>
+                <Label Content="Ending Percentage:" HorizontalAlignment="Left" Margin="5,41,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                <TextBox x:Name="TextEndPercent" Margin="115,45,5,0" Text="32" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                <Label x:Name="LabelEndPressure" Content="Label" HorizontalAlignment="Right" Margin="0,10,5,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+
+
+    </Grid>
+</Window>
