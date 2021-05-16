@@ -34,6 +34,13 @@ namespace NitroxAndTrimixCalculatorLibrary
                 result.AddOxygen = 0;
                 result.RemoveGas = ReverseTopUp(input);
             }
+            else if (result.AddOxygen + result.Inputs.StartPressure > result.Inputs.EndPressure)
+            {
+                input.SetStartPressure(input.StartPressure - 25);
+                result = CalculateMix(input);
+                result.Inputs.SetStartPressure(input.StartPressure + 25);
+                result.RemoveGas += 25;
+            }
 
             return result;
         }
