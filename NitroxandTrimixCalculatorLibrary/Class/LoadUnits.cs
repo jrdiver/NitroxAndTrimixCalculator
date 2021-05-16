@@ -15,7 +15,8 @@ namespace NitroxAndTrimixCalculatorLibrary.Class
                     PressureName = "PSI",
                     DepthName = "Feet",
                     UnitPerBar = 14.5037738,
-                    UnitPerMeter = 3.2808
+                    UnitPerMeter = 3.2808,
+                    RoundPressureTo = 0
                 },
                 new Unit
                 {

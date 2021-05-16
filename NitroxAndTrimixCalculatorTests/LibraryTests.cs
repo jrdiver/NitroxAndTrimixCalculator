@@ -18,10 +18,50 @@ namespace NitroxAndTrimixCalculatorTests
         }
 
         [TestMethod]
+        public void VerifyUnitImperialInput()
+        {
+            calculator.LoadUnit("Imperial");
+            calculator.SelectedUnit.SetDepth(50);
+            calculator.SelectedUnit.SetPressure(3500);
+            Assert.AreEqual(15.24, Math.Round(calculator.SelectedUnit.DepthMeter, 3));
+            Assert.AreEqual(241.317, Math.Round(calculator.SelectedUnit.PressureBar, 3));
+        }
+
+        [TestMethod]
+        public void VerifyUnitImperialOutput()
+        {
+            calculator.LoadUnit("Imperial");
+            calculator.SelectedUnit.SetDepth(50);
+            calculator.SelectedUnit.SetPressure(3500);
+            Assert.AreEqual(50, calculator.SelectedUnit.GetDepth());
+            Assert.AreEqual(3500, calculator.SelectedUnit.GetPressure());
+        }
+
+        [TestMethod]
         public void LoadUnitMetric()
         {
             calculator.LoadUnit("Metric");
             Assert.AreEqual("Meter", calculator.SelectedUnit.DepthName);
+        }
+
+        [TestMethod]
+        public void VerifyUnitMetricInput()
+        {
+            calculator.LoadUnit("Metric");
+            calculator.SelectedUnit.SetDepth(50);
+            calculator.SelectedUnit.SetPressure(60);
+            Assert.AreEqual(50, Math.Round(calculator.SelectedUnit.DepthMeter, 3));
+            Assert.AreEqual(60, Math.Round(calculator.SelectedUnit.PressureBar, 3));
+        }
+
+        [TestMethod]
+        public void VerifyUnitMetricOutput()
+        {
+            calculator.LoadUnit("Metric");
+            calculator.SelectedUnit.SetDepth(50);
+            calculator.SelectedUnit.SetPressure(60);
+            Assert.AreEqual(50, calculator.SelectedUnit.GetDepth());
+            Assert.AreEqual(60, calculator.SelectedUnit.GetPressure());
         }
 
         [TestMethod]

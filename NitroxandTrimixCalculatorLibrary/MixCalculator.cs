@@ -20,6 +20,12 @@ namespace NitroxAndTrimixCalculatorLibrary
             }
         }
 
+        public void AddUnit(Unit unit)
+        {
+            UnitList.Add(unit);
+            UnitList = UnitList.OrderBy(x => x.Name).ToList();
+        }
+
         public MixResult CalculateMix(MixInputs input)
         {
             MixResult result = MixFromExistingMix(input);

@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
+using NitroxAndTrimixCalculatorLibrary;
+using NitroxAndTrimixCalculatorLibrary.Object;
 
-namespace NitroxCalculator
+namespace NitroxCalculator.Windows
 {
     /// <summary> Interaction logic for MainWindow.xaml </summary>
     public partial class MainWindow
     {
-        internal bool MetricMode;
+        private MixCalculator calculator = new();
 
         public MainWindow()
         {
             InitializeComponent();
-            LoadUnitFromSettings();
+            calculator.LoadUnit("Imperial");
+            LoadUnits(true);
 
             SliderStartingPercentage.Value = 32;
             TextStartPercent.Text = SliderStartingPercentage.Value.ToString(CultureInfo.InvariantCulture);
@@ -36,70 +40,69 @@ namespace NitroxCalculator
         #endregion
 
         #region Unit Selection
-        internal void LoadUnitFromSettings()
+
+        internal void LoadUnits(bool initialLoad = false)
         {
-            if (Properties.Settings.Default.MetricMode)
+            if (initialLoad)
             {
-                SelectUnitsMetric();
+                ConvertDisplayUnit(Properties.Settings.Default.Unit);
             }
-            else
+
+            MenuUnits.Items.Clear();
+            foreach (Unit unit in calculator.UnitList)
             {
-                SelectUnitsImperial();
+                MenuItem newUnit = new()
+                {
+                    Name = unit.Name,
+                    Header = unit.Name
+                };
+                newUnit.Click += SelectUnit;
+                if (unit.Name == calculator.SelectedUnit.Name)
+                {
+                    newUnit.IsChecked = true;
+                }
+
+                MenuUnits.Items.Add(newUnit);
             }
         }
 
-        internal void ButtonSelectUnitsImperial(object sender, RoutedEventArgs routedEventArgs)
+        internal void SelectUnit(object sender, RoutedEventArgs routedEventArgs)
         {
-            SelectUnitsImperial();
-        }
-        internal void ButtonSelectUnitsMetric(object sender, RoutedEventArgs routedEventArgs)
-        {
-            SelectUnitsMetric();
-        }
+            string unit = string.Empty;
+            if (routedEventArgs.Source is MenuItem mi) 
+                unit = mi.Name;
 
-        internal void SelectUnitsImperial()
-        {
-            if (MetricMode)
-            {
-                double.TryParse(TextEndPressure.Text, out double pressure);
-                pressure *= 14.5037738;
-                TextEndPressure.Text = pressure.ToString("0");
-
-                double.TryParse(TextStartPressure.Text, out pressure);
-                pressure *= 14.5037738;
-                TextStartPressure.Text = pressure.ToString("0");
-            }
-
-            MenuItemImperial.IsChecked = true;
-            MenuItemMetric.IsChecked = false;
-            MetricMode = false;
-            LabelEndPressure.Content = "PSI";
-            LabelStartPressure.Content = "PSI";
-            Properties.Settings.Default.MetricMode = false;
+            Properties.Settings.Default.Unit = unit;
             Properties.Settings.Default.Save();
+            ConvertDisplayUnit(unit);
+            calculator.LoadUnit(unit);
+            LoadUnits();
+
+
         }
 
-        internal void SelectUnitsMetric()
+        internal void ConvertDisplayUnit(string newUnit)
         {
-            if (MetricMode == false)
-            {
-                double.TryParse(TextEndPressure.Text, out double pressure);
-                pressure /= 14.5037738;
-                TextEndPressure.Text = pressure.ToString("0.#");
+            double.TryParse(TextEndPressure.Text, out double endPressure);
+            calculator.SelectedUnit.SetPressure(endPressure);
+            endPressure = calculator.SelectedUnit.PressureBar;
 
-                double.TryParse(TextStartPressure.Text, out pressure);
-                pressure /= 14.5037738;
-                TextStartPressure.Text = pressure.ToString("0.#");
-            }
-            MenuItemImperial.IsChecked = false;
-            MenuItemMetric.IsChecked = true;
-            MetricMode = true;
-            LabelEndPressure.Content = "Bar";
-            LabelStartPressure.Content = "Bar";
-            Properties.Settings.Default.MetricMode = true;
-            Properties.Settings.Default.Save();
+
+            double.TryParse(TextStartPressure.Text, out double startPressure);
+            calculator.SelectedUnit.SetPressure(startPressure);
+            startPressure = calculator.SelectedUnit.PressureBar;
+
+            calculator.LoadUnit(newUnit);
+
+            calculator.SelectedUnit.SetPressureInBars(endPressure);
+            TextEndPressure.Text = calculator.SelectedUnit.GetPressure().ToString();
+
+            calculator.SelectedUnit.SetPressureInBars(startPressure);
+            TextStartPressure.Text = calculator.SelectedUnit.GetPressure().ToString();
+
+            LabelEndPressure.Content = calculator.SelectedUnit.PressureName;
+            LabelStartPressure.Content = calculator.SelectedUnit.PressureName;
         }
-
 
         private void SliderEndingPercentage_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -115,7 +118,7 @@ namespace NitroxCalculator
 
         private void TextStartPercent_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if(double.TryParse(TextStartPercent.Text, out double value))
+            if (double.TryParse(TextStartPercent.Text, out double value))
             {
                 if (value < 0)
                 {

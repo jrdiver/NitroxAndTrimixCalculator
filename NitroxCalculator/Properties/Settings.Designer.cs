@@ -25,13 +25,13 @@ namespace NitroxCalculator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool MetricMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("Imperial")]
+        public string Unit {
             get {
-                return ((bool)(this["MetricMode"]));
+                return ((string)(this["Unit"]));
             }
             set {
-                this["MetricMode"] = value;
+                this["Unit"] = value;
             }
         }
     }
