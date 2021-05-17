@@ -69,6 +69,7 @@ namespace NitroxCalculator.Windows
 
                 MenuUnits.Items.Add(newUnit);
             }
+            CalculateMix();
         }
 
         internal void SelectUnit(object sender, RoutedEventArgs routedEventArgs)
@@ -149,6 +150,31 @@ namespace NitroxCalculator.Windows
             CalculateMix();
         }
 
+        private void TextEndPercent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (double.TryParse(TextStartPercent.Text, out double value))
+            {
+                if (value < 0)
+                {
+                    TextEndPressure.Text = "0";
+                    TextEndPressure.SelectAll();
+                    value = 0;
+                }
+                else if (value > 100)
+                {
+                    TextEndPressure.Text = "100";
+                    TextEndPressure.SelectAll();
+                    value = 100;
+                }
+                SliderEndingPercentage.Value = value;
+            }
+            else
+            {
+                TextEndPressure.Text = "0";
+                TextEndPressure.SelectAll();
+            }
+            CalculateMix();
+        }
 
         private void TextPressure_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
@@ -173,7 +199,7 @@ namespace NitroxCalculator.Windows
             input.SetStartPressure(startPressure);
             input.SetStartMix(startMix);
             input.SetEndMix(endMix);
-
+            input.SetTopOffMix(21);
             MixResult result = calculator.CalculateMix(input);
             double pressure = Math.Round(result.Inputs.StartPressure);
             if (result.RemoveGas > 0)
