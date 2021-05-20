@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NitroxAndTrimixCalculatorLibrary;
 using NitroxAndTrimixCalculatorLibrary.Object;
@@ -111,13 +112,33 @@ namespace NitroxAndTrimixCalculatorTests
         {
             calculator.LoadUnit("Imperial");
             MixInputs input = new();
-            input.SetStartMix(36);
+            input.SetStartMix(50);
             input.SetEndPressure(3400);
+            input.SetStartPressure(500);
             input.SetTopOffMix(21);
             input.SetEndMix(25);
             double output = calculator.ReverseTopUp(input);
 
-            Assert.AreEqual(906.667, Math.Round(output, 3));
+            Assert.AreEqual(31.034, Math.Round(output, 3));
+        }
+
+        [TestMethod]
+        public void LowOxygenCalculation()
+        {
+            calculator.LoadUnit("Imperial");
+            MixInputs input = new();
+            input.SetStartMix(32);
+            input.SetEndPressure(3400);
+            input.SetStartPressure(1500);
+            input.SetTopOffMix(21);
+            input.SetEndMix(32);
+            input.EnableMaxOxygenPressure = true;
+            input.SetMaxOxygenPressure(1000);
+            MixResult output = calculator.CalculateMix(input);
+
+            Assert.AreEqual(392.306, Math.Round(output.AddOxygen, 3));
+            Assert.AreEqual(917.468, Math.Round(output.RemoveGas, 3));
+            Assert.AreEqual(2425.163, Math.Round(output.AddTopOffGas(), 3));
         }
 
         [TestMethod]

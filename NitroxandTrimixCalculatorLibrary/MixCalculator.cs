@@ -28,12 +28,16 @@ namespace NitroxAndTrimixCalculatorLibrary
 
         public MixResult CalculateMix(MixInputs input)
         {
+            //Run Standard Calculation
             MixResult result = MixFromExistingMix(input);
+            //If removing oxygen, mix needs to be drained a bit, and if NaN, probably all of it needs to be drained
             if (result.AddOxygen < 0 || double.IsNaN(result.AddOxygen))
             {
                 result.AddOxygen = 0;
                 result.RemoveGas = ReverseTopUp(input);
             }
+
+            //If amount of Oxygen added plus the start pressure is over end pressure...still invalid.  Probably a better way to do this, but brute force by draining pressure 25 at a time
             else if (result.AddOxygen + result.Inputs.StartPressure > result.Inputs.EndPressure)
             {
                 input.SetStartPressure(input.StartPressure - 25);
@@ -41,6 +45,17 @@ namespace NitroxAndTrimixCalculatorLibrary
                 result.Inputs.SetStartPressure(input.StartPressure + 25);
                 result.RemoveGas += 25;
             }
+
+            //What if you only have only 1000psi of oxygen?  System to get you close to your max pressure.
+            if (result.Inputs.EnableMaxOxygenPressure && result.AddOxygen + result.Inputs.StartPressure > result.Inputs.MaxOxygenPressure)
+            {
+                double overPressure = (result.AddOxygen + result.Inputs.StartPressure - result.Inputs.MaxOxygenPressure) * 1.2;
+                input.SetStartPressure(input.StartPressure - overPressure);
+                result = CalculateMix(input);
+                result.Inputs.SetStartPressure(input.StartPressure + overPressure);
+                result.RemoveGas += overPressure;
+            }
+
             result.SelectedUnit = SelectedUnit;
             return result;
         }
@@ -78,8 +93,7 @@ namespace NitroxAndTrimixCalculatorLibrary
         /// <summary> Calculates a Nitrox Mix starting with a previous mix.  Invalid values are reverted to their nearest valid value </summary>
         public MixResult MixFromExistingMix(MixInputs input)
         {
-            MixResult result = new MixResult();
-            result.SelectedUnit = SelectedUnit;
+            MixResult result = new MixResult { SelectedUnit = SelectedUnit };
 
             double intermediateMix = (input.EndMixDecimal() * input.EndPressure - input.StartMixDecimal() * input.StartPressure) / (input.EndPressure - input.StartPressure);
 
@@ -91,7 +105,7 @@ namespace NitroxAndTrimixCalculatorLibrary
         /// <summary> Calculates what pressure at the selected percentage needs to be in a tank to be able to use the selected Top Off Mix to top off to selected percent </summary>
         public double ReverseTopUp(MixInputs input)
         {
-            return input.StartPressure-((input.EndMixDecimal() * (input.EndPressure) - (input.TopOffMixDecimal() * input.EndPressure)) / (input.StartMixDecimal() - input.TopOffMixDecimal()));
+            return input.StartPressure - ((input.EndMixDecimal() * (input.EndPressure) - (input.TopOffMixDecimal() * input.EndPressure)) / (input.StartMixDecimal() - input.TopOffMixDecimal()));
         }
 
         /// <summary> Calculates the Max Operating Depth (MOD) of the Selected Mix and Partial Pressure </summary>

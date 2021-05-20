@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Jrdiver.NitroxAndTrimixCalculatorLibrary</PackageId>
+    <Authors>Jrdiver</Authors>
+    <Product>Nitrox And Trimix Calculator Library</Product>
+    <Copyright>2021</Copyright>
+    <PackageProjectUrl>https://github.com/jrdiver/NitroxAndTrimixCalculator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jrdiver/NitroxAndTrimixCalculator</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
 </Project>

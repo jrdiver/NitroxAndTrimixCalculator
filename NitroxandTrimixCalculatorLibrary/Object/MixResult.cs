@@ -10,7 +10,8 @@
 
         public double AddTopOffGas()
         {
-            return Inputs.EndPressure + RemoveGas - AddHelium - AddOxygen - Inputs.StartPressure;
+            double output = Inputs.EndPressure + RemoveGas - AddHelium - AddOxygen - Inputs.StartPressure;
+            return output;
         }
 
         public bool ValidMix()

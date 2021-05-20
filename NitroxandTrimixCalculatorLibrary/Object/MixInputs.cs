@@ -15,6 +15,7 @@ namespace NitroxAndTrimixCalculatorLibrary.Object
         public double MaxPressure { get; private set; } = 10000000000000000000;
 
         private bool error;
+        public bool EnableMaxOxygenPressure;
 
         public bool SetStartPressure(double input)
         {

@@ -10,7 +10,7 @@ namespace NitroxCalculator.Windows
     /// <summary> Interaction logic for MainWindow.xaml </summary>
     public partial class MainWindow
     {
-        private MixCalculator calculator = new();
+        private readonly MixCalculator calculator = new();
 
         public MainWindow()
         {
@@ -27,6 +27,14 @@ namespace NitroxCalculator.Windows
             TextStartPercent.Text = SliderStartingPercentage.Value.ToString(CultureInfo.InvariantCulture);
             SliderEndingPercentage.Value = 32;
             TextEndPercent.Text = SliderEndingPercentage.Value.ToString(CultureInfo.InvariantCulture);
+
+           MessageBoxResult result = MessageBox.Show("This software may generate incorrect results and should only be followed if you are trained in mixing gasses.  The Author of this software is not liable for any damages or injuries related to the use of this software and the calculations it made." +
+                                                     Environment.NewLine + Environment.NewLine + "ALL RESULTS ARE FOR REFERENCE ONLY AND USE AT YOUR OWN RISK" + Environment.NewLine + Environment.NewLine + "Click yes if you agree to these conditions, No to close the Application", "Nitrox Calculator", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
+
+           if (result == MessageBoxResult.No)
+           {
+               Exit();
+           }
         }
 
         #region AppFunctions
@@ -101,10 +109,10 @@ namespace NitroxCalculator.Windows
             calculator.LoadUnit(newUnit);
 
             calculator.SelectedUnit.SetPressureInBars(endPressure);
-            TextEndPressure.Text = calculator.SelectedUnit.GetPressure().ToString();
+            TextEndPressure.Text = calculator.SelectedUnit.GetPressure().ToString(CultureInfo.InvariantCulture);
 
             calculator.SelectedUnit.SetPressureInBars(startPressure);
-            TextStartPressure.Text = calculator.SelectedUnit.GetPressure().ToString();
+            TextStartPressure.Text = calculator.SelectedUnit.GetPressure().ToString(CultureInfo.InvariantCulture);
 
             LabelEndPressure.Content = calculator.SelectedUnit.PressureName;
             LabelStartPressure.Content = calculator.SelectedUnit.PressureName;
@@ -124,7 +132,7 @@ namespace NitroxCalculator.Windows
             CalculateMix();
         }
 
-        private void TextStartPercent_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void TextStartPercent_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (double.TryParse(TextStartPercent.Text, out double value))
             {
@@ -176,7 +184,7 @@ namespace NitroxCalculator.Windows
             CalculateMix();
         }
 
-        private void TextPressure_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void TextPressure_TextChanged(object sender, TextChangedEventArgs e)
         {
             CalculateMix();
         }
