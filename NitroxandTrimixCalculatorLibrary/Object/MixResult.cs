@@ -7,6 +7,7 @@
         public double AddOxygen;
         public double AddHelium;
         public MixInputs Inputs = new MixInputs();
+        public bool Invalid = false;
 
         public double AddTopOffGas()
         {
@@ -16,7 +17,7 @@
 
         public bool ValidMix()
         {
-            return !(RemoveGas >= 0 && AddHelium >= 0 && AddOxygen >= 0 && RemoveGas <= Inputs.StartPressure);
+            return !(!Invalid && RemoveGas >= 0 && AddHelium >= 0 && AddOxygen >= 0 && RemoveGas <= Inputs.StartPressure);
         }
 
     }

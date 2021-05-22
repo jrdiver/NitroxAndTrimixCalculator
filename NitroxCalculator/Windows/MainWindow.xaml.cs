@@ -28,17 +28,16 @@ namespace NitroxCalculator.Windows
             SliderEndingPercentage.Value = 32;
             TextEndPercent.Text = SliderEndingPercentage.Value.ToString(CultureInfo.InvariantCulture);
 
-           MessageBoxResult result = MessageBox.Show("This software may generate incorrect results and should only be followed if you are trained in mixing gasses.  The Author of this software is not liable for any damages or injuries related to the use of this software and the calculations it made." +
-                                                     Environment.NewLine + Environment.NewLine + "ALL RESULTS ARE FOR REFERENCE ONLY AND USE AT YOUR OWN RISK" + Environment.NewLine + Environment.NewLine + "Click yes if you agree to these conditions, No to close the Application", "Nitrox Calculator", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
+            MessageBoxResult result = MessageBox.Show("This software may generate incorrect results and should only be followed if you are trained in mixing gasses.  The Author of this software is not liable for any damages or injuries related to the use of this software and the calculations it made." +
+                                                      Environment.NewLine + Environment.NewLine + "ALL RESULTS ARE FOR REFERENCE ONLY AND USE AT YOUR OWN RISK" + Environment.NewLine + Environment.NewLine + "Click yes if you agree to these conditions, No to close the Application", "Nitrox Calculator", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
 
-           if (result == MessageBoxResult.No)
-           {
-               Exit();
-           }
+            if (result == MessageBoxResult.No)
+            {
+                Exit();
+            }
         }
 
         #region AppFunctions
-
         internal void MenuItemExit(object sender, RoutedEventArgs e)
         {
             Exit();
@@ -49,11 +48,9 @@ namespace NitroxCalculator.Windows
             Close();
             Application.Current.Shutdown();
         }
-
         #endregion
 
         #region Unit Selection
-
         internal void LoadUnits(bool initialLoad = false)
         {
             if (initialLoad)
@@ -101,10 +98,13 @@ namespace NitroxCalculator.Windows
             calculator.SelectedUnit.SetPressure(endPressure);
             endPressure = calculator.SelectedUnit.PressureBar;
 
-
             double.TryParse(TextStartPressure.Text, out double startPressure);
             calculator.SelectedUnit.SetPressure(startPressure);
             startPressure = calculator.SelectedUnit.PressureBar;
+
+            double.TryParse(TextMaxOxygenPressure.Text, out double oxygenPressure);
+            calculator.SelectedUnit.SetPressure(oxygenPressure);
+            oxygenPressure = calculator.SelectedUnit.PressureBar;
 
             calculator.LoadUnit(newUnit);
 
@@ -114,10 +114,15 @@ namespace NitroxCalculator.Windows
             calculator.SelectedUnit.SetPressureInBars(startPressure);
             TextStartPressure.Text = calculator.SelectedUnit.GetPressure().ToString(CultureInfo.InvariantCulture);
 
+            calculator.SelectedUnit.SetPressureInBars(oxygenPressure);
+            TextMaxOxygenPressure.Text = calculator.SelectedUnit.GetPressure().ToString(CultureInfo.InvariantCulture);
+
             LabelEndPressure.Content = calculator.SelectedUnit.PressureName;
             LabelStartPressure.Content = calculator.SelectedUnit.PressureName;
+            LabelOxygenPressure.Content = calculator.SelectedUnit.PressureName;
         }
         #endregion
+
         private void SliderEndingPercentage_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             double value = SliderEndingPercentage.Value;
@@ -201,13 +206,16 @@ namespace NitroxCalculator.Windows
             MixInputs input = new();
             double.TryParse(TextEndPressure.Text, out double endPressure);
             double.TryParse(TextStartPressure.Text, out double startPressure);
+            double.TryParse(TextMaxOxygenPressure.Text, out double oxygenPressure);
             double.TryParse(TextStartPercent.Text, out double startMix);
             double.TryParse(TextEndPercent.Text, out double endMix);
             input.SetEndPressure(endPressure);
+            input.SetMaxOxygenPressure(oxygenPressure);
             input.SetStartPressure(startPressure);
             input.SetStartMix(startMix);
             input.SetEndMix(endMix);
             input.SetTopOffMix(21);
+            input.EnableMaxOxygenPressure = true;
             MixResult result = calculator.CalculateMix(input);
             double pressure = Math.Round(result.Inputs.StartPressure);
             if (result.RemoveGas > 0)
