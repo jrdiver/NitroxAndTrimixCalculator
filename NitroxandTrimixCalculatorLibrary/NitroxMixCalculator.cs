@@ -6,12 +6,12 @@ using NitroxAndTrimixCalculatorLibrary.Object;
 
 namespace NitroxAndTrimixCalculatorLibrary
 {
-    public class MixCalculator
+    public class NitroxMixCalculator
     {
         public Unit SelectedUnit { get; private set; }
         public List<Unit> UnitList { get; private set; }
 
-        public MixCalculator()
+        public NitroxMixCalculator()
         {
             UnitList = LoadUnits.LoadAllUnits();
             if (UnitList.Count > 0)
@@ -136,7 +136,7 @@ namespace NitroxAndTrimixCalculatorLibrary
 
         public double BestMixForDepth(double partialPressure, double depth)
         {
-            return (partialPressure / ((depth + 33) / 33)) * 100;
+            return partialPressure / ((depth + 33) / 33) * 100;
         }
     }
 }

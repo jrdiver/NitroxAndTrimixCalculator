@@ -10,7 +10,7 @@ namespace NitroxCalculator.Windows
     /// <summary> Interaction logic for MainWindow.xaml </summary>
     public partial class MainWindow
     {
-        private readonly MixCalculator calculator = new();
+        private readonly NitroxMixCalculator calculator = new();
 
         public MainWindow()
         {

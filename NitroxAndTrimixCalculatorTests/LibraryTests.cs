@@ -9,7 +9,7 @@ namespace NitroxAndTrimixCalculatorTests
     [TestClass]
     public class LibraryTests
     {
-        private readonly MixCalculator calculator = new();
+        private readonly NitroxMixCalculator calculator = new();
 
         [TestMethod]
         public void LoadUnitImperial()
