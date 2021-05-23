@@ -136,9 +136,9 @@ namespace NitroxAndTrimixCalculatorTests
             input.SetMaxOxygenPressure(1000);
             MixResult output = calculator.CalculateMix(input);
 
-            Assert.AreEqual(392.306, Math.Round(output.AddOxygen, 3));
-            Assert.AreEqual(917.468, Math.Round(output.RemoveGas, 3));
-            Assert.AreEqual(2425.163, Math.Round(output.AddTopOffGas(), 3));
+            Assert.AreEqual(388.235, Math.Round(output.AddOxygen, 3));
+            Assert.AreEqual(888.235, Math.Round(output.RemoveGas, 3));
+            Assert.AreEqual(2400, Math.Round(output.AddTopOffGas(), 3));
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace NitroxAndTrimixCalculatorTests
             calculator.LoadUnit("Imperial");
             double output = calculator.MaxOperatingDepthCalculator(36, 1.6);
 
-            Assert.AreEqual(113.667, Math.Round(output, 3));
+            Assert.AreEqual(113, Math.Round(output, 3));
         }
 
         [TestMethod]
@@ -156,7 +156,7 @@ namespace NitroxAndTrimixCalculatorTests
             calculator.LoadUnit("Imperial");
             double output = calculator.BestMixForDepth(1.4, 70);
 
-            Assert.AreEqual(44.854, Math.Round(output, 3));
+            Assert.AreEqual(44.677, Math.Round(output, 3));
         }
 
         [TestMethod]
@@ -165,7 +165,7 @@ namespace NitroxAndTrimixCalculatorTests
             calculator.LoadUnit("Imperial");
             double output = calculator.EquivalentAirDepth(36, 100);
 
-            Assert.AreEqual(74.747, Math.Round(output, 3));
+            Assert.AreEqual(74.8, Math.Round(output, 3));
         }
     }
 }

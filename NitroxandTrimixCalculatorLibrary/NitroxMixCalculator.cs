@@ -112,31 +112,37 @@ namespace NitroxAndTrimixCalculatorLibrary
         /// <summary> Calculates what pressure at the selected percentage needs to be in a tank to be able to use the selected Top Off Mix to top off to selected percent </summary>
         public double ReverseTopUp(MixInputs input)
         {
-            return input.StartPressure - ((input.EndMixDecimal() * (input.EndPressure) - (input.TopOffMixDecimal() * input.EndPressure)) / (input.StartMixDecimal() - input.TopOffMixDecimal()));
+            return input.StartPressure - (input.EndMixDecimal() * input.EndPressure - input.TopOffMixDecimal() * input.EndPressure) / (input.StartMixDecimal() - input.TopOffMixDecimal());
         }
 
-        /// <summary> Calculates the Max Operating Depth (MOD) of the Selected Mix and Partial Pressure </summary>
+        /// <summary> Calculates the Max Operating Depth (MOD) of the Selected Mix and Partial Pressure.  Runs of metric internally and converts to selected unit</summary>
         public double MaxOperatingDepthCalculator(double mix, double partialPressure)
         {
             if (mix > 1)
             {
                 mix /= 100;
             }
-            return (partialPressure / mix - 1) * 33;
+            double maxDepth = (partialPressure / mix - 1) * 10;
+            SelectedUnit.SetDepthInMeters(maxDepth);
+            return SelectedUnit.GetDepth();
         }
 
         public double EquivalentAirDepth(double mix, double depth)
         {
+            SelectedUnit.SetDepth(depth);
+
             if (mix > 1)
             {
                 mix /= 100;
             }
-            return (1 - mix) * (depth + 33) / .79 - 33;
+            SelectedUnit.SetDepthInMeters((1 - mix) * (SelectedUnit.DepthMeter + 10) / .79 - 10);
+            return SelectedUnit.GetDepth();
         }
 
         public double BestMixForDepth(double partialPressure, double depth)
         {
-            return partialPressure / ((depth + 33) / 33) * 100;
+            SelectedUnit.SetDepth(depth);
+            return partialPressure / ((SelectedUnit.DepthMeter + 10) / 10) * 100;
         }
     }
 }
