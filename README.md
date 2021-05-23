@@ -4,7 +4,7 @@
 
 -A GUI Currently targeted at Net 5.0
 
--Test Project to verify what the libry is doing
+-Test Project to verify what the libray is doing
 
 
 Standard disclamer for anything to do with Nitrox and trimix calculations applies - Use this app for referance only and and may not be correct.  Feel free to submit an issue if you find one.
