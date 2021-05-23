@@ -30,7 +30,7 @@
                 <TextBox x:Name="TextStartPercent" Margin="120,75,5,0" Text="32" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2" TextChanged="TextStartPercent_TextChanged"/>
                 <Label x:Name="LabelStartPressure" Content="Label" HorizontalAlignment="Right" Margin="0,10,5,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
                 <Label Content="Max O2 Pressure:" HorizontalAlignment="Left" Margin="5,40,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="TextMaxOxygenPressure" Margin="120,44,35,0" Text="4500" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="TextPressure_TextChanged"/>
+                <TextBox x:Name="TextMaxOxygenPressure" Margin="120,44,35,0" Text="4500" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="TextPressure_TextChanged" ToolTip="The Max Oxygen pressure you can get to while blending"/>
                 <Label x:Name="LabelOxygenPressure" Content="Label" HorizontalAlignment="Right" Margin="0,41,5,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>

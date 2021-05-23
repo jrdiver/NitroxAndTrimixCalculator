@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>NitroxFlagSquare.ico</ApplicationIcon>
+    <ApplicationIcon>NitroxFlagSquare2.ico</ApplicationIcon>
     <PackageId>Nitrox Calculator</PackageId>
     <Authors>Jrdiver</Authors>
     <Product>Nitrox Calculator</Product>
