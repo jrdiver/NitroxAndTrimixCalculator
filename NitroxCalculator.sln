@@ -7,13 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NitroxCalculator", "NitroxC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NitroxAndTrimixCalculatorLibrary", "NitroxandTrimixCalculatorLibrary\NitroxAndTrimixCalculatorLibrary.csproj", "{14D90A01-427B-4C09-BB6F-92253304C482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NitroxAndTrimixCalculatorTests", "NitroxAndTrimixCalculatorTests\NitroxAndTrimixCalculatorTests.csproj", "{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NitroxAndTrimixCalculatorTests", "NitroxAndTrimixCalculatorTests\NitroxAndTrimixCalculatorTests.csproj", "{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{E80C9A94-4C54-4BC7-8C2B-1095BA673DD2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{24C885C9-CCE1-406B-9940-C802C62B91C5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D7D4DA9B-B79E-4C3A-8624-1116F8A6AB2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installers", "Installers", "{8002E9D9-3AEF-4098-B4B5-298E3182F061}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Nitrox Calculator Installer", "Nitrox Calculator Installer\Nitrox Calculator Installer.vdproj", "{43C42193-368F-40BC-BFFE-630C3014B6CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,8 @@ Global
 		{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43C42193-368F-40BC-BFFE-630C3014B6CA}.Debug|Any CPU.ActiveCfg = Debug
+		{43C42193-368F-40BC-BFFE-630C3014B6CA}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{9E24DACF-64EB-4114-B2B2-DE550FD47DF7} = {24C885C9-CCE1-406B-9940-C802C62B91C5}
 		{14D90A01-427B-4C09-BB6F-92253304C482} = {E80C9A94-4C54-4BC7-8C2B-1095BA673DD2}
 		{8AA8E2DD-C4E2-4837-B7DC-0C1C76E47A75} = {D7D4DA9B-B79E-4C3A-8624-1116F8A6AB2D}
+		{43C42193-368F-40BC-BFFE-630C3014B6CA} = {8002E9D9-3AEF-4098-B4B5-298E3182F061}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7905896D-4236-4C5A-A6FC-E802D85FFE8D}

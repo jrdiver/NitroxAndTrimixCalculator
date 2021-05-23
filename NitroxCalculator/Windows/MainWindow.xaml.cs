@@ -202,6 +202,10 @@ namespace NitroxCalculator.Windows
             Mix2.Content = string.Empty;
             Mix3.Content = string.Empty;
             Mix4.Content = string.Empty;
+            Mod1.Content = string.Empty;
+            Mod2.Content = string.Empty;
+            Mod3.Content = string.Empty;
+            Mod4.Content = string.Empty;
 
             MixInputs input = new();
             double.TryParse(TextEndPressure.Text, out double endPressure);
@@ -239,6 +243,13 @@ namespace NitroxCalculator.Windows
                 Mix2.Content = string.Empty;
                 Mix3.Content = string.Empty;
                 Mix4.Content = string.Empty;
+            }
+            else
+            {
+                Mod1.Content = "Max Depth at 1.3: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.3) + " " + result.SelectedUnit.DepthName;
+                Mod2.Content = "Max Depth at 1.4: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.4) + " " + result.SelectedUnit.DepthName;
+                Mod3.Content = "Max Depth at 1.5: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.5) + " " + result.SelectedUnit.DepthName;
+                Mod4.Content = "Max Depth at 1.6: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.6) + " " + result.SelectedUnit.DepthName;
             }
         }
     }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Loaded="WinLoaded"
-        Title="Nitrox Calculator" Height="400" Width="596" Background="#FFADF3AD" MinHeight="345" MaxHeight="400" MinWidth="600" Foreground="Black">
+        Title="Nitrox Calculator" Height="360" Width="596" Background="#FFADF3AD" MinHeight="345" MaxHeight="400" MinWidth="600" Foreground="Black">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -13,10 +13,6 @@
         </Grid.ColumnDefinitions>
         <Menu x:Name="MainMenu" Height="20" VerticalAlignment="Top" Grid.ColumnSpan="3">
             <MenuItem Header="_File">
-                <MenuItem x:Name="mItemUpdateSystemList" Header="_Update Program List" ToolTip="Updates List of programs in Database, This usually takes up to a minute."  />
-                <MenuItem x:Name="mItemShowBackupSystems" IsCheckable="True" Header="_Show Archived Programs" ToolTip="Shows additional systems under the Systems menu that contain removed programs"  />
-                <MenuItem x:Name="mItemSite" Header="_Site" />
-                <Separator />
                 <MenuItem x:Name="ExitButton" Header="_Exit" Click="MenuItemExit"/>
             </MenuItem>
             <MenuItem Header="_Options">
@@ -48,12 +44,20 @@
                 <Label x:Name="LabelEndPressure" Content="Label" HorizontalAlignment="Right" Margin="0,10,5,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Mix Instructions" Margin="5,25,5,0" Height="130" VerticalAlignment="Top">
+        <GroupBox Grid.Column="1" Header="Mix Instructions" Margin="5,25,5,0" Height="155" VerticalAlignment="Top">
             <Grid>
                 <Label x:Name="Mix1" Content="Label" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="Mix2" Content="Label" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="Mix3" Content="Label" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
                 <Label x:Name="Mix4" Content="Label" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Max Operating Depths" Margin="5,180,5,0" Height="130" VerticalAlignment="Top">
+            <Grid>
+                <Label x:Name="Mod1" Content="Label" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="Mod2" Content="Label" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="Mod3" Content="Label" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="Mod4" Content="Label" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
     </Grid>
