@@ -165,26 +165,26 @@ namespace NitroxCalculator.Windows
 
         private void TextEndPercent_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (double.TryParse(TextStartPercent.Text, out double value))
+            if (double.TryParse(TextEndPercent.Text, out double value))
             {
                 if (value < 0)
                 {
-                    TextEndPressure.Text = "0";
-                    TextEndPressure.SelectAll();
+                    TextEndPercent.Text = "0";
+                    TextEndPercent.SelectAll();
                     value = 0;
                 }
                 else if (value > 100)
                 {
-                    TextEndPressure.Text = "100";
-                    TextEndPressure.SelectAll();
+                    TextEndPercent.Text = "100";
+                    TextEndPercent.SelectAll();
                     value = 100;
                 }
                 SliderEndingPercentage.Value = value;
             }
             else
             {
-                TextEndPressure.Text = "0";
-                TextEndPressure.SelectAll();
+                TextEndPercent.Text = "0";
+                TextEndPercent.SelectAll();
             }
             CalculateMix();
         }

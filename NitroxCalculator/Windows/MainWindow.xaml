@@ -30,12 +30,12 @@
                 <Slider x:Name="SliderStartingPercentage" Grid.Column="0" Margin="10,100,10,0" Orientation="Horizontal" Minimum="0" Maximum="100" SmallChange="1" LargeChange="10" TickPlacement="BottomRight" TickFrequency="10" VerticalAlignment="Top" ValueChanged="SliderStartingPercentage_ValueChanged" Grid.RowSpan="2" Foreground="Black"/>
                 <Label Content="Starting Pressure:" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
                 <TextBox x:Name="TextStartPressure" Margin="120,14,35,0" Text="500" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2" TextChanged="TextPressure_TextChanged"/>
-                <Label Content="Starting Percentage:" HorizontalAlignment="Left" Margin="5,41,0,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
-                <TextBox x:Name="TextStartPercent" Margin="120,45,5,0" Text="32" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2" TextChanged="TextStartPercent_TextChanged"/>
+                <Label Content="Starting Percentage:" HorizontalAlignment="Left" Margin="5,71,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TextStartPercent" Margin="120,75,5,0" Text="32" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="2" TextChanged="TextStartPercent_TextChanged"/>
                 <Label x:Name="LabelStartPressure" Content="Label" HorizontalAlignment="Right" Margin="0,10,5,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
-                <Label Content="Max O2 Pressure:" HorizontalAlignment="Left" Margin="5,73,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="TextMaxOxygenPressure" Margin="120,77,35,0" Text="4500" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="TextPressure_TextChanged"/>
-                <Label x:Name="LabelOxygenPressure" Content="Label" HorizontalAlignment="Right" Margin="0,74,5,0" VerticalAlignment="Top"/>
+                <Label Content="Max O2 Pressure:" HorizontalAlignment="Left" Margin="5,40,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TextMaxOxygenPressure" Margin="120,44,35,0" Text="4500" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="TextPressure_TextChanged"/>
+                <Label x:Name="LabelOxygenPressure" Content="Label" HorizontalAlignment="Right" Margin="0,41,5,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Column="0" Header="Requested Mix" Margin="5,180,5,0" Height="130" VerticalAlignment="Top">
