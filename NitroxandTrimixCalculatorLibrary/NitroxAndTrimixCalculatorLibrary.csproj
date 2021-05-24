@@ -2,15 +2,33 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>Jrdiver.NitroxAndTrimixCalculatorLibrary</PackageId>
+    <PackageId>Jrdiver.NitroxAndTrimixCalculator</PackageId>
     <Authors>Jrdiver</Authors>
-    <Product>Nitrox And Trimix Calculator Library</Product>
-    <Copyright>2021</Copyright>
+    <Product>Nitrox And Trimix Calculator</Product>
+    <Copyright>2021 Jrdiver</Copyright>
     <PackageProjectUrl>https://github.com/jrdiver/NitroxAndTrimixCalculator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jrdiver/NitroxAndTrimixCalculator</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageIcon>NitroxFlagSquare.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Description>Nitrox and Trimix Calculator for Gas blending written in C# and .net Standard 2.0
+
+Currently only the Nitrox portion is working, but Trimix will be added in a later release.</Description>
+    <PackageReleaseNotes>Initial Release.  Only Nitrox Working currently.</PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\NitroxCalculator\NitroxFlagSquare.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
