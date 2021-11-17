@@ -8,14 +8,14 @@ namespace NitroxAndTrimixCalculatorLibrary.Object
     {
         public double StartPressure { get; private set; } = 500;
         public double EndPressure { get; private set; } = 3400;
-        public double MaxOxygenPressure { get; private set; } = 3400;
+        public double MaxOxygenPressure { get; private set; } = 4500;
         public double StartMix { get; private set; } = 32;
         public double EndMix { get; private set; } = 32;
         public double TopOffMix { get; private set; } = 20.9;
         public double MaxPressure { get; private set; } = 10000000000000000000;
 
-        private bool error;
-        public bool EnableMaxOxygenPressure;
+        private bool error = false;
+        public bool EnableMaxOxygenPressure = false;
 
         public bool SetStartPressure(double input)
         {

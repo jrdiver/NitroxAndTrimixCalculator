@@ -3,10 +3,10 @@
     public class MixResult
     {
         public double RemoveGas;
-        public Unit SelectedUnit = new Unit();
+        public Unit SelectedUnit = new();
         public double AddOxygen;
         public double AddHelium;
-        public MixInputs Inputs = new MixInputs();
+        public MixInputs Inputs = new();
         public bool Invalid = false;
 
         public double AddTopOffGas()

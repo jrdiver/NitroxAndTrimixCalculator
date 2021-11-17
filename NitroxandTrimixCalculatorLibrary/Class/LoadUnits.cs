@@ -7,7 +7,7 @@ namespace NitroxAndTrimixCalculatorLibrary.Class
     {
         public static List<Unit> LoadAllUnits()
         {
-            List<Unit> units = new List<Unit>
+            List<Unit> units = new ()
             {
                 new Unit
                 {

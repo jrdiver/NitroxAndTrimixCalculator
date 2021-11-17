@@ -81,7 +81,7 @@ namespace NitroxAndTrimixCalculatorLibrary
         public MixResult CalculateFromEmpty(MixInputs input)
         {
             input.SetStartPressure(0);
-            MixResult result = new MixResult
+            MixResult result = new()
             {
                 AddOxygen = (input.EndMix - input.TopOffMix) / (100 - input.TopOffMix) * input.EndPressure,
                 SelectedUnit = SelectedUnit,
@@ -100,7 +100,7 @@ namespace NitroxAndTrimixCalculatorLibrary
         /// <summary> Calculates a Nitrox Mix starting with a previous mix.  Invalid values are reverted to their nearest valid value </summary>
         public MixResult MixFromExistingMix(MixInputs input)
         {
-            MixResult result = new MixResult { SelectedUnit = SelectedUnit };
+            MixResult result = new() { SelectedUnit = SelectedUnit };
 
             double intermediateMix = (input.EndMixDecimal() * input.EndPressure - input.StartMixDecimal() * input.StartPressure) / (input.EndPressure - input.StartPressure);
 
