@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{CB7EBEE6-107
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maui", "Maui", "{0B019D74-A70A-4F89-B992-70FC2657E98A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NitroxCalcMaui", "NitroxCalcuMaui\NitroxCalcMaui.csproj", "{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NitroxCalculatorMaui", "NitroxCalculatorMaui\NitroxCalculatorMaui.csproj", "{CD0A183A-086C-4B82-B156-ACCB7343339F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,21 +125,24 @@ Global
 		{77AD2BF6-299F-45C9-AC7C-1F6D92A13B94}.Release|iPhone.Build.0 = Release|Any CPU
 		{77AD2BF6-299F-45C9-AC7C-1F6D92A13B94}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{77AD2BF6-299F-45C9-AC7C-1F6D92A13B94}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Debug|iPhone.Deploy.0 = Debug|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Release|iPhone.Build.0 = Release|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Debug|iPhone.Deploy.0 = Debug|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Release|iPhone.Build.0 = Release|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Release|iPhone.Deploy.0 = Release|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{CD0A183A-086C-4B82-B156-ACCB7343339F}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,7 +158,7 @@ Global
 		{42C8AFFE-11E0-40A1-9C7A-B225DF3E89A6} = {24C885C9-CCE1-406B-9940-C802C62B91C5}
 		{CB7EBEE6-1071-40AE-8BE3-CEFC384C2AA2} = {24C885C9-CCE1-406B-9940-C802C62B91C5}
 		{0B019D74-A70A-4F89-B992-70FC2657E98A} = {24C885C9-CCE1-406B-9940-C802C62B91C5}
-		{7018D0E2-0E83-4BE5-9FCA-CD5B3BBF0061} = {0B019D74-A70A-4F89-B992-70FC2657E98A}
+		{CD0A183A-086C-4B82-B156-ACCB7343339F} = {0B019D74-A70A-4F89-B992-70FC2657E98A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7905896D-4236-4C5A-A6FC-E802D85FFE8D}
