@@ -7,7 +7,7 @@ using NitroxAndTrimixCalculatorLibrary.Object;
 namespace NitroxAndTrimixCalculatorTests
 {
     [TestClass]
-    public class LibraryTests
+    public class NitroxTests
     {
         private readonly NitroxMixCalculator calculator = new();
 

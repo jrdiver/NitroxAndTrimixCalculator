@@ -31,7 +31,7 @@ namespace NitroxAndTrimixCalculatorLibrary
             //Run Standard Calculation
             MixResult result = MixFromExistingMix(input);
             //If removing oxygen, mix needs to be drained a bit, and if NaN, probably all of it needs to be drained
-            if (result.AddOxygen < 0 || double.IsNaN(result.AddOxygen))
+            if (result.AddOxygen is < 0 or double.NaN)
             {
                 result.AddOxygen = 0;
                 result.RemoveGas = ReverseTopUp(input);
