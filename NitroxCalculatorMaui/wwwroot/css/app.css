@@ -4,7 +4,7 @@ html, body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-h1:focus {
+h1:focus {	
 	outline: none;
 }
 
@@ -33,6 +33,15 @@ a, .btn-link {
 .validation-message {
 	color: red;
 }
+
+.rightAlign{
+	text-align: right;
+}
+
+.fullWidth{
+	width: 100%;
+}
+
 
 #blazor-error-ui {
 	background: lightyellow;

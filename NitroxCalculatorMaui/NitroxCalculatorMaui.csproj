@@ -28,6 +28,10 @@
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+		<PackageId>Jrdiver.NitroxMixCalculator</PackageId>
+		<Authors>Jrdiver</Authors>
+		<Product>Jrdiver's Nitrox Calculator</Product>
+		<Copyright>2022 Jrdiver</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>
