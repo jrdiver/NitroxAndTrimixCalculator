@@ -12,10 +12,10 @@
 		<EnableDefaultCssItems>false</EnableDefaultCssItems>
 
 		<!-- Display name -->
-		<ApplicationTitle>NitroxCalculatorMaui</ApplicationTitle>
+		<ApplicationTitle>Jrdiver's Nitrox Calculator</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.nitroxcalculatormaui</ApplicationId>
+		<ApplicationId>com.Jrdiver.NitroxCalculator</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationVersion>1</ApplicationVersion>
@@ -39,10 +39,9 @@
 		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#04286b" />
 
 		<!-- Images -->
-		<MauiImage Include="Resources\Images\*" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -61,6 +60,11 @@
 
 	<ItemGroup>
 		<Content Remove="Properties\launchSettings.json" />
+		<Content Remove="wwwroot\favicon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="wwwroot\favicon.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
