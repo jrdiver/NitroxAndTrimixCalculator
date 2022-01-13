@@ -1,23 +1,19 @@
 ﻿using Microsoft.AspNetCore.Components.WebView.Maui;
 
-namespace NitroxCalculatorMaui
+namespace NitroxCalculatorMaui;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
+        MauiAppBuilder builder = MauiApp.CreateBuilder();
+        builder.RegisterBlazorMauiWebView().UseMauiApp<App>().ConfigureFonts(fonts =>
         {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .RegisterBlazorMauiWebView()
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                });
+            fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+        });
 
-            builder.Services.AddBlazorWebView();
+        builder.Services.AddBlazorWebView();
 
-            return builder.Build();
-        }
+        return builder.Build();
     }
 }
