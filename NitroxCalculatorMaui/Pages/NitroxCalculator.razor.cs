@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using NitroxAndTrimixCalculatorLibrary;
 using NitroxAndTrimixCalculatorLibrary.Object;
 
@@ -12,8 +13,58 @@ namespace NitroxCalculatorMaui.Pages
         private string endPressure = "3500"; 
         private string endMix = "32"; 
         private string maxO2Pressure = "4500";
-        private MarkupString output = new();
+        private MarkupString output;
         private MixResult result = new();
+
+        public string StartPressureProperty
+        {
+            get => startPressure;
+            set
+            {
+                startPressure = value;
+                CalculateMix();
+            }
+        }
+
+        public string StartMixProperty
+        {
+            get => startMix;
+            set
+            {
+                startMix = value;
+                CalculateMix();
+            }
+        }
+
+        public string EndMixProperty
+        {
+            get => endMix;
+            set
+            {
+                endMix = value;
+                CalculateMix();
+            }
+        }
+
+        public string EndPressureProperty
+        {
+            get => endPressure;
+            set
+            {
+                endPressure = value;
+                CalculateMix();
+            }
+        }
+
+        public string MaxO2PressureProperty
+        {
+            get => maxO2Pressure;
+            set
+            {
+                maxO2Pressure = value;
+                CalculateMix();
+            }
+        }
 
         protected override void OnInitialized() // = On Page Load
         {
@@ -21,20 +72,22 @@ namespace NitroxCalculatorMaui.Pages
             calculator.LoadUnit("imperial");
         }
 
-
         private void CalculateMix()
         {
             string textResult = string.Empty;
             int.TryParse(startPressure, out int intStartPressure);
-            int.TryParse(startMix, out int intstartMix);
+            int.TryParse(startMix, out int intStartMix);
             int.TryParse(endPressure, out int intendPressure);
             int.TryParse(endMix, out int intendMix);
-            int.TryParse(maxO2Pressure, out int intmaxO2Pressure);
+            int.TryParse(maxO2Pressure, out int intMaxO2Pressure);
 
-            MixInputs input = new();
+            MixInputs input = new()
+            {
+                EnableMaxOxygenPressure = true
+            };
             input.SetStartPressure(intStartPressure);
-            input.SetMaxOxygenPressure(intmaxO2Pressure);
-            input.SetStartMix(intstartMix);
+            input.SetMaxOxygenPressure(intMaxO2Pressure);
+            input.SetStartMix(intStartMix);
             input.SetEndPressure(intendPressure);
             input.SetEndMix(intendMix);
 

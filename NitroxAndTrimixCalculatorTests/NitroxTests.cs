@@ -142,6 +142,44 @@ namespace NitroxAndTrimixCalculatorTests
         }
 
         [TestMethod]
+        public void LowOxygenNoneNeededCalculation()
+        {
+            calculator.LoadUnit("Imperial");
+            MixInputs input = new();
+            input.SetStartMix(50);
+            input.SetEndPressure(3400);
+            input.SetStartPressure(1500);
+            input.SetTopOffMix(21);
+            input.SetEndMix(32);
+            input.EnableMaxOxygenPressure = true;
+            input.SetMaxOxygenPressure(500);
+            MixResult output = calculator.CalculateMix(input);
+
+            Assert.AreEqual(0, Math.Round(output.AddOxygen, 3));
+            Assert.AreEqual(210.345, Math.Round(output.RemoveGas, 3));
+            Assert.AreEqual(2110.345, Math.Round(output.AddTopOffGas(), 3));
+        }
+
+        [TestMethod]
+        public void DrainTopUpToGetDesiredCalculation()
+        {
+            calculator.LoadUnit("Imperial");
+            MixInputs input = new();
+            input.SetStartMix(50);
+            input.SetEndPressure(3400);
+            input.SetStartPressure(1500);
+            input.SetTopOffMix(21);
+            input.SetEndMix(32);
+            input.EnableMaxOxygenPressure = false;
+            input.SetMaxOxygenPressure(4500);
+            MixResult output = calculator.CalculateMix(input);
+
+            Assert.AreEqual(0, Math.Round(output.AddOxygen, 3));
+            Assert.AreEqual(210.345, Math.Round(output.RemoveGas, 3));
+            Assert.AreEqual(2110.345, Math.Round(output.AddTopOffGas(), 3));
+        }
+
+        [TestMethod]
         public void ModCalculator()
         {
             calculator.LoadUnit("Imperial");

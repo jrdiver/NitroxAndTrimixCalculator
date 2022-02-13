@@ -47,7 +47,7 @@ namespace NitroxAndTrimixCalculatorLibrary
             }
 
             //What if you only have only 1000psi of oxygen?  System to get you close to your max pressure.
-            if (result.Inputs.EnableMaxOxygenPressure && result.AddOxygen + result.Inputs.StartPressure > result.Inputs.MaxOxygenPressure)
+            if (result.Inputs.EnableMaxOxygenPressure && result.AddOxygen>0 && result.AddOxygen + result.Inputs.StartPressure > result.Inputs.MaxOxygenPressure)
             {
                 double overPressure = (result.AddOxygen + result.Inputs.StartPressure - result.Inputs.MaxOxygenPressure) * 1.1;
 
