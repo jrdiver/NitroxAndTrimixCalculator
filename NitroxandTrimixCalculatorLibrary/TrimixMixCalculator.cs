@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using NitroxAndTrimixCalculatorLibrary.Class;
 using NitroxAndTrimixCalculatorLibrary.Object;
 
