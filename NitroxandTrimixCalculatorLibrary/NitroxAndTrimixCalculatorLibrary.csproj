@@ -5,7 +5,7 @@
     <PackageId>Jrdiver.NitroxAndTrimixCalculator</PackageId>
     <Authors>Jrdiver</Authors>
     <Product>Nitrox And Trimix Calculator</Product>
-    <Copyright>2021 Jrdiver</Copyright>
+    <Copyright>2022 Jrdiver</Copyright>
     <PackageProjectUrl>https://github.com/jrdiver/NitroxAndTrimixCalculator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jrdiver/NitroxAndTrimixCalculator</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
@@ -17,18 +17,12 @@
     <Description>Nitrox and Trimix Calculator for Gas blending written in C# and .net Standard 2.0
 
 Currently only the Nitrox portion is working, but Trimix will be added in a later release.</Description>
-    <PackageReleaseNotes>Initial Release.  Only Nitrox Working currently.</PackageReleaseNotes>
+    <LangVersion>10</LangVersion>
+    <PackageReleaseNotes>Fix a couple minor bugs, mostly with the max pure oxygen calculation</PackageReleaseNotes>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <LangVersion>9</LangVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <LangVersion>9</LangVersion>
-  </PropertyGroup>
-
-  <ItemGroup>
+	<ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

@@ -9,7 +9,7 @@ public partial class NitroxCalculator
     private NitroxMixCalculator calculator;
     private string startPressure = "500"; 
     private string startMix = "32"; 
-    private string endPressure = "3500"; 
+    private string endPressure = "3400"; 
     private string endMix = "32"; 
     private string maxO2Pressure = "4500";
     private MarkupString output;
@@ -24,7 +24,7 @@ public partial class NitroxCalculator
             CalculateMix();
         }
     }
-
+    
     public string StartMixProperty
     {
         get => startMix;
