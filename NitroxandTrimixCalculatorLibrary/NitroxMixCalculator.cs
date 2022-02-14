@@ -30,9 +30,13 @@ namespace NitroxAndTrimixCalculatorLibrary
         {
             //Run Standard Calculation
             MixResult result = MixFromExistingMix(input);
+
+            if (Math.Abs(result.AddOxygen) < 5)
+                result.AddOxygen = 0;
+
             //If removing oxygen, mix needs to be drained a bit, and if NaN, probably all of it needs to be drained
             if (result.AddOxygen is < 0 or double.NaN)
-            {
+            {                
                 result.AddOxygen = 0;
                 result.RemoveGas = ReverseTopUp(input);
             }
@@ -47,7 +51,7 @@ namespace NitroxAndTrimixCalculatorLibrary
             }
 
             //What if you only have only 1000psi of oxygen?  System to get you close to your max pressure.
-            if (result.Inputs.EnableMaxOxygenPressure && result.AddOxygen>0 && result.AddOxygen + result.Inputs.StartPressure > result.Inputs.MaxOxygenPressure)
+            if (result.Inputs.EnableMaxOxygenPressure && result.AddOxygen > 0 && result.AddOxygen + result.Inputs.StartPressure > result.Inputs.MaxOxygenPressure)
             {
                 double overPressure = (result.AddOxygen + result.Inputs.StartPressure - result.Inputs.MaxOxygenPressure) * 1.1;
 

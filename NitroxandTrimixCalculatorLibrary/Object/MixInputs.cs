@@ -84,6 +84,31 @@ namespace NitroxAndTrimixCalculatorLibrary.Object
             return TopOffMix / 100;
         }
 
+        public string GetTopOffGasName()
+        {
+            return PercentToName(TopOffMix);
+        }
+
+        public string GeStartGasName()
+        {
+            return PercentToName(StartMix);
+        }
+
+        public string GetEndGasName()
+        {
+            return PercentToName(EndMix);
+        }
+
+        private string PercentToName(double percent)
+        {
+            return percent switch
+            {
+                > 20.8 and < 21.1 => "Air",
+                > 99.8 => "Oxygen",
+                _ => percent + "%"
+            };
+        }
+
         #region PrivateMethoods
         private double VerifyMix(double input)
         {

@@ -4,13 +4,13 @@ using NitroxAndTrimixCalculatorLibrary.Object;
 
 namespace NitroxCalculatorMaui.Pages;
 
-public partial class NitroxCalculator
+public partial class Equalize
 {
     private NitroxMixCalculator calculator;
-    private string startPressure = "500";
-    private string startMix = "32";
-    private string endPressure = "3400";
-    private string endMix = "32";
+    private string startPressure = "500"; 
+    private string startMix = "32"; 
+    private string endPressure = "3400"; 
+    private string endMix = "32"; 
     private string maxO2Pressure = "4500";
     private MarkupString output;
     private MixResult result = new();
@@ -24,7 +24,7 @@ public partial class NitroxCalculator
             CalculateMix();
         }
     }
-
+    
     public string StartMixProperty
     {
         get => startMix;
@@ -69,42 +69,16 @@ public partial class NitroxCalculator
     {
         calculator = new();
         calculator.LoadUnit("imperial");
-
-        CalculateMix();
-    }
-
-    private void AirTopOff()
-    {
-        double.TryParse(startPressure, out double intStartPressure);
-        double.TryParse(startMix, out double intStartMix);
-        double.TryParse(endPressure, out double intendPressure);
-        double.TryParse(maxO2Pressure, out double intMaxO2Pressure);
-
-        MixInputs input = new()
-        {
-            EnableMaxOxygenPressure = true
-        };
-        input.SetStartPressure(intStartPressure);
-        input.SetMaxOxygenPressure(intMaxO2Pressure);
-        input.SetStartMix(intStartMix);
-        input.SetEndPressure(intendPressure);
-
-        double endMixPercent = Math.Round(calculator.TopUp(input), 1);
-        endMix = endMixPercent.ToString();
-
-        string textResult = "Add " + (intendPressure - intStartPressure) + " " + calculator.SelectedUnit.PressureName + " of " + result.Inputs.GetTopOffGasName() + " to " + result.Inputs.EndPressure + " " + calculator.SelectedUnit.PressureName + "<br>";
-        textResult += GetMod(endMixPercent);
-        output = new(textResult);
     }
 
     private void CalculateMix()
     {
         string textResult = string.Empty;
-        double.TryParse(startPressure, out double intStartPressure);
-        double.TryParse(startMix, out double intStartMix);
-        double.TryParse(endPressure, out double intendPressure);
-        double.TryParse(endMix, out double intendMix);
-        double.TryParse(maxO2Pressure, out double intMaxO2Pressure);
+        int.TryParse(startPressure, out int intStartPressure);
+        int.TryParse(startMix, out int intStartMix);
+        int.TryParse(endPressure, out int intendPressure);
+        int.TryParse(endMix, out int intendMix);
+        int.TryParse(maxO2Pressure, out int intMaxO2Pressure);
 
         MixInputs input = new()
         {
@@ -131,7 +105,7 @@ public partial class NitroxCalculator
         }
         if (result.AddTopOffGas() > 0)
         {
-            textResult += "Add " + Math.Round(result.AddTopOffGas()) + " " + calculator.SelectedUnit.PressureName + " of " + result.Inputs.GetTopOffGasName() + " to " + result.Inputs.EndPressure + " " + calculator.SelectedUnit.PressureName + "<br>";
+            textResult += "Add " + Math.Round(result.AddTopOffGas()) + " " + calculator.SelectedUnit.PressureName + " of " + result.Inputs.TopOffMix + "% to " + result.Inputs.EndPressure + " " + calculator.SelectedUnit.PressureName + "<br>";
         }
 
         if (result.ValidMix())
@@ -140,18 +114,11 @@ public partial class NitroxCalculator
         }
         else
         {
-            textResult += GetMod(result.Inputs.EndMix);
+            textResult += "<br><br>Max Depth at 1.3: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.3) + " " + result.SelectedUnit.DepthName + "<br>";
+            textResult += "Max Depth at 1.4: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.4) + " " + result.SelectedUnit.DepthName + "<br>";
+            textResult += "Max Depth at 1.5: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.5) + " " + result.SelectedUnit.DepthName + "<br>";
+            textResult += "Max Depth at 1.6: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.6) + " " + result.SelectedUnit.DepthName + "<br>";
         }
         output = new(textResult);
-    }
-
-    private string GetMod(double o2Percent)
-    {
-        string textResult = string.Empty;
-        textResult += "<br><br>Max Depth at 1.3: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.3) + " " + result.SelectedUnit.DepthName + "<br>";
-        textResult += "Max Depth at 1.4: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.4) + " " + result.SelectedUnit.DepthName + "<br>";
-        textResult += "Max Depth at 1.5: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.5) + " " + result.SelectedUnit.DepthName + "<br>";
-        textResult += "Max Depth at 1.6: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.6) + " " + result.SelectedUnit.DepthName + "<br>";
-        return textResult;
     }
 }
