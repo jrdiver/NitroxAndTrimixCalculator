@@ -92,6 +92,20 @@ public class NitroxTests
     }
 
     [TestMethod]
+    public void TopUpOverpressure()
+    {
+        calculator.LoadUnit("Imperial");
+        MixInputs input = new();
+        input.SetStartMix(36);
+        input.SetStartPressure(5000);
+        input.SetEndPressure(3400);
+        input.SetTopOffMix(21);
+        double output = calculator.TopUp(input);
+
+        Assert.AreEqual(-1, Math.Round(output, 3));
+    }
+
+    [TestMethod]
     public void MixFromMix()
     {
         calculator.LoadUnit("Imperial");
