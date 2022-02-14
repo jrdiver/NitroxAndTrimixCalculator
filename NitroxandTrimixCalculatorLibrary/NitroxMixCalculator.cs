@@ -95,10 +95,12 @@ namespace NitroxAndTrimixCalculatorLibrary
             return result;
         }
 
-        /// <summary> Calculates what percent your mix will be if you just top up with selected Top Off Mix </summary>
+        /// <summary> Calculates what percent your mix will be if you just top up with selected Top Off Mix.  Will return -1 if invalid </summary>
         public double TopUp(MixInputs input)
         {
-            return (input.StartMixDecimal() * input.StartPressure + input.TopOffMixDecimal() * (input.EndPressure - input.StartPressure)) / input.EndPressure * 100;
+            double topOffMix = (input.StartMixDecimal() * input.StartPressure + input.TopOffMixDecimal() * (input.EndPressure - input.StartPressure)) / input.EndPressure * 100;
+
+            return topOffMix > input.StartMix ? -1 : topOffMix;
         }
 
         /// <summary> Calculates a Nitrox Mix starting with a previous mix.  Invalid values are reverted to their nearest valid value </summary>

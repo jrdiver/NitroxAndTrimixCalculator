@@ -89,6 +89,12 @@ public partial class NitroxCalculator
         input.SetStartMix(intStartMix);
         input.SetEndPressure(intendPressure);
 
+        if (intStartPressure > intendPressure)
+        {
+            output = new MarkupString("Start Pressure higher then End Pressure");
+            return;
+        }
+
         double endMixPercent = Math.Round(calculator.TopUp(input), 1);
         endMix = endMixPercent.ToString();
 
