@@ -19,7 +19,7 @@
 Currently only the Nitrox portion is working, but Trimix will be added in a later release.</Description>
     <LangVersion>10</LangVersion>
     <PackageReleaseNotes>Fix a couple minor bugs, mostly with the max pure oxygen calculation</PackageReleaseNotes>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 	<ItemGroup>

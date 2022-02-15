@@ -246,7 +246,6 @@ public class NitroxTests
         Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.VolumeLiter, 3));
     }
 
-
     [TestMethod]
     public void VerifyImperialUnitConversion()
     {
