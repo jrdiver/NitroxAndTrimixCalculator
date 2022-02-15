@@ -6,64 +6,46 @@ namespace NitroxCalculatorMaui.Pages;
 
 public partial class Equalize
 {
-    private NitroxMixCalculator calculator;
-    private string startPressure = "500"; 
-    private string startMix = "32"; 
-    private string endPressure = "3400"; 
-    private string endMix = "32"; 
-    private string maxO2Pressure = "4500";
-    private MarkupString output;
-    private MixResult result = new();
+    private PressureEqualization calculator;
+    internal PressureEqualizationData tank1;
+    private PressureEqualizationData tank2;
+    private PressureEqualizationData tankResult;
 
-    public string StartPressureProperty
+    public string Tank1Pressure
     {
-        get => startPressure;
-        set
-        {
-            startPressure = value;
-        }
-    }
-    
-    public string StartMixProperty
-    {
-        get => startMix;
-        set
-        {
-            startMix = value;
-        }
+        get => tank1.Pressure.ToString();
+        set => double.TryParse(value, out tank1.Pressure);
     }
 
-    public string EndMixProperty
+    public string Tank2Pressure
     {
-        get => endMix;
-        set
-        {
-            endMix = value;
-        }
+        get => tank2.Pressure.ToString();
+        set => double.TryParse(value, out tank2.Pressure);
     }
 
-    public string EndPressureProperty
+    public string Tank1Capacity
     {
-        get => endPressure;
-        set
-        {
-            endPressure = value;
-        }
+        get => tank1.TankSize.ToString();
+        set => double.TryParse(value, out tank1.TankSize);
     }
 
-    public string MaxO2PressureProperty
+    public string Tank2Capacity
     {
-        get => maxO2Pressure;
-        set
-        {
-            maxO2Pressure = value;
-        }
+        get => tank2.TankSize.ToString();
+        set => double.TryParse(value, out tank2.TankSize);
     }
 
     protected override void OnInitialized() // = On Page Load
     {
         calculator = new();
-        calculator.LoadUnit("imperial");
+        tank1 = new(500, 80, calculator.GetUnit("Imperial"));
+        tank2 = new(2500, 80, calculator.GetUnit("Imperial"));
+        EqualizeTanks();
     }
-    
+
+    private void EqualizeTanks()
+    {
+        tankResult = calculator.EqualizeTanks(tank1, tank2);
+    }
+
 }
