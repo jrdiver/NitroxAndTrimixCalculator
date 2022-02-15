@@ -7,14 +7,18 @@ public class Unit
     public string Name = string.Empty;
     public string PressureName = string.Empty;
     public string DepthName = string.Empty;
+    public string VolumeName = string.Empty;
     public double UnitPerBar = 1;
     public double UnitPerMeter = 1;
+    public double UnitPerLiter = 1;
     public int RoundPressureTo = 1;
     public int RoundDepthTo = 1;
+    public int RoundVolumeTo = 1;
 
 
     public double DepthMeter { get; private set; }
     public double PressureBar { get; private set; }
+    public double VolumeLiter { get; private set; }
 
     public double GetDepth()
     {
@@ -44,5 +48,21 @@ public class Unit
     public void SetPressureInBars(double pressure)
     {
         PressureBar = pressure;
+    }
+
+    public void SetVolumeInLiters(double volume)
+    {
+        VolumeLiter = volume;
+    }
+
+    public void SetVolume(double volume)
+    {
+        VolumeLiter = volume / UnitPerLiter;
+    }
+
+    public double GetVolume()
+    {
+        return Math.Round(VolumeLiter * UnitPerLiter, RoundVolumeTo);
+
     }
 }

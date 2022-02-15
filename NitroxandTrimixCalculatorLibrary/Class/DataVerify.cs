@@ -2,7 +2,7 @@
 
 internal static class DataVerify
 {
-    internal static double VerifyDouble(double value, double low, double high)
+    internal static double Verify(double value, double low, double high)
     {
         if (value > high)
         {
@@ -16,7 +16,7 @@ internal static class DataVerify
         return value;
     }
 
-    internal static int VerifyInt(int value, int low, int high)
+    internal static int Verify(int value, int low, int high)
     {
         if (value > high)
         {

@@ -14,17 +14,22 @@ public static class LoadUnits
                 Name = "Imperial",
                 PressureName = "PSI",
                 DepthName = "Feet",
+                VolumeName = "Cubic Feet",
                 UnitPerBar = 14.5037738,
                 UnitPerMeter = 3.2808,
-                RoundPressureTo = 0
+                UnitPerLiter = 0.0353147,
+                RoundPressureTo = 0,
+                
             },
             new Unit
             {
                 Name = "Metric",
                 PressureName = "Bar",
                 DepthName = "Meter",
+                VolumeName = "Liter",
                 UnitPerBar = 1,
-                UnitPerMeter = 1
+                UnitPerMeter = 1,
+                UnitPerLiter = 1,
             }
         };
 

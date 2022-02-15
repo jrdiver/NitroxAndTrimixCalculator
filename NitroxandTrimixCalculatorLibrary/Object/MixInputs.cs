@@ -14,24 +14,24 @@ namespace NitroxAndTrimixCalculatorLibrary.Object
         public double TopOffMix { get; private set; } = 20.9;
         public double MaxPressure { get; private set; } = 10000000000000000000;
 
-        private bool error = false;
+        private bool error;
         public bool EnableMaxOxygenPressure = false;
 
         public bool SetStartPressure(double input)
         {
-            StartPressure = DataVerify.VerifyDouble(input, 0, MaxPressure);
+            StartPressure = DataVerify.Verify(input, 0, MaxPressure);
             return Math.Abs(input - StartPressure) < .01;
         }
 
         public bool SetEndPressure(double input)
         {
-            EndPressure = DataVerify.VerifyDouble(input, 0, MaxPressure);
+            EndPressure = DataVerify.Verify(input, 0, MaxPressure);
             return Math.Abs(input - EndPressure) < .01;
         }
 
         public bool SetMaxOxygenPressure(double input)
         {
-            MaxOxygenPressure = DataVerify.VerifyDouble(input, 0, MaxPressure);
+            MaxOxygenPressure = DataVerify.Verify(input, 0, MaxPressure);
             return Math.Abs(input - MaxOxygenPressure) < .01;
         }
 
@@ -113,7 +113,7 @@ namespace NitroxAndTrimixCalculatorLibrary.Object
         private double VerifyMix(double input)
         {
             error = false;
-            double output = DataVerify.VerifyDouble(input, 0, 100);
+            double output = DataVerify.Verify(input, 0, 100);
             if (output < 1 && output > 0)
             {
                 output *= 100;

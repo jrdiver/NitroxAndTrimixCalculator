@@ -77,7 +77,7 @@ public partial class NitroxCalculator
     {
         MixInputs input = LoadMixInputs();
 
-        if (input.StartPressure > input.EndPressure)
+        if (!input.EndPressureLarger())
         {
             output = new MarkupString("Start Pressure higher then End Pressure");
             return;
