@@ -75,21 +75,9 @@ public partial class NitroxCalculator
 
     private void AirTopOff()
     {
-        double.TryParse(startPressure, out double intStartPressure);
-        double.TryParse(startMix, out double intStartMix);
-        double.TryParse(endPressure, out double intendPressure);
-        double.TryParse(maxO2Pressure, out double intMaxO2Pressure);
+        MixInputs input = LoadMixInputs();
 
-        MixInputs input = new()
-        {
-            EnableMaxOxygenPressure = true
-        };
-        input.SetStartPressure(intStartPressure);
-        input.SetMaxOxygenPressure(intMaxO2Pressure);
-        input.SetStartMix(intStartMix);
-        input.SetEndPressure(intendPressure);
-
-        if (intStartPressure > intendPressure)
+        if (input.StartPressure > input.EndPressure)
         {
             output = new MarkupString("Start Pressure higher then End Pressure");
             return;
@@ -97,30 +85,13 @@ public partial class NitroxCalculator
 
         double endMixPercent = Math.Round(calculator.TopUp(input), 1);
         endMix = endMixPercent.ToString();
-
-        string textResult = "Add " + (intendPressure - intStartPressure) + " " + calculator.SelectedUnit.PressureName + " of " + result.Inputs.GetTopOffGasName() + " to " + result.Inputs.EndPressure + " " + calculator.SelectedUnit.PressureName + "<br>";
-        textResult += GetMod(endMixPercent);
-        output = new(textResult);
+        CalculateMix();
     }
 
     private void CalculateMix()
     {
         string textResult = string.Empty;
-        double.TryParse(startPressure, out double intStartPressure);
-        double.TryParse(startMix, out double intStartMix);
-        double.TryParse(endPressure, out double intendPressure);
-        double.TryParse(endMix, out double intendMix);
-        double.TryParse(maxO2Pressure, out double intMaxO2Pressure);
-
-        MixInputs input = new()
-        {
-            EnableMaxOxygenPressure = true
-        };
-        input.SetStartPressure(intStartPressure);
-        input.SetMaxOxygenPressure(intMaxO2Pressure);
-        input.SetStartMix(intStartMix);
-        input.SetEndPressure(intendPressure);
-        input.SetEndMix(intendMix);
+        MixInputs input = LoadMixInputs();
 
         result = calculator.CalculateMix(input);
 
@@ -159,5 +130,38 @@ public partial class NitroxCalculator
         textResult += "Max Depth at 1.5: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.5) + " " + result.SelectedUnit.DepthName + "<br>";
         textResult += "Max Depth at 1.6: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.6) + " " + result.SelectedUnit.DepthName + "<br>";
         return textResult;
+    }
+
+    private MixInputs LoadMixInputs()
+    {
+        double.TryParse(startPressure, out double doubleStartPressure);
+        double.TryParse(startMix, out double doubleStartMix);
+        double.TryParse(endPressure, out double doubleEndPressure);
+        double.TryParse(endMix, out double doubleEndMix);
+        double.TryParse(maxO2Pressure, out double doubleMaxO2Pressure);
+
+        if (doubleStartMix > 100)
+        {
+            doubleStartMix = 100;
+            startMix = doubleStartMix.ToString();
+        }
+
+        MixInputs input = new()
+        {
+            EnableMaxOxygenPressure = true
+        };
+        input.SetStartPressure(doubleStartPressure);
+        input.SetMaxOxygenPressure(doubleMaxO2Pressure);
+        input.SetStartMix(doubleStartMix);
+        input.SetEndPressure(doubleEndPressure);
+        input.SetEndMix(doubleEndMix);
+
+        startPressure = Math.Round(input.StartPressure).ToString();
+        startMix = Math.Round(input.StartMix, 1).ToString();
+        endPressure = Math.Round(input.EndPressure).ToString();
+        endMix = Math.Round(input.EndMix, 1).ToString();
+        maxO2Pressure = Math.Round(input.MaxOxygenPressure).ToString();
+
+        return input;
     }
 }
