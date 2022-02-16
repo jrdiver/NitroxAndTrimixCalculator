@@ -2,4 +2,37 @@
 
 <h1>Pressure Equalization</h1>
 
-<p></p>
+<h2 class="text-center">Tank 1</h2>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Tank Size:</div>
+    <div class="col-sm-7 col-md-6">
+        <input @bind-value="Tank1Capacity" @bind-value:event="oninput" class="fullWidth" min="0" type="number" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Pressure:</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="Tank1Pressure" @bind-value:event="oninput" type="number" min="0" />
+    </div>
+</div>
+
+<br/>
+<br/>
+
+<h2 class="text-center">Tank 2</h2>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Tank Size:</div>
+    <div class="col-sm-7 col-md-6">
+        <input @bind-value="Tank2Capacity" @bind-value:event="oninput" class="fullWidth" min="0" type="number" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Pressure:</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="Tank2Pressure" @bind-value:event="oninput" type="number" min="0" />
+    </div>
+</div>
+<br/>
+<br/>
+<p>The 2 tanks equalized together account for @tankResult.TankSize @tankResult.SelectedUnit.VolumeName</p>
+<p>The Pressure should be @tankResult.Pressure @tankResult.SelectedUnit.PressureName</p>
