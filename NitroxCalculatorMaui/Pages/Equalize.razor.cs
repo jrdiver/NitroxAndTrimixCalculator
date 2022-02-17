@@ -6,7 +6,7 @@ namespace NitroxCalculatorMaui.Pages;
 public partial class Equalize
 {
     private PressureEqualization calculator;
-    internal PressureEqualizationData tank1;
+    private PressureEqualizationData tank1;
     private PressureEqualizationData tank2;
     private PressureEqualizationData tankResult;
 
