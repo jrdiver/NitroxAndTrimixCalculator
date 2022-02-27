@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using NitroxAndTrimixCalculatorLibrary;
 using NitroxAndTrimixCalculatorLibrary.Object;
+using NitroxCalculatorMaui.Class;
 
 namespace NitroxCalculatorMaui.Pages;
 
@@ -68,7 +69,7 @@ public partial class NitroxCalculator
     protected override void OnInitialized() // = On Page Load
     {
         calculator = new();
-        calculator.LoadUnit("imperial");
+        calculator.LoadUnit(AppSettings.SelectedUnit);
 
         CalculateMix();
     }

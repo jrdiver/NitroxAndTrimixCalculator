@@ -15,53 +15,33 @@ public class Unit
     public int RoundDepthTo = 1;
     public int RoundVolumeTo = 1;
 
+    /// <summary> The Current Depth Converted to Metric </summary>
+    public double DepthMeter { get; set; }
 
-    public double DepthMeter { get; private set; }
-    public double PressureBar { get; private set; }
-    public double VolumeLiter { get; private set; }
+    /// <summary> The Current Pressure Converted to Metric </summary>
+    public double PressureBar { get; set; }
 
-    public double GetDepth()
+    /// <summary> The Current Volume Converted to Metric </summary>
+    public double VolumeLiter { get; set; }
+
+    /// <summary> Depth in the Currently Selected Unit </summary>
+    public double Depth
     {
-        return Math.Round(DepthMeter * UnitPerMeter, RoundDepthTo);
+        get => Math.Round(DepthMeter * UnitPerMeter, RoundDepthTo);
+        set => DepthMeter = value / UnitPerMeter;
     }
 
-    public void SetDepth(double depth)
+    /// <summary> Volume in the Currently Selected Unit </summary>
+    public double Volume
     {
-        DepthMeter = depth / UnitPerMeter;
+        get => Math.Round(VolumeLiter * UnitPerLiter, RoundVolumeTo);
+        set => VolumeLiter = value / UnitPerLiter;
     }
 
-    public void SetDepthInMeters(double depth)
+    /// <summary> Pressure in the currently Selected Unit </summary>
+    public double Pressure
     {
-        DepthMeter = depth;
-    }
-
-    public double GetPressure()
-    {
-        return Math.Round(PressureBar * UnitPerBar, RoundPressureTo);
-    }
-
-    public void SetPressure(double pressure)
-    {
-        PressureBar = pressure / UnitPerBar;
-    }
-
-    public void SetPressureInBars(double pressure)
-    {
-        PressureBar = pressure;
-    }
-
-    public void SetVolumeInLiters(double volume)
-    {
-        VolumeLiter = volume;
-    }
-
-    public void SetVolume(double volume)
-    {
-        VolumeLiter = volume / UnitPerLiter;
-    }
-
-    public double GetVolume()
-    {
-        return Math.Round(VolumeLiter * UnitPerLiter, RoundVolumeTo);
+        get => Math.Round(PressureBar * UnitPerBar, RoundPressureTo);
+        set => PressureBar = value / UnitPerBar;
     }
 }

@@ -21,8 +21,8 @@ public class NitroxTests
     public void VerifyUnitImperialInput()
     {
         calculator.LoadUnit("Imperial");
-        calculator.SelectedUnit.SetDepth(50);
-        calculator.SelectedUnit.SetPressure(3500);
+        calculator.SelectedUnit.Depth = 50;
+        calculator.SelectedUnit.Pressure=3500;
         Assert.AreEqual(15.24, Math.Round(calculator.SelectedUnit.DepthMeter, 3));
         Assert.AreEqual(241.317, Math.Round(calculator.SelectedUnit.PressureBar, 3));
     }
@@ -31,10 +31,10 @@ public class NitroxTests
     public void VerifyUnitImperialOutput()
     {
         calculator.LoadUnit("Imperial");
-        calculator.SelectedUnit.SetDepth(50);
-        calculator.SelectedUnit.SetPressure(3500);
-        Assert.AreEqual(50, calculator.SelectedUnit.GetDepth());
-        Assert.AreEqual(3500, calculator.SelectedUnit.GetPressure());
+        calculator.SelectedUnit.Depth = 50;
+        calculator.SelectedUnit.Pressure=3500;
+        Assert.AreEqual(50, calculator.SelectedUnit.Depth);
+        Assert.AreEqual(3500, calculator.SelectedUnit.Pressure);
     }
 
     [TestMethod]
@@ -48,8 +48,8 @@ public class NitroxTests
     public void VerifyUnitMetricInput()
     {
         calculator.LoadUnit("Metric");
-        calculator.SelectedUnit.SetDepth(50);
-        calculator.SelectedUnit.SetPressure(60);
+        calculator.SelectedUnit.Depth = 50;
+        calculator.SelectedUnit.Pressure=60;
         Assert.AreEqual(50, Math.Round(calculator.SelectedUnit.DepthMeter, 3));
         Assert.AreEqual(60, Math.Round(calculator.SelectedUnit.PressureBar, 3));
     }
@@ -58,10 +58,10 @@ public class NitroxTests
     public void VerifyUnitMetricOutput()
     {
         calculator.LoadUnit("Metric");
-        calculator.SelectedUnit.SetDepth(50);
-        calculator.SelectedUnit.SetPressure(60);
-        Assert.AreEqual(50, calculator.SelectedUnit.GetDepth());
-        Assert.AreEqual(60, calculator.SelectedUnit.GetPressure());
+        calculator.SelectedUnit.Depth = 50;
+        calculator.SelectedUnit.Pressure=60;
+        Assert.AreEqual(50, calculator.SelectedUnit.Depth);
+        Assert.AreEqual(60, calculator.SelectedUnit.Pressure);
     }
 
     [TestMethod]
@@ -223,24 +223,24 @@ public class NitroxTests
     public void VerifyMetricUnitConversion()
     {
         calculator.LoadUnit("Metric");
-        calculator.SelectedUnit.SetDepth(20);
-        calculator.SelectedUnit.SetPressure(20);
-        calculator.SelectedUnit.SetVolume(20);
+        calculator.SelectedUnit.Depth = 20;
+        calculator.SelectedUnit.Pressure=20;
+        calculator.SelectedUnit.Volume = 20;
 
-        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.GetDepth(), 3));
-        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.GetPressure(), 3));
-        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.GetVolume(), 3));
+        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.Depth, 3));
+        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.Pressure, 3));
+        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.Volume, 3));
         Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.DepthMeter, 3));
         Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.PressureBar, 3));
         Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.VolumeLiter, 3));
 
-        calculator.SelectedUnit.SetDepth(500);
-        calculator.SelectedUnit.SetPressure(500);
-        calculator.SelectedUnit.SetVolume(500);
+        calculator.SelectedUnit.Depth = 500;
+        calculator.SelectedUnit.Pressure=500;
+        calculator.SelectedUnit.Volume = 500;
 
-        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.GetDepth(), 3));
-        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.GetPressure(), 3));
-        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.GetVolume(), 3));
+        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.Depth, 3));
+        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.Pressure, 3));
+        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.Volume, 3));
         Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.DepthMeter, 3));
         Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.PressureBar, 3));
         Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.VolumeLiter, 3));
@@ -250,24 +250,24 @@ public class NitroxTests
     public void VerifyImperialUnitConversion()
     {
         calculator.LoadUnit("Imperial");
-        calculator.SelectedUnit.SetDepth(20);
-        calculator.SelectedUnit.SetPressure(20);
-        calculator.SelectedUnit.SetVolume(20);
+        calculator.SelectedUnit.Depth = 20;
+        calculator.SelectedUnit.Pressure=20;
+        calculator.SelectedUnit.Volume = 20;
 
-        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.GetDepth(), 3));
-        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.GetPressure(), 3));
-        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.GetVolume(), 3));
+        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.Depth, 3));
+        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.Pressure, 3));
+        Assert.AreEqual(20, Math.Round(calculator.SelectedUnit.Volume, 3));
         Assert.AreEqual(6.096, Math.Round(calculator.SelectedUnit.DepthMeter, 3));
         Assert.AreEqual(1.379, Math.Round(calculator.SelectedUnit.PressureBar, 3));
         Assert.AreEqual(566.336, Math.Round(calculator.SelectedUnit.VolumeLiter, 3));
 
-        calculator.SelectedUnit.SetDepth(500);
-        calculator.SelectedUnit.SetPressure(500);
-        calculator.SelectedUnit.SetVolume(500);
+        calculator.SelectedUnit.Depth = 500;
+        calculator.SelectedUnit.Pressure=500;
+        calculator.SelectedUnit.Volume = 500;
 
-        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.GetDepth(), 3));
-        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.GetPressure(), 3));
-        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.GetVolume(), 3));
+        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.Depth, 3));
+        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.Pressure, 3));
+        Assert.AreEqual(500, Math.Round(calculator.SelectedUnit.Volume, 3));
         Assert.AreEqual(152.402, Math.Round(calculator.SelectedUnit.DepthMeter, 3));
         Assert.AreEqual(34.474, Math.Round(calculator.SelectedUnit.PressureBar, 3));
         Assert.AreEqual(14158.41, Math.Round(calculator.SelectedUnit.VolumeLiter, 3));

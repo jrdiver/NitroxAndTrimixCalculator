@@ -15,25 +15,25 @@ public class PressureEqualizationData
 
     public double GetPressureMetric()
     {
-        SelectedUnit.SetPressure(Pressure);
+        SelectedUnit.Pressure=Pressure;
         return SelectedUnit.PressureBar;
     }
 
     public double GetTankSizeMetric()
     {
-        SelectedUnit.SetVolume(TankSize);
+        SelectedUnit.Volume = TankSize;
         return SelectedUnit.VolumeLiter;
     }
 
     public void SetPressureMetric(double bar)
     {
-        SelectedUnit.SetPressureInBars(bar);
-        Pressure = SelectedUnit.GetPressure();
+        SelectedUnit.PressureBar = bar;
+        Pressure = SelectedUnit.Pressure;
     }
 
     public void SetTankSizeMetric(double liters)
     {
-        SelectedUnit.SetVolumeInLiters(liters);
-        TankSize = SelectedUnit.GetVolume();
+        SelectedUnit.VolumeLiter = liters;
+        TankSize = SelectedUnit.Volume;
     }
 }

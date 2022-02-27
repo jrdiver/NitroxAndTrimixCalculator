@@ -36,7 +36,7 @@ public class NitroxMixCalculator
 
         //If removing oxygen, mix needs to be drained a bit, and if NaN, probably all of it needs to be drained
         if (result.AddOxygen is < 0 or double.NaN)
-        {                
+        {
             result.AddOxygen = 0;
             result.RemoveGas = ReverseTopUp(input);
         }
@@ -129,25 +129,25 @@ public class NitroxMixCalculator
             mix /= 100;
         }
         double maxDepth = (partialPressure / mix - 1) * 10;
-        SelectedUnit.SetDepthInMeters(maxDepth);
-        return SelectedUnit.GetDepth();
+        SelectedUnit.DepthMeter = maxDepth;
+        return SelectedUnit.Depth;
     }
 
     public double EquivalentAirDepth(double mix, double depth)
     {
-        SelectedUnit.SetDepth(depth);
+        SelectedUnit.Depth = depth;
 
         if (mix > 1)
         {
             mix /= 100;
         }
-        SelectedUnit.SetDepthInMeters((1 - mix) * (SelectedUnit.DepthMeter + 10) / .79 - 10);
-        return SelectedUnit.GetDepth();
+        SelectedUnit.DepthMeter = (1 - mix) * (SelectedUnit.DepthMeter + 10) / .79 - 10;
+        return SelectedUnit.Depth;
     }
 
     public double BestMixForDepth(double partialPressure, double depth)
     {
-        SelectedUnit.SetDepth(depth);
+        SelectedUnit.Depth = depth;
         return partialPressure / ((SelectedUnit.DepthMeter + 10) / 10) * 100;
     }
 }

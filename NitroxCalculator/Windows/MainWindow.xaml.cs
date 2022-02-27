@@ -95,27 +95,27 @@ public partial class MainWindow
     internal void ConvertDisplayUnit(string newUnit)
     {
         double.TryParse(TextEndPressure.Text, out double endPressure);
-        calculator.SelectedUnit.SetPressure(endPressure);
+        calculator.SelectedUnit.Pressure = endPressure;
         endPressure = calculator.SelectedUnit.PressureBar;
 
         double.TryParse(TextStartPressure.Text, out double startPressure);
-        calculator.SelectedUnit.SetPressure(startPressure);
+        calculator.SelectedUnit.Pressure = startPressure;
         startPressure = calculator.SelectedUnit.PressureBar;
 
         double.TryParse(TextMaxOxygenPressure.Text, out double oxygenPressure);
-        calculator.SelectedUnit.SetPressure(oxygenPressure);
+        calculator.SelectedUnit.Pressure = oxygenPressure;
         oxygenPressure = calculator.SelectedUnit.PressureBar;
 
         calculator.LoadUnit(newUnit);
 
-        calculator.SelectedUnit.SetPressureInBars(endPressure);
-        TextEndPressure.Text = calculator.SelectedUnit.GetPressure().ToString(CultureInfo.InvariantCulture);
+        calculator.SelectedUnit.PressureBar = endPressure;
+        TextEndPressure.Text = calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
 
-        calculator.SelectedUnit.SetPressureInBars(startPressure);
-        TextStartPressure.Text = calculator.SelectedUnit.GetPressure().ToString(CultureInfo.InvariantCulture);
+        calculator.SelectedUnit.PressureBar = startPressure;
+        TextStartPressure.Text = calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
 
-        calculator.SelectedUnit.SetPressureInBars(oxygenPressure);
-        TextMaxOxygenPressure.Text = calculator.SelectedUnit.GetPressure().ToString(CultureInfo.InvariantCulture);
+        calculator.SelectedUnit.PressureBar = oxygenPressure;
+        TextMaxOxygenPressure.Text = calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
 
         LabelEndPressure.Content = calculator.SelectedUnit.PressureName;
         LabelStartPressure.Content = calculator.SelectedUnit.PressureName;
