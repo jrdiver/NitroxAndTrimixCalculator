@@ -44,9 +44,9 @@ public class NitroxMixCalculator
         //If amount of Oxygen added plus the start pressure is over end pressure...still invalid.  Probably a better way to do this, but brute force by draining pressure 25 at a time
         else if (result.AddOxygen + result.Inputs.StartPressure > result.Inputs.EndPressure)
         {
-            input.SetStartPressure(input.StartPressure - 25);
+            input.StartPressure -= 25;
             result = CalculateMix(input);
-            result.Inputs.SetStartPressure(input.StartPressure + 25);
+            result.Inputs.StartPressure = input.StartPressure + 25;
             result.RemoveGas += 25;
         }
 
@@ -61,9 +61,9 @@ public class NitroxMixCalculator
                 return result;
             }
 
-            input.SetStartPressure(input.StartPressure - overPressure);
+            input.StartPressure -= overPressure;
             result = CalculateMix(input);
-            result.Inputs.SetStartPressure(input.StartPressure + overPressure);
+            result.Inputs.StartPressure = input.StartPressure + overPressure;
             result.RemoveGas += overPressure;
         }
 
@@ -84,7 +84,7 @@ public class NitroxMixCalculator
     /// <summary>Calculates a mix assuming an empty tank,  Start Mix is ignored. </summary>
     public MixResult CalculateFromEmpty(MixInputs input)
     {
-        input.SetStartPressure(0);
+        input.StartPressure = 0;
         MixResult result = new()
         {
             AddOxygen = (input.EndMix - input.TopOffMix) / (100 - input.TopOffMix) * input.EndPressure,
@@ -98,7 +98,7 @@ public class NitroxMixCalculator
     /// <summary> Calculates what percent your mix will be if you just top up with selected Top Off Mix.  Will return -1 if invalid </summary>
     public double TopUp(MixInputs input)
     {
-        double topOffMix = (input.StartMixDecimal() * input.StartPressure + input.TopOffMixDecimal() * (input.EndPressure - input.StartPressure)) / input.EndPressure * 100;
+        double topOffMix = (input.StartMixDecimal * input.StartPressure + input.TopOffMixDecimal * (input.EndPressure - input.StartPressure)) / input.EndPressure * 100;
 
         return topOffMix > input.StartMix ? -1 : topOffMix;
     }
@@ -108,9 +108,9 @@ public class NitroxMixCalculator
     {
         MixResult result = new() { SelectedUnit = SelectedUnit };
 
-        double intermediateMix = (input.EndMixDecimal() * input.EndPressure - input.StartMixDecimal() * input.StartPressure) / (input.EndPressure - input.StartPressure);
+        double intermediateMix = (input.EndMixDecimal * input.EndPressure - input.StartMixDecimal * input.StartPressure) / (input.EndPressure - input.StartPressure);
 
-        result.AddOxygen = (intermediateMix - input.TopOffMixDecimal()) / (1 - input.TopOffMixDecimal()) * (input.EndPressure - input.StartPressure);
+        result.AddOxygen = (intermediateMix - input.TopOffMixDecimal) / (1 - input.TopOffMixDecimal) * (input.EndPressure - input.StartPressure);
         result.Inputs = input;
         return result;
     }
@@ -118,7 +118,7 @@ public class NitroxMixCalculator
     /// <summary> Calculates what pressure at the selected percentage needs to be in a tank to be able to use the selected Top Off Mix to top off to selected percent </summary>
     public double ReverseTopUp(MixInputs input)
     {
-        return input.StartPressure - (input.EndMixDecimal() * input.EndPressure - input.TopOffMixDecimal() * input.EndPressure) / (input.StartMixDecimal() - input.TopOffMixDecimal());
+        return input.StartPressure - (input.EndMixDecimal * input.EndPressure - input.TopOffMixDecimal * input.EndPressure) / (input.StartMixDecimal - input.TopOffMixDecimal);
     }
 
     /// <summary> Calculates the Max Operating Depth (MOD) of the Selected Mix and Partial Pressure.  Runs of metric internally and converts to selected unit</summary>

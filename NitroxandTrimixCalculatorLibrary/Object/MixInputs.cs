@@ -6,99 +6,83 @@ namespace NitroxAndTrimixCalculatorLibrary.Object;
 
 public class MixInputs
 {
-    public double StartPressure { get; private set; } = 500;
-    public double EndPressure { get; private set; } = 3400;
-    public double MaxOxygenPressure { get; private set; } = 4500;
-    public double StartMix { get; private set; } = 32;
-    public double EndMix { get; private set; } = 32;
-    public double TopOffMix { get; private set; } = 20.9;
-    public double MaxPressure { get; private set; } = 10000000000000000000;
+    private double startPressure = 500;
+    public double StartPressure
+    {
+        get => DataVerify.Verify(startPressure, MinimumPressure, MaxPressure);
+        set => startPressure = DataVerify.Verify(value, MinimumPressure, MaxPressure);
+    }
 
-    private bool error;
+    private double endPressure = 3400;
+    public double EndPressure
+    {
+        get => DataVerify.Verify(endPressure, MinimumPressure, MaxPressure);
+        set => endPressure = DataVerify.Verify(value, MinimumPressure, MaxPressure);
+    }
+
+    private double maxOxygenPressure = 4500;
+    public double MaxOxygenPressure
+    {
+        get => DataVerify.Verify(maxOxygenPressure, MinimumPressure, MaxPressure);
+        set => maxOxygenPressure = DataVerify.Verify(value, MinimumPressure, MaxPressure);
+    }
+
+    private double startMix = 32;
+    public double StartMix
+    {
+        get => startMix;
+        set => startMix = VerifyMix(value);
+    }
+
+    private double endMix = 32;
+    public double EndMix
+    {
+        get => endMix;
+        set => endMix = VerifyMix(value);
+    }
+
+    private double topOffMix = 20.9;
+    public double TopOffMix
+    {
+        get => topOffMix;
+        set => topOffMix = VerifyMix(value);
+    }
+
+    private double maxPressure = 10000000000000000000;
+    public double MaxPressure
+    {
+        get => maxPressure;
+        set => maxPressure = Math.Abs(value);
+    }
+
+    private double minimumPressure;
+    public double MinimumPressure
+    {
+        get => minimumPressure;
+        set => minimumPressure = Math.Abs(value);
+    }
+
     public bool EnableMaxOxygenPressure = false;
 
-    public bool SetStartPressure(double input)
-    {
-        StartPressure = DataVerify.Verify(input, 0, MaxPressure);
-        return Math.Abs(input - StartPressure) < .01;
-    }
+    /// <summary> Returns the pressure difference between the start and end pressures </summary>
+    public double PressureDifference => Math.Abs(EndPressure - StartPressure);
 
-    public bool SetEndPressure(double input)
-    {
-        EndPressure = DataVerify.Verify(input, 0, MaxPressure);
-        return Math.Abs(input - EndPressure) < .01;
-    }
+    /// <summary> Returns if the End Pressure Larger then the Start Pressure </summary>
+    public bool EndPressureLarger => StartPressure <= EndPressure;
 
-    public bool SetMaxOxygenPressure(double input)
-    {
-        MaxOxygenPressure = DataVerify.Verify(input, 0, MaxPressure);
-        return Math.Abs(input - MaxOxygenPressure) < .01;
-    }
+    public double StartMixDecimal => StartMix / 100;
 
-    public void SetMaxPressure(double input)
-    {
-        MaxPressure = Math.Abs(input);
-    }
+    public double EndMixDecimal => EndMix / 100;
 
-    /// <summary> Sets Start Mix Percentage </summary>
-    public bool SetStartMix(double input)
-    {
-        StartMix = VerifyMix(input);
-        return error;
-    }
+    public double TopOffMixDecimal => TopOffMix / 100;
 
-    public bool SetEndMix(double input)
-    {
-        EndMix = VerifyMix(input);
-        return error;
-    }
+    public string GetTopOffGasName => PercentToName(TopOffMix);
 
-    public bool SetTopOffMix(double input)
-    {
-        TopOffMix = VerifyMix(input);
-        return error;
-    }
+    public string GetStartGasName => PercentToName(StartMix);
 
-    public double PressureDifference()
-    {
-        return Math.Abs(EndPressure - StartPressure);
-    }
+    public string GetEndGasName => PercentToName(EndMix);
 
-    public bool EndPressureLarger()
-    {
-        return StartPressure <= EndPressure;
-    }
-
-    public double StartMixDecimal()
-    {
-        return StartMix / 100;
-    }
-
-    public double EndMixDecimal()
-    {
-        return EndMix / 100;
-    }
-
-    public double TopOffMixDecimal()
-    {
-        return TopOffMix / 100;
-    }
-
-    public string GetTopOffGasName()
-    {
-        return PercentToName(TopOffMix);
-    }
-
-    public string GeStartGasName()
-    {
-        return PercentToName(StartMix);
-    }
-
-    public string GetEndGasName()
-    {
-        return PercentToName(EndMix);
-    }
-
+    #region PrivateMethoods
     private string PercentToName(double percent)
     {
         return percent switch
@@ -109,10 +93,8 @@ public class MixInputs
         };
     }
 
-    #region PrivateMethoods
     private double VerifyMix(double input)
     {
-        error = false;
         double output = DataVerify.Verify(input, 0, 100);
         if (output < 1 && output > 0)
         {
@@ -122,7 +104,6 @@ public class MixInputs
 
         if (Math.Abs(input - output) > .01)
         {
-            error = true;
             Debug.WriteLine("Invalid Mix Input");
         }
         return output;

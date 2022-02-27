@@ -34,10 +34,10 @@ public class PressureEqualization
     {
         PressureEqualizationData output = new(0, 0, tank1.SelectedUnit);
 
-        output.SetTankSizeMetric(tank1.GetTankSizeMetric() + tank2.GetTankSizeMetric());
-        double pressureFromFirst = tank1.GetPressureMetric() * (tank1.GetTankSizeMetric() / output.GetTankSizeMetric());
-        double pressureFromSecond = tank2.GetPressureMetric() * (tank2.GetTankSizeMetric() / output.GetTankSizeMetric());
-        output.SetPressureMetric(pressureFromFirst + pressureFromSecond);
+        output.TankSizeLiter = tank1.TankSizeLiter + tank2.TankSizeLiter;
+        double pressureFromFirst = tank1.PressureBar * (tank1.TankSizeLiter / output.TankSizeLiter);
+        double pressureFromSecond = tank2.PressureBar * (tank2.TankSizeLiter / output.TankSizeLiter);
+        output.PressureBar = pressureFromFirst + pressureFromSecond;
 
         return output;
     }

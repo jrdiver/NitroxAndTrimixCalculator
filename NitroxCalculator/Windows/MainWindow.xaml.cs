@@ -207,21 +207,25 @@ public partial class MainWindow
         Mod3.Content = string.Empty;
         Mod4.Content = string.Empty;
 
-        MixInputs input = new();
         double.TryParse(TextEndPressure.Text, out double endPressure);
         double.TryParse(TextStartPressure.Text, out double startPressure);
         double.TryParse(TextMaxOxygenPressure.Text, out double oxygenPressure);
         double.TryParse(TextStartPercent.Text, out double startMix);
         double.TryParse(TextEndPercent.Text, out double endMix);
-        input.SetEndPressure(endPressure);
-        input.SetMaxOxygenPressure(oxygenPressure);
-        input.SetStartPressure(startPressure);
-        input.SetStartMix(startMix);
-        input.SetEndMix(endMix);
-        input.SetTopOffMix(21);
-        input.EnableMaxOxygenPressure = true;
+        MixInputs input = new()
+        {
+            EndPressure = endPressure,
+            MaxOxygenPressure = oxygenPressure,
+            StartPressure = startPressure,
+            StartMix = startMix,
+            EndMix = endMix,
+            TopOffMix = 21,
+            EnableMaxOxygenPressure = true
+        };
+
         MixResult result = calculator.CalculateMix(input);
         double pressure = Math.Round(result.Inputs.StartPressure);
+
         if (result.RemoveGas > 0)
         {
             pressure -= Math.Round(result.RemoveGas);

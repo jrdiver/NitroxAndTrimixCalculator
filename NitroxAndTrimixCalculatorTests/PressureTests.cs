@@ -15,8 +15,8 @@ public class PressureTests
     {
         PressureEqualizationData tank = new(3000, 80, calculator.GetUnit("imperial"));
 
-        Assert.AreEqual(2265.346, Math.Round(tank.GetTankSizeMetric(), 3));
-        Assert.AreEqual(206.843, Math.Round(tank.GetPressureMetric(), 3));
+        Assert.AreEqual(2265.346, Math.Round(tank.TankSizeLiter, 3));
+        Assert.AreEqual(206.843, Math.Round(tank.PressureBar, 3));
     }
 
     [TestMethod]
@@ -27,8 +27,8 @@ public class PressureTests
 
         PressureEqualizationData output = calculator.EqualizeTanks(tank1, tank2);
 
-        Assert.AreEqual(3398.018, Math.Round(output.GetTankSizeMetric(), 3));
-        Assert.AreEqual(68.948, Math.Round(output.GetPressureMetric(), 3));
+        Assert.AreEqual(3398.018, Math.Round(output.TankSizeLiter, 3));
+        Assert.AreEqual(68.948, Math.Round(output.PressureBar, 3));
         Assert.AreEqual(120, Math.Round(output.TankSize, 3));
         Assert.AreEqual(1000, Math.Round(output.Pressure, 3));
     }

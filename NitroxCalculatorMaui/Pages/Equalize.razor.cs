@@ -15,7 +15,8 @@ public partial class Equalize
         get => tank1.Pressure.ToString();
         set
         {
-            double.TryParse(value, out tank1.Pressure);
+            double.TryParse(value, out double tankPressure);
+            tank1.Pressure = tankPressure;
             EqualizeTanks();
         }
     }
@@ -25,7 +26,8 @@ public partial class Equalize
         get => tank2.Pressure.ToString();
         set
         {
-            double.TryParse(value, out tank2.Pressure);
+            double.TryParse(value, out double tankPressure);
+            tank1.Pressure = tankPressure;
             EqualizeTanks();
         }
     }
@@ -35,7 +37,8 @@ public partial class Equalize
         get => tank1.TankSize.ToString();
         set
         {
-            double.TryParse(value, out tank1.TankSize);
+            double.TryParse(value, out double tankSize);
+            tank1.TankSize = tankSize;
             EqualizeTanks();
         }
     }
@@ -45,7 +48,8 @@ public partial class Equalize
         get => tank2.TankSize.ToString();
         set
         {
-            double.TryParse(value, out tank2.TankSize);
+            double.TryParse(value, out double tankSize);
+            tank1.TankSize = tankSize;
             EqualizeTanks();
         }
     }

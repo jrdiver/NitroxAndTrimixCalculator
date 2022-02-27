@@ -2,38 +2,58 @@
 
 public class PressureEqualizationData
 {
-    public double Pressure;
-    public double TankSize;
+    public double PressureBar;
+    public double TankSizeLiter;
+    public double TankSizePressure;
     public Unit SelectedUnit;
+
+    public double Pressure
+    {
+        get
+        {
+            SelectedUnit.PressureBar = PressureBar;
+            return SelectedUnit.Pressure;
+        }
+        set
+        {
+            SelectedUnit.Pressure = value;
+            PressureBar = SelectedUnit.PressureBar;
+        }
+    }
+
+    public double SizePressure
+    {
+        get
+        {
+            SelectedUnit.PressureBar = TankSizePressure;
+            return SelectedUnit.Pressure;
+        }
+        set
+        {
+            SelectedUnit.Pressure = value;
+            TankSizePressure = SelectedUnit.PressureBar;
+        }
+    }
+
+    public double TankSize
+    {
+        get
+        {
+            SelectedUnit.VolumeLiter = TankSizeLiter;
+            return SelectedUnit.Volume;
+        }
+        set
+        {
+            SelectedUnit.Volume = value;
+            TankSizeLiter = SelectedUnit.VolumeLiter;
+        }
+    }
+
 
     public PressureEqualizationData(double pressure, double tankSize, Unit selectedUnit)
     {
+        SelectedUnit = selectedUnit;
         Pressure = pressure;
         TankSize = tankSize;
-        SelectedUnit = selectedUnit;
-    }
-
-    public double GetPressureMetric()
-    {
-        SelectedUnit.Pressure=Pressure;
-        return SelectedUnit.PressureBar;
-    }
-
-    public double GetTankSizeMetric()
-    {
-        SelectedUnit.Volume = TankSize;
-        return SelectedUnit.VolumeLiter;
-    }
-
-    public void SetPressureMetric(double bar)
-    {
-        SelectedUnit.PressureBar = bar;
-        Pressure = SelectedUnit.Pressure;
-    }
-
-    public void SetTankSizeMetric(double liters)
-    {
-        SelectedUnit.VolumeLiter = liters;
-        TankSize = SelectedUnit.Volume;
     }
 }

@@ -78,7 +78,7 @@ public partial class NitroxCalculator
     {
         MixInputs input = LoadMixInputs();
 
-        if (!input.EndPressureLarger())
+        if (!input.EndPressureLarger)
         {
             output = new MarkupString("Start Pressure higher then End Pressure");
             return;
@@ -109,7 +109,7 @@ public partial class NitroxCalculator
         }
         if (result.AddTopOffGas() > 0)
         {
-            textResult += "Add " + Math.Round(result.AddTopOffGas()) + " " + calculator.SelectedUnit.PressureName + " of " + result.Inputs.GetTopOffGasName() + " to " + result.Inputs.EndPressure + " " + calculator.SelectedUnit.PressureName + "<br>";
+            textResult += "Add " + Math.Round(result.AddTopOffGas()) + " " + calculator.SelectedUnit.PressureName + " of " + result.Inputs.GetTopOffGasName + " to " + result.Inputs.EndPressure + " " + calculator.SelectedUnit.PressureName + "<br>";
         }
 
         if (result.ValidMix())
@@ -151,11 +151,11 @@ public partial class NitroxCalculator
         {
             EnableMaxOxygenPressure = true
         };
-        input.SetStartPressure(doubleStartPressure);
-        input.SetMaxOxygenPressure(doubleMaxO2Pressure);
-        input.SetStartMix(doubleStartMix);
-        input.SetEndPressure(doubleEndPressure);
-        input.SetEndMix(doubleEndMix);
+        input.StartPressure = doubleStartPressure;
+        input.MaxOxygenPressure = doubleMaxO2Pressure;
+        input.StartMix = doubleStartMix;
+        input.EndPressure = doubleEndPressure;
+        input.EndMix = doubleEndMix;
 
         startPressure = Math.Round(input.StartPressure).ToString();
         startMix = Math.Round(input.StartMix, 1).ToString();
