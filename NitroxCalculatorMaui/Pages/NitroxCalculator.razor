@@ -3,37 +3,37 @@
 <h1>Nitrox Calculator</h1>
 
 <div class="row">
-    <div class="col-sm-4 col-lg-3 rightAlign">Starting Pressure:</div>
+    <div class="col-sm-4 col-lg-3 rightAlign">Starting Pressure (@calculator.SelectedUnit.PressureName):</div>
     <div class="col-sm-7 col-md-6">
-        <input @bind-value="StartPressureProperty" @bind-value:event="oninput" class="fullWidth" min="0" type="number" />
+        <input @bind-value="StartPressure" @bind-value:event="oninput" class="fullWidth" min="0" type="number" />
     </div>
 </div>
 <div class="row">
 
-    <div class="col-sm-4 col-lg-3 rightAlign">Maximum Oxygen Pressure:</div>
+    <div class="col-sm-4 col-lg-3 rightAlign">Maximum Oxygen Pressure (@calculator.SelectedUnit.PressureName):</div>
     <div class="col-sm-7 col-md-6">
-        <input class="fullWidth" @bind-value="MaxO2PressureProperty" @bind-value:event="oninput" type="number" min="0" />
+        <input class="fullWidth" @bind-value="MaxO2Pressure" @bind-value:event="oninput" type="number" min="0" />
     </div>
 </div>
 <div class="row">
     <div class="col-sm-4 col-lg-3 rightAlign">Starting Mix:</div>
     <div class="col-sm-7 col-md-6">
-        <input class="fullWidth" @bind-value="StartMixProperty" @bind-value:event="oninput" type="number" min="0" max="100" />
-        <input type="range" min="0" max="100" @bind-value="StartMixProperty" @bind-value:event="oninput" class="form-range">
+        <input class="fullWidth" @bind-value="StartMix" @bind-value:event="oninput" type="number" min="0" max="100" />
+        <input type="range" min="0" max="100" @bind-value="StartMix" @bind-value:event="oninput" class="form-range">
     </div>
 </div>
 <br />
 <div class="row">
-    <div class="col-sm-4 col-lg-3 rightAlign">Ending Pressure:</div>
+    <div class="col-sm-4 col-lg-3 rightAlign">Ending Pressure (@calculator.SelectedUnit.PressureName):</div>
     <div class="col-sm-7 col-md-6">
-        <input class="fullWidth" @bind-value="EndPressureProperty" @bind-value:event="oninput" type="number" min="0" />
+        <input class="fullWidth" @bind-value="EndPressure" @bind-value:event="oninput" type="number" min="0" />
     </div>
 </div>
 <div class="row">
     <div class="col-sm-4 col-lg-3 rightAlign">Ending Mix:</div>
     <div class="col-sm-7 col-md-6">
-        <input class="fullWidth" @bind-value="EndMixProperty" @bind-value:event="oninput" type="number" min="0" max="100" />
-        <input type="range" min="0" max="100" @bind-value="EndMixProperty" @bind-value:event="oninput" class="form-range">
+        <input class="fullWidth" @bind-value="EndMix" @bind-value:event="oninput" type="number" min="0" max="100" />
+        <input type="range" min="0" max="100" @bind-value="EndMix" @bind-value:event="oninput" class="form-range">
     </div>
 </div>
 <br />
