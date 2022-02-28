@@ -76,14 +76,17 @@ public partial class NitroxCalculator
         calculator = new();
         calculator.LoadUnit(AppSettings.SelectedUnit);
 
-        calculator.SelectedUnit.PressureBar = AppSettings.DefaultStartPressure;
+        calculator.SelectedUnit.PressureBar = AppSettings.StartPressure;
         startPressure = calculator.SelectedUnit.Pressure;
 
-        calculator.SelectedUnit.PressureBar = AppSettings.DefaultEndPressure;
+        calculator.SelectedUnit.PressureBar = AppSettings.EndPressure;
         endPressure = calculator.SelectedUnit.Pressure;
 
-        calculator.SelectedUnit.PressureBar = AppSettings.DefaultMaxOxygenPressure;
+        calculator.SelectedUnit.PressureBar = AppSettings.MaxOxygenPressure;
         maxO2Pressure = calculator.SelectedUnit.Pressure;
+
+        startMix = AppSettings.StartMix;
+        endMix = AppSettings.EndMix;
 
         CalculateMix();
     }
@@ -138,11 +141,10 @@ public partial class NitroxCalculator
 
     private string GetMod(double o2Percent)
     {
-        string textResult = string.Empty;
-        textResult += "<br><br>Max Depth at 1.3: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.3) + " " + result.SelectedUnit.DepthName + "<br>";
-        textResult += "Max Depth at 1.4: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.4) + " " + result.SelectedUnit.DepthName + "<br>";
-        textResult += "Max Depth at 1.5: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.5) + " " + result.SelectedUnit.DepthName + "<br>";
-        textResult += "Max Depth at 1.6: " + calculator.MaxOperatingDepthCalculator(o2Percent, 1.6) + " " + result.SelectedUnit.DepthName + "<br>";
+        string textResult = AppSettings.P02List.Aggregate("<br><br>", (current, p02) => current + ($"Max Depth at {p02}: " + calculator.MaxOperatingDepthCalculator(o2Percent, p02) + " " + result.SelectedUnit.DepthName + "<br>"));
+
+        AppSettings.P02List = new() { 1.3, 1.4, 1.5, 1.6 };
+        List<double> number = AppSettings.P02List;
         return textResult;
     }
 

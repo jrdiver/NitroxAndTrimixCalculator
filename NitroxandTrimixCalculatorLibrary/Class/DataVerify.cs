@@ -1,8 +1,11 @@
-﻿namespace NitroxAndTrimixCalculatorLibrary.Class;
+﻿using System;
+using System.Diagnostics;
 
-internal static class DataVerify
+namespace NitroxAndTrimixCalculatorLibrary.Class;
+
+public static class DataVerify
 {
-    internal static double Verify(double value, double low, double high)
+    public static double Verify(double value, double low, double high)
     {
         if (value > high)
         {
@@ -16,7 +19,7 @@ internal static class DataVerify
         return value;
     }
 
-    internal static int Verify(int value, int low, int high)
+    public static int Verify(int value, int low, int high)
     {
         if (value > high)
         {
@@ -28,5 +31,31 @@ internal static class DataVerify
         }
 
         return value;
+    }
+
+    public static string PercentToName(double percent)
+    {
+        return percent switch
+        {
+            > 20.8 and < 21.1 => "Air",
+            > 99.8 => "Oxygen",
+            _ => percent + "%"
+        };
+    }
+
+    public static double VerifyMix(double input)
+    {
+        double output = Verify(input, 0, 100);
+        if (output is < 1 and > 0)
+        {
+            output *= 100;
+            input *= 100;
+        }
+
+        if (Math.Abs(input - output) > .01)
+        {
+            Debug.WriteLine("Invalid Mix Input");
+        }
+        return output;
     }
 }

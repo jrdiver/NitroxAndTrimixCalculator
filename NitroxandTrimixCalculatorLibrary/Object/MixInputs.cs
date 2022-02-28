@@ -31,21 +31,21 @@ public class MixInputs
     public double StartMix
     {
         get => startMix;
-        set => startMix = VerifyMix(value);
+        set => startMix = DataVerify.VerifyMix(value);
     }
 
     private double endMix = 32;
     public double EndMix
     {
         get => endMix;
-        set => endMix = VerifyMix(value);
+        set => endMix = DataVerify.VerifyMix(value);
     }
 
     private double topOffMix = 20.9;
     public double TopOffMix
     {
         get => topOffMix;
-        set => topOffMix = VerifyMix(value);
+        set => topOffMix = DataVerify.VerifyMix(value);
     }
 
     private double maxPressure = 10000000000000000000;
@@ -76,37 +76,9 @@ public class MixInputs
 
     public double TopOffMixDecimal => TopOffMix / 100;
 
-    public string GetTopOffGasName => PercentToName(TopOffMix);
+    public string GetTopOffGasName => DataVerify.PercentToName(TopOffMix);
 
-    public string GetStartGasName => PercentToName(StartMix);
+    public string GetStartGasName => DataVerify.PercentToName(StartMix);
 
-    public string GetEndGasName => PercentToName(EndMix);
-
-    #region PrivateMethoods
-    private string PercentToName(double percent)
-    {
-        return percent switch
-        {
-            > 20.8 and < 21.1 => "Air",
-            > 99.8 => "Oxygen",
-            _ => percent + "%"
-        };
-    }
-
-    private double VerifyMix(double input)
-    {
-        double output = DataVerify.Verify(input, 0, 100);
-        if (output < 1 && output > 0)
-        {
-            output *= 100;
-            input *= 100;
-        }
-
-        if (Math.Abs(input - output) > .01)
-        {
-            Debug.WriteLine("Invalid Mix Input");
-        }
-        return output;
-    }
-    #endregion
+    public string GetEndGasName => DataVerify.PercentToName(EndMix);
 }
