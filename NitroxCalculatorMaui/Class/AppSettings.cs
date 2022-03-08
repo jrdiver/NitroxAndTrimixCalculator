@@ -11,10 +11,7 @@ internal static class AppSettings
         set => Preferences.Set("SelectedUnit", value);
     }
 
-    public static void DefaultSelectedUnit()
-    {
-        Preferences.Set("SelectedUnit", "Imperial");
-    }
+    public static void DefaultSelectedUnit() => Preferences.Remove("SelectedUnit");
 
     public static double TankSize
     {
@@ -22,10 +19,7 @@ internal static class AppSettings
         set => Preferences.Set("TankSize", value);
     }
 
-    public static void DefaultTankSize()
-    {
-        Preferences.Set("TankSize", 2265.35);
-    }
+    public static void DefaultTankSize() => Preferences.Remove("TankSize");
 
     public static double StartPressure
     {
@@ -33,10 +27,7 @@ internal static class AppSettings
         set => Preferences.Set("StartPressure", value);
     }
 
-    public static void DefaultStartPressure()
-    {
-        Preferences.Set("StartPressure", 34.4738);
-    }
+    public static void DefaultStartPressure() => Preferences.Remove("StartPressure");
 
     public static double EndPressure
     {
@@ -44,10 +35,7 @@ internal static class AppSettings
         set => Preferences.Set("EndPressure", value);
     }
 
-    public static void DefaultEndPressure()
-    {
-        Preferences.Set("EndPressure", 234.4217);
-    }
+    public static void DefaultEndPressure() => Preferences.Remove("EndPressure");
 
     public static double MaxOxygenPressure
     {
@@ -55,10 +43,7 @@ internal static class AppSettings
         set => Preferences.Set("MaxOxygenPressure", value);
     }
 
-    public static void DefaultMaxOxygenPressure()
-    {
-        Preferences.Set("MaxOxygenPressure", 310.2641);
-    }
+    public static void DefaultMaxOxygenPressure() => Preferences.Remove("MaxOxygenPressure");
 
     public static double StartMix
     {
@@ -66,10 +51,7 @@ internal static class AppSettings
         set => Preferences.Set("StartMix", DataVerify.VerifyMix(value));
     }
 
-    public static void DefaultStartMix()
-    {
-        Preferences.Set("StartMix", 32.0);
-    }
+    public static void DefaultStartMix() => Preferences.Remove("StartMix");
 
     public static double EndMix
     {
@@ -77,10 +59,7 @@ internal static class AppSettings
         set => Preferences.Set("EndMix", DataVerify.VerifyMix(value));
     }
 
-    public static void DefaultEndMix()
-    {
-        Preferences.Set("EndMix", 32.0);
-    }
+    public static void DefaultEndMix() => Preferences.Remove("EndMix");
 
     public static List<double> P02List
     {
@@ -88,20 +67,7 @@ internal static class AppSettings
         set => Preferences.Set("P02List", JsonConvert.SerializeObject(value));
     }
 
-    public static void DefaultP02List()
-    {
-        Preferences.Set("P02List", "[1.3, 1.4, 1.5, 1.6]");
-    }
+    public static void DefaultP02List() => Preferences.Remove("P02List");
 
-    public static void DefaultAll()
-    {
-        DefaultSelectedUnit();
-        DefaultTankSize();
-        DefaultStartPressure();
-        DefaultEndPressure();
-        DefaultMaxOxygenPressure();
-        DefaultP02List();
-        DefaultStartMix();
-        DefaultEndMix();
-    }
+    public static void DefaultAll() => Preferences.Clear();
 }

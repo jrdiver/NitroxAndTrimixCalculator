@@ -9,7 +9,12 @@ public partial class EditSettings
 
     private string SelectedUnit
     {
-        get => AppSettings.SelectedUnit;
+        get
+        {
+            calculator.LoadUnit(AppSettings.SelectedUnit);
+            return AppSettings.SelectedUnit;
+
+        }
         set
         {
             AppSettings.SelectedUnit = value;
