@@ -25,8 +25,8 @@ public static class LoadUnits
             {
                 Name = "Metric",
                 PressureName = "Bar",
-                DepthName = "Meter",
-                VolumeName = "Liter",
+                DepthName = "Meters",
+                VolumeName = "Liters",
                 UnitPerBar = 1,
                 UnitPerMeter = 1,
                 UnitPerLiter = 1,

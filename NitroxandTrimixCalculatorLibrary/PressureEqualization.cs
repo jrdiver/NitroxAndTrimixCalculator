@@ -34,11 +34,11 @@ public class PressureEqualization
     {
         PressureEqualizationData output = new(0, 0, tank1.SelectedUnit)
         {
-            TankSizeLiter = tank1.TankSizeLiter + tank2.TankSizeLiter
+            FullTankSizeLiter = tank1.FullTankSizeLiter + tank2.FullTankSizeLiter
         };
 
-        double pressureFromFirst = tank1.PressureBar * (tank1.TankSizeLiter / output.TankSizeLiter);
-        double pressureFromSecond = tank2.PressureBar * (tank2.TankSizeLiter / output.TankSizeLiter);
+        double pressureFromFirst = tank1.PressureBar * (tank1.FullTankSizeLiter / output.FullTankSizeLiter);
+        double pressureFromSecond = tank2.PressureBar * (tank2.FullTankSizeLiter / output.FullTankSizeLiter);
         output.PressureBar = pressureFromFirst + pressureFromSecond;
 
         return output;
@@ -49,12 +49,12 @@ public class PressureEqualization
     {
         PressureEqualizationData output = new(0, 0, tank1.SelectedUnit)
         {
-            TankSizeLiter = endPressure.TankSizeLiter - tank1.TankSizeLiter
+            FullTankSizeLiter = endPressure.FullTankSizeLiter - tank1.FullTankSizeLiter
         };
 
-        double pressureFromFirst = tank1.PressureBar * (tank1.TankSizeLiter / endPressure.TankSizeLiter);
+        double pressureFromFirst = tank1.PressureBar * (tank1.FullTankSizeLiter / endPressure.FullTankSizeLiter);
         double pressureFromSecond = endPressure.PressureBar-pressureFromFirst;
-        output.PressureBar = pressureFromSecond / (output.TankSizeLiter / endPressure.TankSizeLiter);
+        output.PressureBar = pressureFromSecond / (output.FullTankSizeLiter / endPressure.FullTankSizeLiter);
 
         return output;
     }

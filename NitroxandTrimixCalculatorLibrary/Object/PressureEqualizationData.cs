@@ -3,8 +3,8 @@
 public class PressureEqualizationData
 {
     public double PressureBar;
-    public double TankSizeLiter;
-    public double TankSizePressure;
+    public double FullPressureBar;
+    public double FullTankSizeLiter;
     public Unit SelectedUnit;
 
     public double Pressure
@@ -21,39 +21,78 @@ public class PressureEqualizationData
         }
     }
 
-    public double SizePressure
+    public double FullPressure
     {
         get
         {
-            SelectedUnit.PressureBar = TankSizePressure;
+            SelectedUnit.PressureBar = FullPressureBar;
             return SelectedUnit.Pressure;
         }
         set
         {
             SelectedUnit.Pressure = value;
-            TankSizePressure = SelectedUnit.PressureBar;
+            FullPressureBar = SelectedUnit.PressureBar;
         }
     }
 
-    public double TankSize
+    public double FullTankSize
     {
         get
         {
-            SelectedUnit.VolumeLiter = TankSizeLiter;
+            SelectedUnit.VolumeLiter = FullTankSizeLiter;
             return SelectedUnit.Volume;
         }
         set
         {
             SelectedUnit.Volume = value;
-            TankSizeLiter = SelectedUnit.VolumeLiter;
+            FullTankSizeLiter = SelectedUnit.VolumeLiter;
         }
     }
 
+    public double SizeAtCurrentPressureLiter
+    {
+        get
+        {
+            int addValue = 0;
+            if (PressureBar == 0)
+                addValue++;
+            return (PressureBar + addValue) * FullTankSizeLiter / (FullPressureBar + addValue);
+        }
+    }
+
+    public double SizeAtCurrentPressure
+    {
+        get
+        {
+            SelectedUnit.VolumeLiter = SizeAtCurrentPressureLiter;
+            return SelectedUnit.Volume;
+        }
+    }
+
+    public double EmptyTankSizeLiter
+    {
+        get => FullTankSizeLiter / (FullPressureBar + 1);
+        set => FullTankSizeLiter = value / (FullPressureBar + 1);
+    }
+
+    public double EmptyTankSize
+    {
+        get
+        {
+            SelectedUnit.VolumeLiter = EmptyTankSizeLiter;
+            return SelectedUnit.Volume;
+        }
+        set
+        {
+            SelectedUnit.Volume = value;
+            EmptyTankSizeLiter = SelectedUnit.VolumeLiter;
+        }
+    }
 
     public PressureEqualizationData(double pressure, double tankSize, Unit selectedUnit)
     {
         SelectedUnit = selectedUnit;
         Pressure = pressure;
-        TankSize = tankSize;
+        FullTankSize = tankSize;
     }
 }

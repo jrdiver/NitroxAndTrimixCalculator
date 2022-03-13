@@ -41,7 +41,7 @@ public class NitroxTests
     public void LoadUnitMetric()
     {
         calculator.LoadUnit("Metric");
-        Assert.AreEqual("Meter", calculator.SelectedUnit.DepthName);
+        Assert.AreEqual("Meters", calculator.SelectedUnit.DepthName);
     }
 
     [TestMethod]

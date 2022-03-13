@@ -1,5 +1,6 @@
 using NitroxAndTrimixCalculatorLibrary;
 using NitroxAndTrimixCalculatorLibrary.Object;
+using NitroxCalculatorMaui.Class;
 
 namespace NitroxCalculatorMaui.Pages;
 
@@ -27,29 +28,29 @@ public partial class Equalize
         set
         {
             double.TryParse(value, out double tankPressure);
-            tank1.Pressure = tankPressure;
+            tank2.Pressure = tankPressure;
             EqualizeTanks();
         }
     }
 
     public string Tank1Capacity
     {
-        get => tank1.TankSize.ToString();
+        get => tank1.FullTankSize.ToString();
         set
         {
-            double.TryParse(value, out double tankSize);
-            tank1.TankSize = tankSize;
+            double.TryParse(value, out double FullTankSize);
+            tank1.FullTankSize = FullTankSize;
             EqualizeTanks();
         }
     }
 
     public string Tank2Capacity
     {
-        get => tank2.TankSize.ToString();
+        get => tank2.FullTankSize.ToString();
         set
         {
-            double.TryParse(value, out double tankSize);
-            tank1.TankSize = tankSize;
+            double.TryParse(value, out double FullTankSize);
+            tank2.FullTankSize = FullTankSize;
             EqualizeTanks();
         }
     }
@@ -57,8 +58,8 @@ public partial class Equalize
     protected override void OnInitialized() // = On Page Load
     {
         calculator = new();
-        tank1 = new(500, 80, calculator.GetUnit("Imperial"));
-        tank2 = new(2500, 80, calculator.GetUnit("Imperial"));
+        tank1 = new(500, 80, calculator.GetUnit(AppSettings.SelectedUnit));
+        tank2 = new(2500, 80, calculator.GetUnit(AppSettings.SelectedUnit));
         EqualizeTanks();
     }
 
