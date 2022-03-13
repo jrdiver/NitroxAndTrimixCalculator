@@ -13,7 +13,7 @@ public class PressureTests
     [TestMethod]
     public void LoadUnitImperial()
     {
-        PressureEqualizationData tank = new(3000, 80, calculator.GetUnit("imperial"));
+        PressureEqualizationData tank = new(3000, 80, 3000, calculator.GetUnit("imperial"));
 
         Assert.AreEqual(2265.346, Math.Round(tank.FullTankSizeLiter, 3));
         Assert.AreEqual(206.843, Math.Round(tank.PressureBar, 3));
@@ -22,8 +22,8 @@ public class PressureTests
     [TestMethod]
     public void EqualizeTanks()
     {
-        PressureEqualizationData tank1 = new(3000, 40, calculator.GetUnit("imperial"));
-        PressureEqualizationData tank2 = new(0, 80, calculator.GetUnit("imperial"));
+        PressureEqualizationData tank1 = new(3000, 40, 3000, calculator.GetUnit("imperial"));
+        PressureEqualizationData tank2 = new(0, 80, 3000, calculator.GetUnit("imperial"));
 
         PressureEqualizationData output = calculator.EqualizeTanks(tank1, tank2);
 
@@ -37,7 +37,7 @@ public class PressureTests
     [TestMethod]
     public void PressureEqualizationData()
     {
-        PressureEqualizationData tank = new(1500, 80, calculator.GetUnit("imperial"))
+        PressureEqualizationData tank = new(1500, 80, 3000, calculator.GetUnit("imperial"))
         {
             FullTankSize = 80,
             FullPressure = 3000
@@ -57,16 +57,16 @@ public class PressureTests
     [TestMethod]
     public void ReverseEqualizeTanks()
     {
-        PressureEqualizationData tank1 = new(1000, 80, calculator.GetUnit("imperial"));
-        PressureEqualizationData combinedTanks = new(1750, 200, calculator.GetUnit("imperial"));
+        PressureEqualizationData tank1 = new(1000, 80, 3000, calculator.GetUnit("imperial"));
+        PressureEqualizationData combinedTanks = new(1750, 200, 3000, calculator.GetUnit("imperial"));
 
         PressureEqualizationData output = calculator.ReverseEqualizeTankOneTankAndEnding(tank1, combinedTanks);
 
         Assert.AreEqual(120, Math.Round(output.FullTankSize, 3));
         Assert.AreEqual(2250, Math.Round(output.Pressure, 3));
 
-        tank1 = new(3000, 40, calculator.GetUnit("imperial"));
-        combinedTanks = new(1000, 120, calculator.GetUnit("imperial"));
+        tank1 = new(3000, 40, 3000, calculator.GetUnit("imperial"));
+        combinedTanks = new(1000, 120, 3000, calculator.GetUnit("imperial"));
 
         output = calculator.ReverseEqualizeTankOneTankAndEnding(tank1, combinedTanks);
 

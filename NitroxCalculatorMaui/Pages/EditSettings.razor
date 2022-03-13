@@ -49,6 +49,34 @@
     </div>
 </div>
 <br />
+
+<h2 class="text-center">Equalization Starting Values</h2>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Default Tanks Size (@calculator.SelectedUnit.VolumeName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="EqualizationTankSize" @bind-value:event="oninput" type="number" min="0" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Default Full Pressure (@calculator.SelectedUnit.PressureName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="EqualizationFullPressure" @bind-value:event="oninput" type="number" min="0" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Default Tank 1 Pressure (@calculator.SelectedUnit.PressureName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="EqualizationTank1Pressure" @bind-value:event="oninput" type="number" min="0" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Default Tank 2 Pressure (@calculator.SelectedUnit.PressureName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="EqualizationTank2Pressure" @bind-value:event="oninput" type="number" min="0" />
+    </div>
+</div>
+
+<br />
 <br />
 <div class="row">
 

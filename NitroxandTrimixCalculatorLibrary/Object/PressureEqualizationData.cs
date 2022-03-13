@@ -89,10 +89,11 @@ public class PressureEqualizationData
         }
     }
 
-    public PressureEqualizationData(double pressure, double tankSize, Unit selectedUnit)
+    public PressureEqualizationData(double pressure, double fullTankSize, double fullPressure, Unit selectedUnit)
     {
         SelectedUnit = selectedUnit;
         Pressure = pressure;
-        FullTankSize = tankSize;
+        FullTankSize = fullTankSize;
+        FullPressure = fullPressure;
     }
 }

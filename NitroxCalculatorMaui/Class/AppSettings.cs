@@ -5,6 +5,7 @@ namespace NitroxCalculatorMaui.Class;
 
 internal static class AppSettings
 {
+    #region AppWideSettings
     public static string SelectedUnit
     {
         get => Preferences.Get("SelectedUnit", "Imperial");
@@ -13,14 +14,10 @@ internal static class AppSettings
 
     public static void DefaultSelectedUnit() => Preferences.Remove("SelectedUnit");
 
-    public static double TankSize
-    {
-        get => Preferences.Get("TankSize", 2265.35);
-        set => Preferences.Set("TankSize", value);
-    }
+    public static void DefaultAll() => Preferences.Clear();
+    #endregion
 
-    public static void DefaultTankSize() => Preferences.Remove("TankSize");
-
+    #region NitroxCalculator
     public static double StartPressure
     {
         get => Preferences.Get("StartPressure", 34.4738);
@@ -68,6 +65,36 @@ internal static class AppSettings
     }
 
     public static void DefaultP02List() => Preferences.Remove("P02List");
+    #endregion
 
-    public static void DefaultAll() => Preferences.Clear();
+    #region PressureSettings
+    public static double EqualizationTankSize
+    {
+        get => Preferences.Get("EqualizationTankSize", 2265.35);
+        set => Preferences.Set("EqualizationTankSize", value);
+    }
+    public static void DefaultTankSize() => Preferences.Remove("EqualizationTankSize");
+
+    public static double EqualizationTankFullPressure
+    {
+        get => Preferences.Get("EqualizationTankFullPressure", 206.8427);
+        set => Preferences.Set("EqualizationTankFullPressure", value);
+    }
+    public static void DefaultEqualizationTankFullPressure() => Preferences.Remove("EqualizationTankFullPressure");
+
+    public static double EqualizationTank1Pressure
+    {
+        get => Preferences.Get("EqualizationTank1Pressure", 34.4738);
+        set => Preferences.Set("EqualizationTank1Pressure", value);
+    }
+    public static void DefaultEqualizationTank1Pressure() => Preferences.Remove("EqualizationTank1Pressure");
+
+    public static double EqualizationTank2Pressure
+    {
+        get => Preferences.Get("EqualizationTank2Pressure", 172.3689);
+        set => Preferences.Set("EqualizationTank2Pressure", value);
+    }
+
+    public static void DefaultEqualizationTank2Pressure() => Preferences.Remove("EqualizationTank2Pressure");
+    #endregion
 }

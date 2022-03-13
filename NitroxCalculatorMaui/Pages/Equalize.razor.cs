@@ -38,8 +38,8 @@ public partial class Equalize
         get => tank1.FullTankSize.ToString();
         set
         {
-            double.TryParse(value, out double FullTankSize);
-            tank1.FullTankSize = FullTankSize;
+            double.TryParse(value, out double fullTankSize);
+            tank1.FullTankSize = fullTankSize;
             EqualizeTanks();
         }
     }
@@ -49,8 +49,28 @@ public partial class Equalize
         get => tank2.FullTankSize.ToString();
         set
         {
-            double.TryParse(value, out double FullTankSize);
-            tank2.FullTankSize = FullTankSize;
+            double.TryParse(value, out double fullTankSize);
+            tank2.FullTankSize = fullTankSize;
+            EqualizeTanks();
+        }
+    }
+    public string Tank1MaxPressure
+    {
+        get => tank1.FullPressure.ToString();
+        set
+        {
+            double.TryParse(value, out double maxPressure);
+            tank1.FullPressure = maxPressure;
+            EqualizeTanks();
+        }
+    }
+    public string Tank2MaxPressure
+    {
+        get => tank2.FullPressure.ToString();
+        set
+        {
+            double.TryParse(value, out double maxPressure);
+            tank2.FullPressure = maxPressure;
             EqualizeTanks();
         }
     }
@@ -58,8 +78,16 @@ public partial class Equalize
     protected override void OnInitialized() // = On Page Load
     {
         calculator = new();
-        tank1 = new(500, 80, calculator.GetUnit(AppSettings.SelectedUnit));
-        tank2 = new(2500, 80, calculator.GetUnit(AppSettings.SelectedUnit));
+        tank1 = new(500, 80, 3000, calculator.GetUnit(AppSettings.SelectedUnit));
+        tank2 = new(2500, 80, 3000, calculator.GetUnit(AppSettings.SelectedUnit));
+
+        tank1.FullTankSizeLiter = AppSettings.EqualizationTankSize;
+        tank2.FullTankSizeLiter = AppSettings.EqualizationTankSize;
+        tank1.FullPressureBar = AppSettings.EqualizationTankFullPressure;
+        tank2.FullPressureBar = AppSettings.EqualizationTankFullPressure;
+        tank1.PressureBar = AppSettings.EqualizationTank1Pressure;
+        tank2.PressureBar = AppSettings.EqualizationTank2Pressure;
+
         EqualizeTanks();
     }
 

@@ -32,7 +32,7 @@ public class PressureEqualization
     /// <summary> Equalizes the pressure of the 2 tanks entered and returns using the first tanks units. </summary>
     public PressureEqualizationData EqualizeTanks(PressureEqualizationData tank1, PressureEqualizationData tank2)
     {
-        PressureEqualizationData output = new(0, 0, tank1.SelectedUnit)
+        PressureEqualizationData output = new(0, 0, 0, tank1.SelectedUnit)
         {
             FullTankSizeLiter = tank1.FullTankSizeLiter + tank2.FullTankSizeLiter
         };
@@ -47,13 +47,13 @@ public class PressureEqualization
     /// <summary> Calculate values for a tank, from the other tank and the end results. </summary>
     public PressureEqualizationData ReverseEqualizeTankOneTankAndEnding(PressureEqualizationData tank1, PressureEqualizationData endPressure)
     {
-        PressureEqualizationData output = new(0, 0, tank1.SelectedUnit)
+        PressureEqualizationData output = new(0, 0, 0, tank1.SelectedUnit)
         {
             FullTankSizeLiter = endPressure.FullTankSizeLiter - tank1.FullTankSizeLiter
         };
 
         double pressureFromFirst = tank1.PressureBar * (tank1.FullTankSizeLiter / endPressure.FullTankSizeLiter);
-        double pressureFromSecond = endPressure.PressureBar-pressureFromFirst;
+        double pressureFromSecond = endPressure.PressureBar - pressureFromFirst;
         output.PressureBar = pressureFromSecond / (output.FullTankSizeLiter / endPressure.FullTankSizeLiter);
 
         return output;

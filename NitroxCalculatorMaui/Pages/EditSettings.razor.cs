@@ -87,4 +87,63 @@ public partial class EditSettings
         }
     }
 
+    private string EqualizationFullPressure
+    {
+        get
+        {
+            calculator.SelectedUnit.PressureBar = AppSettings.EqualizationTankFullPressure;
+            return calculator.SelectedUnit.Pressure.ToString();
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Pressure = parsed;
+            AppSettings.EqualizationTankFullPressure = calculator.SelectedUnit.PressureBar;
+        }
+    }
+
+    private string EqualizationTank1Pressure
+    {
+        get
+        {
+            calculator.SelectedUnit.PressureBar = AppSettings.EqualizationTank1Pressure;
+            return calculator.SelectedUnit.Pressure.ToString();
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Pressure = parsed;
+            AppSettings.EqualizationTank1Pressure = calculator.SelectedUnit.PressureBar;
+        }
+    }
+
+    private string EqualizationTank2Pressure
+    {
+        get
+        {
+            calculator.SelectedUnit.PressureBar = AppSettings.EqualizationTank2Pressure;
+            return calculator.SelectedUnit.Pressure.ToString();
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Pressure = parsed;
+            AppSettings.EqualizationTank2Pressure = calculator.SelectedUnit.PressureBar;
+        }
+    }
+
+    private string EqualizationTankSize
+    {
+        get
+        {
+            calculator.SelectedUnit.VolumeLiter = AppSettings.EqualizationTankSize;
+            return calculator.SelectedUnit.Volume.ToString();
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Volume = parsed;
+            AppSettings.EqualizationTankSize = calculator.SelectedUnit.VolumeLiter;
+        }
+    }
 }
