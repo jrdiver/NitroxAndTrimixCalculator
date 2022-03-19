@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "GasCalc.WinUI": {
-      "commandName": "AppContainer",
-      "debugEngine": "NativeWithManagedCore"
-    }
-  }
-}
