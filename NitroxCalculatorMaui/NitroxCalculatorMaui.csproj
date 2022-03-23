@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
@@ -16,12 +16,14 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.Jrdiver.NitroxCalculator</ApplicationId>
+		<ApplicationId Condition="$(TargetFramework.Contains('-windows'))">694D7E58-DFF2-4845-87F6-31EE4A66AE67</ApplicationId>
 
 		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<!-- Required for C# Hot Reload -->
-		<UseInterpreter Condition="'$(Configuration)' == 'Debug' AND '$(TargetFramework)' != 'net6.0-ios'">True</UseInterpreter>
+		<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>
 
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
@@ -40,12 +42,16 @@
 		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#04286b" />
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#04286b" BaseSize="128,128" />
 
 		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
@@ -64,16 +70,33 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="wwwroot\favicon.ico" />
+		<None Remove="Resources\appicon.svg" />
+		<None Remove="Resources\appiconfg.svg" />
+		<None Remove="Resources\Raw\appicon.svg" />
+		<None Remove="Resources\Raw\appiconfg.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.1" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<MauiAsset Include="Resources\appicon.svg">
+			<LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+		</MauiAsset>
+		<MauiAsset Include="Resources\appiconfg.svg">
+			<LogicalName>%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+		</MauiAsset>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\NitroxandTrimixCalculatorLibrary\NitroxAndTrimixCalculatorLibrary.csproj" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\NitroxandTrimixCalculatorLibrary\NitroxAndTrimixCalculatorLibrary.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Data\" />
+		<Folder Include="Resources\Images\" />
 	</ItemGroup>
 
 </Project>
