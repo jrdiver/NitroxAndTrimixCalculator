@@ -66,6 +66,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Data\**" />
+	  <Compile Remove="Data\**" />
+	  <Content Remove="Data\**" />
+	  <EmbeddedResource Remove="Data\**" />
+	  <MauiXaml Remove="Data\**" />
+	  <None Remove="Data\**" />
+	  <Page Remove="Data\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Content Remove="Properties\launchSettings.json" />
 	</ItemGroup>
 
@@ -95,8 +105,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Data\" />
 		<Folder Include="Resources\Images\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PRIResource Remove="Data\**" />
 	</ItemGroup>
 
 </Project>
