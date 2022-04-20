@@ -4,19 +4,19 @@
 
 <h2 class="text-center">Tank 1</h2>
 <div class="row">
-    <div class="col-sm-4 col-lg-3 rightAlign">Tank Size:</div>
+    <div class="col-sm-4 col-lg-3 rightAlign">Tank Size (@loadedUnit.VolumeName):</div>
     <div class="col-sm-7 col-md-6">
         <input @bind-value="Tank1Capacity" @bind-value:event="oninput" class="fullWidth" min="0" type="number" />
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4 col-lg-3 rightAlign">Pressure:</div>
+    <div class="col-sm-4 col-lg-3 rightAlign">Pressure (@loadedUnit.PressureName):</div>
     <div class="col-sm-7 col-md-6">
         <input class="fullWidth" @bind-value="Tank1Pressure" @bind-value:event="oninput" type="number" min="0" />
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4 col-lg-3 rightAlign">Full Pressure:</div>
+    <div class="col-sm-4 col-lg-3 rightAlign">Full Pressure (@loadedUnit.PressureName):</div>
     <div class="col-sm-7 col-md-6">
         <input class="fullWidth" @bind-value="Tank1MaxPressure" @bind-value:event="oninput" type="number" min="0" />
     </div>
@@ -27,19 +27,19 @@
 
 <h2 class="text-center">Tank 2</h2>
 <div class="row">
-    <div class="col-sm-4 col-lg-3 rightAlign">Tank Size:</div>
+    <div class="col-sm-4 col-lg-3 rightAlign">Tank Size (@loadedUnit.VolumeName):</div>
     <div class="col-sm-7 col-md-6">
         <input @bind-value="Tank2Capacity" @bind-value:event="oninput" class="fullWidth" min="0" type="number" />
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-4 col-lg-3 rightAlign">Pressure:</div>
+    <div class="col-sm-4 col-lg-3 rightAlign">Pressure (@loadedUnit.PressureName):</div>
     <div class="col-sm-7 col-md-6">
         <input class="fullWidth" @bind-value="Tank2Pressure" @bind-value:event="oninput" type="number" min="0" />
     </div> 
 </div>
 <div class="row">
-    <div class="col-sm-4 col-lg-3 rightAlign">Full Pressure:</div>
+    <div class="col-sm-4 col-lg-3 rightAlign">Full Pressure (@loadedUnit.PressureName):</div>
     <div class="col-sm-7 col-md-6">
         <input class="fullWidth" @bind-value="Tank2MaxPressure" @bind-value:event="oninput" type="number" min="0" />
     </div>

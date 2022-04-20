@@ -1,3 +1,4 @@
+using System.Globalization;
 using NitroxAndTrimixCalculatorLibrary;
 using NitroxAndTrimixCalculatorLibrary.Object;
 using NitroxCalculatorMaui.Class;
@@ -10,10 +11,11 @@ public partial class Equalize
     private PressureEqualizationData tank1;
     private PressureEqualizationData tank2;
     private PressureEqualizationData tankResult;
+    private Unit loadedUnit;
 
     public string Tank1Pressure
     {
-        get => tank1.Pressure.ToString();
+        get => tank1.Pressure.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double tankPressure);
@@ -24,7 +26,7 @@ public partial class Equalize
 
     public string Tank2Pressure
     {
-        get => tank2.Pressure.ToString();
+        get => tank2.Pressure.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double tankPressure);
@@ -35,7 +37,7 @@ public partial class Equalize
 
     public string Tank1Capacity
     {
-        get => tank1.FullTankSize.ToString();
+        get => tank1.FullTankSize.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double fullTankSize);
@@ -46,7 +48,7 @@ public partial class Equalize
 
     public string Tank2Capacity
     {
-        get => tank2.FullTankSize.ToString();
+        get => tank2.FullTankSize.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double fullTankSize);
@@ -56,7 +58,7 @@ public partial class Equalize
     }
     public string Tank1MaxPressure
     {
-        get => tank1.FullPressure.ToString();
+        get => tank1.FullPressure.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double maxPressure);
@@ -66,7 +68,7 @@ public partial class Equalize
     }
     public string Tank2MaxPressure
     {
-        get => tank2.FullPressure.ToString();
+        get => tank2.FullPressure.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double maxPressure);
@@ -78,8 +80,9 @@ public partial class Equalize
     protected override void OnInitialized() // = On Page Load
     {
         calculator = new();
-        tank1 = new(500, 80, 3000, calculator.GetUnit(AppSettings.SelectedUnit));
-        tank2 = new(2500, 80, 3000, calculator.GetUnit(AppSettings.SelectedUnit));
+        loadedUnit = calculator.GetUnit(AppSettings.SelectedUnit);
+        tank1 = new(500, 80, 3000, loadedUnit);
+        tank2 = new(2500, 80, 3000, loadedUnit);
 
         tank1.FullTankSizeLiter = AppSettings.EqualizationTankSize;
         tank2.FullTankSizeLiter = AppSettings.EqualizationTankSize;
