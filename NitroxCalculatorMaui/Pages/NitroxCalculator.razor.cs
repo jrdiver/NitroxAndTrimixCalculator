@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Components;
 using NitroxAndTrimixCalculatorLibrary;
 using NitroxAndTrimixCalculatorLibrary.Object;
@@ -18,7 +19,7 @@ public partial class NitroxCalculator
 
     public string StartPressure
     {
-        get => startPressure.ToString();
+        get => startPressure.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double pressure);
@@ -29,7 +30,7 @@ public partial class NitroxCalculator
 
     public string StartMix
     {
-        get => startMix.ToString();
+        get => startMix.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double mix);
@@ -40,7 +41,7 @@ public partial class NitroxCalculator
 
     public string EndMix
     {
-        get => endMix.ToString();
+        get => endMix.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double mix);
@@ -51,7 +52,7 @@ public partial class NitroxCalculator
 
     public string EndPressure
     {
-        get => endPressure.ToString();
+        get => endPressure.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double pressure);
@@ -62,7 +63,7 @@ public partial class NitroxCalculator
 
     public string MaxO2Pressure
     {
-        get => maxO2Pressure.ToString();
+        get => maxO2Pressure.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double pressure);
@@ -142,9 +143,6 @@ public partial class NitroxCalculator
     private string GetMod(double o2Percent)
     {
         string textResult = AppSettings.P02List.Aggregate("<br><br>", (current, p02) => current + ($"Max Depth at {p02}: " + calculator.MaxOperatingDepthCalculator(o2Percent, p02) + " " + result.SelectedUnit.DepthName + "<br>"));
-
-        AppSettings.P02List = new() { 1.3, 1.4, 1.5, 1.6 };
-        List<double> number = AppSettings.P02List;
         return textResult;
     }
 

@@ -1,5 +1,7 @@
+using System.Globalization;
 using NitroxAndTrimixCalculatorLibrary;
 using NitroxCalculatorMaui.Class;
+
 
 namespace NitroxCalculatorMaui.Pages;
 
@@ -27,7 +29,7 @@ public partial class EditSettings
         get
         {
             calculator.SelectedUnit.PressureBar = AppSettings.StartPressure;
-            return calculator.SelectedUnit.Pressure.ToString();
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
         }
         set
         {
@@ -42,7 +44,7 @@ public partial class EditSettings
         get
         {
             calculator.SelectedUnit.PressureBar = AppSettings.EndPressure;
-            return calculator.SelectedUnit.Pressure.ToString();
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
         }
         set
         {
@@ -57,7 +59,7 @@ public partial class EditSettings
         get
         {
             calculator.SelectedUnit.PressureBar = AppSettings.MaxOxygenPressure;
-            return calculator.SelectedUnit.Pressure.ToString();
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
         }
         set
         {
@@ -69,7 +71,7 @@ public partial class EditSettings
 
     private string NitroxStartMix
     {
-        get => AppSettings.StartMix.ToString();
+        get => AppSettings.StartMix.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double parsed);
@@ -79,7 +81,7 @@ public partial class EditSettings
 
     private string NitroxEndMix
     {
-        get => AppSettings.EndMix.ToString();
+        get => AppSettings.EndMix.ToString(CultureInfo.InvariantCulture);
         set
         {
             double.TryParse(value, out double parsed);
@@ -92,7 +94,7 @@ public partial class EditSettings
         get
         {
             calculator.SelectedUnit.PressureBar = AppSettings.EqualizationTankFullPressure;
-            return calculator.SelectedUnit.Pressure.ToString();
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
         }
         set
         {
@@ -107,7 +109,7 @@ public partial class EditSettings
         get
         {
             calculator.SelectedUnit.PressureBar = AppSettings.EqualizationTank1Pressure;
-            return calculator.SelectedUnit.Pressure.ToString();
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
         }
         set
         {
@@ -122,7 +124,7 @@ public partial class EditSettings
         get
         {
             calculator.SelectedUnit.PressureBar = AppSettings.EqualizationTank2Pressure;
-            return calculator.SelectedUnit.Pressure.ToString();
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
         }
         set
         {
@@ -137,7 +139,7 @@ public partial class EditSettings
         get
         {
             calculator.SelectedUnit.VolumeLiter = AppSettings.EqualizationTankSize;
-            return calculator.SelectedUnit.Volume.ToString();
+            return calculator.SelectedUnit.Volume.ToString(CultureInfo.InvariantCulture);
         }
         set
         {

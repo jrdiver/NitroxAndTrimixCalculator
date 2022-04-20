@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.WebView.Maui;
-
-namespace NitroxCalculatorMaui;
+﻿namespace NitroxCalculatorMaui;
 
 public static class MauiProgram
 {
