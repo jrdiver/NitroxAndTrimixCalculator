@@ -8,28 +8,18 @@ public static class DataVerify
     public static double Verify(double value, double low, double high)
     {
         if (value > high)
-        {
             return high;
-        }
         if (value < low)
-        {
             return low;
-        }
-
         return value;
     }
 
     public static int Verify(int value, int low, int high)
     {
         if (value > high)
-        {
             return high;
-        }
         if (value < low)
-        {
             return low;
-        }
-
         return value;
     }
 

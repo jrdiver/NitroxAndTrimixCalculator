@@ -15,9 +15,7 @@ public class NitroxMixCalculator
     {
         UnitList = LoadUnits.LoadAllUnits();
         if (UnitList.Count > 0)
-        {
             SelectedUnit = UnitList[0];
-        }
     }
 
     public void AddUnit(Unit unit)
@@ -76,9 +74,7 @@ public class NitroxMixCalculator
     {
         List<Unit> nextUnit = UnitList.Where(x => string.Equals(x.Name, unitName, StringComparison.CurrentCultureIgnoreCase)).ToList();
         if (nextUnit.Count > 0)
-        {
             SelectedUnit = nextUnit[0];
-        }
     }
 
     /// <summary>Calculates a mix assuming an empty tank,  Start Mix is ignored. </summary>
@@ -116,18 +112,13 @@ public class NitroxMixCalculator
     }
 
     /// <summary> Calculates what pressure at the selected percentage needs to be in a tank to be able to use the selected Top Off Mix to top off to selected percent </summary>
-    public double ReverseTopUp(MixInputs input)
-    {
-        return input.StartPressure - (input.EndMixDecimal * input.EndPressure - input.TopOffMixDecimal * input.EndPressure) / (input.StartMixDecimal - input.TopOffMixDecimal);
-    }
+    public double ReverseTopUp(MixInputs input) => input.StartPressure - (input.EndMixDecimal * input.EndPressure - input.TopOffMixDecimal * input.EndPressure) / (input.StartMixDecimal - input.TopOffMixDecimal);
 
     /// <summary> Calculates the Max Operating Depth (MOD) of the Selected Mix and Partial Pressure.  Runs of metric internally and converts to selected unit</summary>
     public double MaxOperatingDepthCalculator(double mix, double partialPressure)
     {
         if (mix > 1)
-        {
             mix /= 100;
-        }
         double maxDepth = (partialPressure / mix - 1) * 10;
         SelectedUnit.DepthMeter = maxDepth;
         return SelectedUnit.Depth;
@@ -138,9 +129,7 @@ public class NitroxMixCalculator
         SelectedUnit.Depth = depth;
 
         if (mix > 1)
-        {
             mix /= 100;
-        }
         SelectedUnit.DepthMeter = (1 - mix) * (SelectedUnit.DepthMeter + 10) / .79 - 10;
         return SelectedUnit.Depth;
     }

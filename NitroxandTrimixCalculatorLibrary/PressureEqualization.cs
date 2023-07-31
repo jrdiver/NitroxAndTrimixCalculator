@@ -11,10 +11,7 @@ public class PressureEqualization
     public List<Unit> UnitList { get; private set; }
 
     /// <summary> Requires Metric or Imperial to be specified. </summary>
-    public PressureEqualization()
-    {
-        UnitList = LoadUnits.LoadAllUnits();
-    }
+    public PressureEqualization() => UnitList = LoadUnits.LoadAllUnits();
 
     /// <summary> Loads a Unit By Name </summary>
     public Unit GetUnit(string unitName)
