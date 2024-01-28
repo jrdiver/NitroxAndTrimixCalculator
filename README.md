@@ -2,7 +2,7 @@
 
 -A Library written in C# targeted at .Net Standard 2.0 so it should work with core and framework projets, that handles the calculations.
 
--A WPF GUI Currently targeted at Net 6.0 (previously Net 5.0)
+-A WPF GUI Currently targeted at Net 8.0
 
 -An Installer for the WPF App
 
