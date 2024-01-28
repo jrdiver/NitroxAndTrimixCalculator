@@ -17,7 +17,7 @@
             </MenuItem>
             <MenuItem x:Name="MenuUnits" Header="_Units">
             </MenuItem>
-            <MenuItem x:Name="MenuItemVersion" Header="Version 1.0.0" IsEnabled="False"></MenuItem>
+            <MenuItem x:Name="MenuItemVersion" Header="Version ?" IsEnabled="False"></MenuItem>
         </Menu>
 
         <GroupBox Grid.Column="0" Header="Starting Mix" Margin="5,25,5,0" VerticalAlignment="Top" Height="155">

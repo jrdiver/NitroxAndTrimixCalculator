@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using NitroxAndTrimixCalculatorLibrary;
@@ -15,7 +17,9 @@ public partial class MainWindow
     public MainWindow()
     {
         InitializeComponent();
-
+        string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+        if (!string.IsNullOrWhiteSpace(version))
+            MenuItemVersion.Header = "Version " + version;
     }
 
     private void WinLoaded(object sender, RoutedEventArgs e)
@@ -28,20 +32,14 @@ public partial class MainWindow
         SliderEndingPercentage.Value = 32;
         TextEndPercent.Text = SliderEndingPercentage.Value.ToString(CultureInfo.InvariantCulture);
 
-        MessageBoxResult result = MessageBox.Show("This software may generate incorrect results and should only be followed if you are trained in mixing gasses.  The Author of this software is not liable for any damages or injuries related to the use of this software and the calculations it made." +
-                                                  Environment.NewLine + Environment.NewLine + "ALL RESULTS ARE FOR REFERENCE ONLY AND USE AT YOUR OWN RISK" + Environment.NewLine + Environment.NewLine + "Click yes if you agree to these conditions, No to close the Application", "Nitrox Calculator", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
+        MessageBoxResult result = MessageBox.Show($"This software may generate incorrect results and should only be followed if you are trained in mixing gasses.  The Author of this software is not liable for any damages or injuries related to the use of this software and the calculations it made.{Environment.NewLine}{Environment.NewLine}ALL RESULTS ARE FOR REFERENCE ONLY AND USE AT YOUR OWN RISK{Environment.NewLine}{Environment.NewLine}Click yes if you agree to these conditions, No to close the Application", "Nitrox Calculator", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
 
-        if (result == MessageBoxResult.No)
-        {
+        if (result == MessageBoxResult.No) 
             Exit();
-        }
     }
 
     #region AppFunctions
-    internal void MenuItemExit(object sender, RoutedEventArgs e)
-    {
-        Exit();
-    }
+    internal void MenuItemExit(object sender, RoutedEventArgs e) => Exit();
 
     internal void Exit()
     {
@@ -53,10 +51,8 @@ public partial class MainWindow
     #region Unit Selection
     internal void LoadUnits(bool initialLoad = false)
     {
-        if (initialLoad)
-        {
+        if (initialLoad) 
             ConvertDisplayUnit(Properties.Settings.Default.Unit);
-        }
 
         MenuUnits.Items.Clear();
         foreach (Unit unit in calculator.UnitList)
@@ -67,10 +63,8 @@ public partial class MainWindow
                 Header = unit.Name
             };
             newUnit.Click += SelectUnit;
-            if (unit.Name == calculator.SelectedUnit.Name)
-            {
+            if (unit.Name == calculator.SelectedUnit.Name) 
                 newUnit.IsChecked = true;
-            }
 
             MenuUnits.Items.Add(newUnit);
         }

@@ -8,8 +8,9 @@
     <PackageId>Nitrox Calculator</PackageId>
     <Authors>Jrdiver</Authors>
     <Product>Nitrox Calculator</Product>
-    <Copyright>2021 Jrdiver</Copyright>
+    <Copyright>2024 Jrdiver</Copyright>
     <RepositoryUrl>https://github.com/jrdiver/NitroxAndTrimixCalculator</RepositoryUrl>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
