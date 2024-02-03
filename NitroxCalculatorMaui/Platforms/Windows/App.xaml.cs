@@ -5,9 +5,7 @@
 
 namespace NitroxCalculatorMaui.WinUI;
 
-/// <summary>
-/// Provides application-specific behavior to supplement the default Application class.
-/// </summary>
+/// <summary> Provides application-specific behavior to supplement the default Application class. </summary>
 public partial class App : MauiWinUIApplication
 {
     /// <summary>

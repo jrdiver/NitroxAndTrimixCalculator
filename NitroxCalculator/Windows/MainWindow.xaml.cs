@@ -183,10 +183,7 @@ public partial class MainWindow
         CalculateMix();
     }
 
-    private void TextPressure_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        CalculateMix();
-    }
+    private void TextPressure_TextChanged(object sender, TextChangedEventArgs e) => CalculateMix();
 
     private void CalculateMix()
     {

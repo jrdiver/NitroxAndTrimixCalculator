@@ -1,4 +1,8 @@
 ﻿@page "/equalize"
+@using NitroxAndTrimixCalculatorLibrary
+@using NitroxAndTrimixCalculatorLibrary.Object
+@using System.Globalization
+@using NitroxCalculatorMaui.Class
 
 <h1>Pressure Equalization</h1>
 
@@ -22,8 +26,8 @@
     </div>
 </div>
 
-<br/>
-<br/>
+<br />
+<br />
 
 <h2 class="text-center">Tank 2</h2>
 <div class="row">
@@ -36,7 +40,7 @@
     <div class="col-sm-4 col-lg-3 rightAlign">Pressure (@loadedUnit.PressureName):</div>
     <div class="col-sm-7 col-md-6">
         <input class="fullWidth" @bind-value="Tank2Pressure" @bind-value:event="oninput" type="number" min="0" />
-    </div> 
+    </div>
 </div>
 <div class="row">
     <div class="col-sm-4 col-lg-3 rightAlign">Full Pressure (@loadedUnit.PressureName):</div>
@@ -44,7 +48,101 @@
         <input class="fullWidth" @bind-value="Tank2MaxPressure" @bind-value:event="oninput" type="number" min="0" />
     </div>
 </div>
-<br/>
-<br/>
+<br />
+<br />
 <p>The 2 tanks equalized together account for @tankResult.FullTankSize @tankResult.SelectedUnit.VolumeName</p>
 <p>After equalization, the pressure will be @tankResult.Pressure @tankResult.SelectedUnit.PressureName</p>
+
+@code {
+    private PressureEqualization calculator;
+    private PressureEqualizationData tank1;
+    private PressureEqualizationData tank2;
+    private PressureEqualizationData tankResult;
+    private Unit loadedUnit;
+
+    public string Tank1Pressure
+    {
+        get => tank1.Pressure.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            double.TryParse(value, out double tankPressure);
+            tank1.Pressure = tankPressure;
+            EqualizeTanks();
+        }
+    }
+
+    public string Tank2Pressure
+    {
+        get => tank2.Pressure.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            double.TryParse(value, out double tankPressure);
+            tank2.Pressure = tankPressure;
+            EqualizeTanks();
+        }
+    }
+
+    public string Tank1Capacity
+    {
+        get => tank1.FullTankSize.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            double.TryParse(value, out double fullTankSize);
+            tank1.FullTankSize = fullTankSize;
+            EqualizeTanks();
+        }
+    }
+
+    public string Tank2Capacity
+    {
+        get => tank2.FullTankSize.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            double.TryParse(value, out double fullTankSize);
+            tank2.FullTankSize = fullTankSize;
+            EqualizeTanks();
+        }
+    }
+    public string Tank1MaxPressure
+    {
+        get => tank1.FullPressure.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            double.TryParse(value, out double maxPressure);
+            tank1.FullPressure = maxPressure;
+            EqualizeTanks();
+        }
+    }
+    public string Tank2MaxPressure
+    {
+        get => tank2.FullPressure.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            double.TryParse(value, out double maxPressure);
+            tank2.FullPressure = maxPressure;
+            EqualizeTanks();
+        }
+    }
+
+    protected override void OnInitialized() // = On Page Load
+    {
+        calculator = new();
+        loadedUnit = calculator.GetUnit(AppSettings.SelectedUnit);
+        tank1 = new(500, 80, 3000, loadedUnit);
+        tank2 = new(2500, 80, 3000, loadedUnit);
+
+        tank1.FullTankSizeLiter = AppSettings.EqualizationTankSize;
+        tank2.FullTankSizeLiter = AppSettings.EqualizationTankSize;
+        tank1.FullPressureBar = AppSettings.EqualizationTankFullPressure;
+        tank2.FullPressureBar = AppSettings.EqualizationTankFullPressure;
+        tank1.PressureBar = AppSettings.EqualizationTank1Pressure;
+        tank2.PressureBar = AppSettings.EqualizationTank2Pressure;
+
+        EqualizeTanks();
+    }
+
+    private void EqualizeTanks()
+    {
+        tankResult = calculator.EqualizeTanks(tank1, tank2);
+    }
+}
