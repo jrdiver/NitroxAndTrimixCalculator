@@ -90,6 +90,6 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="8.0.6" />
+		<PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="8.0.6" />
 	</ItemGroup>
 </Project>
