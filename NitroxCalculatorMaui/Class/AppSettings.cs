@@ -5,6 +5,8 @@ namespace NitroxCalculatorMaui.Class;
 
 internal static class AppSettings
 {
+    public static void DefaultAll() => Preferences.Clear();
+
     #region AppWideSettings
     public static string SelectedUnit
     {
@@ -13,8 +15,6 @@ internal static class AppSettings
     }
 
     public static void DefaultSelectedUnit() => Preferences.Remove("SelectedUnit");
-
-    public static void DefaultAll() => Preferences.Clear();
     #endregion
 
     #region NitroxCalculator
