@@ -82,8 +82,6 @@ public partial class MainWindow
         ConvertDisplayUnit(unit);
         calculator.LoadUnit(unit);
         LoadUnits();
-
-
     }
 
     internal void ConvertDisplayUnit(string newUnit)
