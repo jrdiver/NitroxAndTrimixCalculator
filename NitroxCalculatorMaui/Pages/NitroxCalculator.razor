@@ -1,4 +1,4 @@
-﻿@page "/nitroxcalculator"
+﻿@page "/NitroxCalculator"
 @using NitroxAndTrimixCalculatorLibrary
 @using NitroxAndTrimixCalculatorLibrary.Object
 @using System.Globalization
@@ -159,15 +159,15 @@
         if (result.RemoveGas > 0)
         {
             pressure -= Math.Round(result.RemoveGas);
-            textResult += "Drain " + Math.Round(result.RemoveGas) + " " + calculator.SelectedUnit.PressureName + " from the tank to " + pressure + " " + calculator.SelectedUnit.PressureName + "<br>";
+            textResult += $"Drain {Math.Round(result.RemoveGas)} {calculator.SelectedUnit.PressureName} from the tank to {pressure} {calculator.SelectedUnit.PressureName}<br>";
         }
         if (result.AddOxygen > 0)
         {
             pressure += Math.Round(result.AddOxygen);
-            textResult += "Add " + Math.Round(result.AddOxygen) + " " + calculator.SelectedUnit.PressureName + " of Oxygen to " + pressure + " " + calculator.SelectedUnit.PressureName + "<br>";
+            textResult += $"Add {Math.Round(result.AddOxygen)} {calculator.SelectedUnit.PressureName} of Oxygen to {pressure} {calculator.SelectedUnit.PressureName}<br>";
         }
         if (result.AddTopOffGas() > 0)
-            textResult += "Add " + Math.Round(result.AddTopOffGas()) + " " + calculator.SelectedUnit.PressureName + " of " + result.Inputs.GetTopOffGasName + " to " + result.Inputs.EndPressure + " " + calculator.SelectedUnit.PressureName + "<br>";
+            textResult += $"Add {Math.Round(result.AddTopOffGas())} {calculator.SelectedUnit.PressureName} of {result.Inputs.GetTopOffGasName} to {result.Inputs.EndPressure} {calculator.SelectedUnit.PressureName}<br>";
 
         if (result.ValidMix())
             textResult = "Not Possible with selected Inputs" + "<br>";

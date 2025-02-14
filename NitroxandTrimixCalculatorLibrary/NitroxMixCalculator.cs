@@ -5,7 +5,6 @@ using NitroxAndTrimixCalculatorLibrary.Class;
 using NitroxAndTrimixCalculatorLibrary.Object;
 
 namespace NitroxAndTrimixCalculatorLibrary;
-
 public class NitroxMixCalculator
 {
     public Unit SelectedUnit { get; private set; }

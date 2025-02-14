@@ -19,7 +19,7 @@ public partial class MainWindow
         InitializeComponent();
         string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
         if (!string.IsNullOrWhiteSpace(version))
-            MenuItemVersion.Header = "Version " + version;
+            MenuItemVersion.Header = $"Version {version}";
     }
 
     private void WinLoaded(object sender, RoutedEventArgs e)
@@ -218,16 +218,16 @@ public partial class MainWindow
         if (result.RemoveGas > 0)
         {
             pressure -= Math.Round(result.RemoveGas);
-            Mix1.Content = "Drain " + Math.Round(result.RemoveGas) + " " + calculator.SelectedUnit.PressureName + " from the tank to " + pressure + " " + calculator.SelectedUnit.PressureName;
+            Mix1.Content = $"Drain {Math.Round(result.RemoveGas)} {calculator.SelectedUnit.PressureName} from the tank to {pressure} {calculator.SelectedUnit.PressureName}";
         }
         if (result.AddOxygen > 0)
         {
             pressure += Math.Round(result.AddOxygen);
-            Mix2.Content = "Add " + Math.Round(result.AddOxygen) + " " + calculator.SelectedUnit.PressureName + " of Oxygen to " + pressure + " " + calculator.SelectedUnit.PressureName;
+            Mix2.Content = $"Add {Math.Round(result.AddOxygen)} {calculator.SelectedUnit.PressureName} of Oxygen to {pressure} {calculator.SelectedUnit.PressureName}";
         }
         if (result.AddTopOffGas() > 0)
         {
-            Mix3.Content = "Add " + Math.Round(result.AddTopOffGas()) + " " + calculator.SelectedUnit.PressureName + " of " + result.Inputs.TopOffMix + "% to " + result.Inputs.EndPressure + " " + calculator.SelectedUnit.PressureName;
+            Mix3.Content = $"Add {Math.Round(result.AddTopOffGas())} {calculator.SelectedUnit.PressureName} of {result.Inputs.TopOffMix}% to {result.Inputs.EndPressure} {calculator.SelectedUnit.PressureName}";
         }
 
         if (result.ValidMix())
@@ -239,10 +239,14 @@ public partial class MainWindow
         }
         else
         {
-            Mod1.Content = "Max Depth at 1.3: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.3) + " " + result.SelectedUnit.DepthName;
-            Mod2.Content = "Max Depth at 1.4: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.4) + " " + result.SelectedUnit.DepthName;
-            Mod3.Content = "Max Depth at 1.5: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.5) + " " + result.SelectedUnit.DepthName;
-            Mod4.Content = "Max Depth at 1.6: " + calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.6) + " " + result.SelectedUnit.DepthName;
+            Mod1.Content =
+                $"Max Depth at 1.3: {calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.3)} {result.SelectedUnit.DepthName}";
+            Mod2.Content =
+                $"Max Depth at 1.4: {calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.4)} {result.SelectedUnit.DepthName}";
+            Mod3.Content =
+                $"Max Depth at 1.5: {calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.5)} {result.SelectedUnit.DepthName}";
+            Mod4.Content =
+                $"Max Depth at 1.6: {calculator.MaxOperatingDepthCalculator(result.Inputs.EndMix, 1.6)} {result.SelectedUnit.DepthName}";
         }
     }
 }
