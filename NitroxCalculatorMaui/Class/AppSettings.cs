@@ -15,6 +15,14 @@ internal static class AppSettings
     }
 
     public static void DefaultSelectedUnit() => Preferences.Remove("SelectedUnit");
+
+    public static string ColorMode
+    {
+        get => Preferences.Get("ColorMode", "light").ToLower();
+        set => Preferences.Set("ColorMode", value.ToLower());
+    }
+
+    public static void DefaultColorMode() => Preferences.Remove("ColorMode");
     #endregion
 
     #region NitroxCalculator

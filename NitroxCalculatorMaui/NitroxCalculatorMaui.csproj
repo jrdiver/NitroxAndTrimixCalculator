@@ -15,7 +15,9 @@
 		<ApplicationId>com.Jrdiver.NitroxCalculator</ApplicationId>
 		<!-- <ApplicationId Condition="$(TargetFramework.Contains('-windows'))">694D7E58-DFF2-4845-87F6-31EE4A66AE67</ApplicationId>-->
 		<!-- Versions -->
-		<ApplicationVersion>1.1.0</ApplicationVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+		<ApplicationDisplayVersion>1.1.0</ApplicationDisplayVersion>
+
 
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged  - It will not work test with this for some reason -->
 		<!--<WindowsPackageType>None</WindowsPackageType>-->
@@ -88,13 +90,13 @@
 		<PRIResource Remove="Data\**" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.40" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.90" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.2 " />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.40" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.90" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.40" />
+		<PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.90" />
 	</ItemGroup>
 </Project>
