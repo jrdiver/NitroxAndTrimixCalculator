@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   IgnorableNamespaces="uap rescap">
 
-  <Identity Publisher="CN=User Name"/>
+  <Identity Name="com.Jrdiver.NitroxCalculator" Publisher="CN=User Name" Version="1.1.0.0" />
 
   <Properties>
     <PublisherDisplayName>User Name</PublisherDisplayName>
@@ -22,7 +22,7 @@
 
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
-      <uap:VisualElements  DisplayName="Jrdiver&amp;apos;s Nitrox Calculator">
+      <uap:VisualElements DisplayName="Jrdivers Nitrox Calculator">
         <uap:DefaultTile/>
       </uap:VisualElements >
     </Application>

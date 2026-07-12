@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
+@inject IJSRuntime JS
 <style>
     [data-bs-theme="light"] {
         --bs-body-bg: #f8f9fa; /* Light gray for light mode */
@@ -11,10 +12,6 @@
 <div class="page">
 	<div class="sidebar">
 		<NavMenu />
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="darkModeToggle">
-            <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
-        </div>
 	</div>
 
 	<main>
@@ -23,3 +20,17 @@
 		</article>
 	</main>
 </div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var theme = NitroxCalculatorMaui.Class.AppSettings.ColorMode;
+            if (!string.IsNullOrEmpty(theme))
+            {
+                await JS.InvokeVoidAsync("window.setTheme", theme);
+            }
+        }
+    }
+}

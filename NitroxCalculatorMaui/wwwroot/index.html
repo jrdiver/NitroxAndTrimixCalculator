@@ -21,5 +21,10 @@
 
     <script src="_framework/blazor.webview.js" autostart="false"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.setTheme = (theme) => {
+            document.documentElement.setAttribute('data-bs-theme', theme);
+        };
+    </script>
 </body>
 </html>
