@@ -6,10 +6,15 @@
 
 main {
     flex: 1;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .sidebar {
     background-image: linear-gradient(180deg, #21b9ff 0%, #04286b 70%);
+    padding-top: env(safe-area-inset-top);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .top-row {
@@ -48,6 +53,10 @@ main {
 @media (min-width: 641px) {
     .page {
         flex-direction: row;
+    }
+
+    main {
+        padding-top: env(safe-area-inset-top);
     }
 
     .sidebar {
