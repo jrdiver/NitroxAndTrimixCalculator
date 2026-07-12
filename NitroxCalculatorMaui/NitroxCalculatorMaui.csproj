@@ -87,10 +87,10 @@
 		<PRIResource Remove="Data\**" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.30-ci.inflight.25622.5" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.30-ci.inflight.25622.5" />
-		<PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.0-rtm.25513.102" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-preview.1.25080.5" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.80" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.80" />
+		<PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.9" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.9" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 	</ItemGroup>
 </Project>
