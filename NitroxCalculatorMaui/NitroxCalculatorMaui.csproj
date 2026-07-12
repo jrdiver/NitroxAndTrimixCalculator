@@ -19,7 +19,6 @@
 		<ApplicationDisplayVersion>1.1.0.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 		<Version>1.1.0.0</Version>
-		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged  - It will not work test with this for some reason -->
 		<!--<WindowsPackageType>None</WindowsPackageType>-->
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
@@ -50,6 +49,11 @@
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
 		<OutputType>WinExe</OutputType>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+		<AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
+		<PackageCertificateThumbprint>B63ED5AD9E89663ACDE0599CB470112F01EF8FEA</PackageCertificateThumbprint>
+		<PackageCertificateKeyFile>NitroxCalcMaui.pfx</PackageCertificateKeyFile>
+		<PackageCertificatePassword>password</PackageCertificatePassword>
 	</PropertyGroup>
 	<ItemGroup>
 		<AndroidResource Remove="Data\**" />
