@@ -73,7 +73,7 @@ internal static class AppSettings
 
     public static List<double> P02List
     {
-        get => JsonConvert.DeserializeObject<List<double>>(Preferences.Get("P02List", "[1.3, 1.4, 1.5, 1.6]"));
+        get => JsonConvert.DeserializeObject<List<double>>(Preferences.Get("P02List", "[1.3, 1.4, 1.5, 1.6]")) ?? new List<double>();
         set => Preferences.Set("P02List", JsonConvert.SerializeObject(value));
     }
 

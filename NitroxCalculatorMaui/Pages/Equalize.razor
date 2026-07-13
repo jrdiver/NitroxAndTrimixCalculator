@@ -1,4 +1,4 @@
-﻿@page "/equalize"
+@page "/equalize"
 @using NitroxAndTrimixCalculatorLibrary
 @using NitroxAndTrimixCalculatorLibrary.Object
 @using System.Globalization
@@ -54,11 +54,11 @@
 <p>After equalization, the pressure will be @tankResult.Pressure @tankResult.SelectedUnit.PressureName</p>
 
 @code {
-    private PressureEqualization calculator;
-    private PressureEqualizationData tank1;
-    private PressureEqualizationData tank2;
-    private PressureEqualizationData tankResult;
-    private Unit loadedUnit;
+    private PressureEqualization calculator = null!;
+    private PressureEqualizationData tank1 = null!;
+    private PressureEqualizationData tank2 = null!;
+    private PressureEqualizationData tankResult = null!;
+    private Unit loadedUnit = null!;
 
     public string Tank1Pressure
     {

@@ -1,4 +1,4 @@
-﻿@page "/NitroxCalculator"
+@page "/NitroxCalculator"
 @using NitroxAndTrimixCalculatorLibrary
 @using NitroxAndTrimixCalculatorLibrary.Object
 @using System.Globalization
@@ -50,7 +50,7 @@
 
 @code
 {
-    private NitroxMixCalculator calculator;
+    private NitroxMixCalculator calculator = null!;
     private double startPressure = 500;
     private double startMix = 32;
     private double endPressure = 3400;

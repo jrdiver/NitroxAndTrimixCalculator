@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using NitroxAndTrimixCalculatorLibrary.Class;
 using NitroxAndTrimixCalculatorLibrary.Object;
 
 namespace NitroxAndTrimixCalculatorLibrary;
 
-internal class TrimixMixCalculator
+public class TrimixMixCalculator
 {
     public Unit SelectedUnit { get; }
     public List<Unit> UnitList { get; }

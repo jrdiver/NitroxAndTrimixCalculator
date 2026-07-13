@@ -135,4 +135,17 @@ public class UnitConverionTests
         Assert.AreEqual(34.474, Math.Round(calculator.SelectedUnit.PressureBar, 3));
         Assert.AreEqual(14158.41, Math.Round(calculator.SelectedUnit.VolumeLiter, 3));
     }
+
+    [TestMethod]
+    public void ConvertUnit_CopiesProperties()
+    {
+        Unit startUnit = new() { Name = "Start", PressureBar = 100, DepthMeter = 50, VolumeLiter = 10 };
+        Unit endUnit = new() { Name = "End", PressureBar = 0, DepthMeter = 0, VolumeLiter = 0 };
+
+        Unit result = UnitConversion.ConvertUnit(startUnit, endUnit);
+
+        Assert.AreEqual(100, result.PressureBar);
+        Assert.AreEqual(50, result.DepthMeter);
+        Assert.AreEqual(10, result.VolumeLiter);
+    }
 }

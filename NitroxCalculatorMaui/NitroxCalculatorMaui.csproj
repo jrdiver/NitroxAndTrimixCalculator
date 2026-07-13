@@ -33,6 +33,15 @@
 		<ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
 		<AssemblyName>JrdiversNitroxCalculator</AssemblyName>
 		<DefaultLanguage>en-us</DefaultLanguage>
+		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+		<PackageCertificateThumbprint>B63ED5AD9E89663ACDE0599CB470112F01EF8FEA</PackageCertificateThumbprint>
+		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+		<GenerateTestArtifacts>False</GenerateTestArtifacts>
+		<AppInstallerUri>https://apps.jrdiver.com/NitroxCalculator/x64</AppInstallerUri>
+		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -48,12 +57,22 @@
 	</ItemGroup>
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">
 		<OutputType>WinExe</OutputType>
-		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<RuntimeIdentifiers>win-x64;win-x86;win-arm64</RuntimeIdentifiers>
 		<GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
 		<AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
 		<PackageCertificateThumbprint>B63ED5AD9E89663ACDE0599CB470112F01EF8FEA</PackageCertificateThumbprint>
 		<PackageCertificateKeyFile>NitroxCalcMaui.pfx</PackageCertificateKeyFile>
 		<PackageCertificatePassword>password</PackageCertificatePassword>
+		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+		<AppInstallerUri>https://apps.jrdiver.com/NitroxCalculator/Windows</AppInstallerUri>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android'))">
+		<AndroidKeyStore>true</AndroidKeyStore>
+		<AndroidSigningKeyStore>jrdiver.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>jrdiver</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>password</AndroidSigningKeyPass>
+		<AndroidSigningStorePass>password</AndroidSigningStorePass>
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
 	<ItemGroup>
 		<AndroidResource Remove="Data\**" />
@@ -91,10 +110,9 @@
 		<PRIResource Remove="Data\**" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.80" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.80" />
 		<PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.9" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.9" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 	</ItemGroup>
+
 </Project>
