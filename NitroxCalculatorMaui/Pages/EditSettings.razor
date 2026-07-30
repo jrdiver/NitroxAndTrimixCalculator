@@ -1,8 +1,9 @@
-﻿@page "/editSettings"
+@page "/editSettings"
 @using NitroxAndTrimixCalculatorLibrary.Object
 @using NitroxCalculatorMaui.Class
 @using NitroxAndTrimixCalculatorLibrary
 @using System.Globalization
+@inject IJSRuntime JS
 
 <h1>Settings</h1>
 
@@ -100,7 +101,11 @@
     private string ColorMode
     {
         get => AppSettings.ColorMode;
-        set => AppSettings.ColorMode = value;
+        set
+        {
+            AppSettings.ColorMode = value;
+            _ = JS.InvokeVoidAsync("window.setTheme", value);
+        }
     }
 
     private string SelectedUnit

@@ -1,4 +1,4 @@
-﻿@inject IJSRuntime JSRuntime
+@inject IJSRuntime JSRuntime
 
 <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" id="darkModeToggle" @bind="IsDarkMode" @oninput="HandleInputChange">
@@ -16,7 +16,7 @@
 
     private async Task HandleInputChange(ChangeEventArgs e)
     {
-        IsDarkMode = (bool)e.Value; // Get the correct value from ChangeEventArgs
+        IsDarkMode = (bool)(e.Value ?? false); // Get the correct value from ChangeEventArgs
         await SetTheme();
         await JSRuntime.InvokeVoidAsync("localStorage.setItem", "darkMode", IsDarkMode);
     }

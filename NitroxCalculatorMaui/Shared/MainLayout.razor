@@ -1,5 +1,5 @@
-﻿@using NitroxCalculatorMaui.Class
 @inherits LayoutComponentBase
+@inject IJSRuntime JS
 <style>
     [data-bs-theme="light"] {
         --bs-body-bg: #f8f9fa; /* Light gray for light mode */
@@ -12,10 +12,6 @@
 <div class="page">
 	<div class="sidebar">
 		<NavMenu />
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="darkModeToggle">
-            <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
-        </div>
 	</div>
 
 	<main>
@@ -24,28 +20,17 @@
 		</article>
 	</main>
 </div>
-<div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" id="darkModeToggle">
-    <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
-</div>
-<script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-        const htmlElement = document.documentElement;
-        const switchElement = document.getElementById('darkModeSwitch');
 
-        // Set the default theme to dark if no setting is found in local storage
-        const currentTheme = localStorage.getItem('bsTheme') || 'dark';
-        htmlElement.setAttribute('data-bs-theme', currentTheme);
-        switchElement.checked = currentTheme === 'dark';
-
-        switchElement.addEventListener('change', function () {
-            if (this.checked) {
-                htmlElement.setAttribute('data-bs-theme', 'dark');
-                localStorage.setItem('bsTheme', 'dark');
-            } else {
-                htmlElement.setAttribute('data-bs-theme', 'light');
-                localStorage.setItem('bsTheme', 'light');
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var theme = NitroxCalculatorMaui.Class.AppSettings.ColorMode;
+            if (!string.IsNullOrEmpty(theme))
+            {
+                await JS.InvokeVoidAsync("window.setTheme", theme);
             }
-        });
-    });
-</script>
+        }
+    }
+}

@@ -73,4 +73,18 @@ public class PressureTests
         Assert.AreEqual(80, Math.Round(output.FullTankSize, 3));
         Assert.AreEqual(0, Math.Round(output.Pressure, 3));
     }
+
+    [TestMethod]
+    public void GetUnit_InvalidName_ReturnsNull()
+    {
+        Assert.IsNull(calculator.GetUnit("NonExistentUnitXYZ"));
+    }
+
+    [TestMethod]
+    public void AddUnit_SortsAlphabetically()
+    {
+        Unit newUnit = new() { Name = "A_CustomUnit" };
+        calculator.AddUnit(newUnit);
+        Assert.AreEqual("A_CustomUnit", calculator.UnitList[0].Name);
+    }
 }

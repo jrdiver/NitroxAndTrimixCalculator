@@ -1,11 +1,16 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using NitroxAndTrimixCalculatorLibrary.Class;
 
 namespace NitroxCalculatorMaui.Class;
 
 internal static class AppSettings
 {
-    public static void DefaultAll() => Preferences.Clear();
+    public static void DefaultAll()
+    {
+        string currentColorMode = ColorMode;
+        Preferences.Clear();
+        ColorMode = currentColorMode;
+    }
 
     #region AppWideSettings
     public static string SelectedUnit
@@ -68,7 +73,7 @@ internal static class AppSettings
 
     public static List<double> P02List
     {
-        get => JsonConvert.DeserializeObject<List<double>>(Preferences.Get("P02List", "[1.3, 1.4, 1.5, 1.6]"));
+        get => JsonConvert.DeserializeObject<List<double>>(Preferences.Get("P02List", "[1.3, 1.4, 1.5, 1.6]")) ?? new List<double>();
         set => Preferences.Set("P02List", JsonConvert.SerializeObject(value));
     }
 

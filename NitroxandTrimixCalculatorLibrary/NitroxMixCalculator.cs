@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NitroxAndTrimixCalculatorLibrary.Class;
@@ -38,28 +38,40 @@ public class NitroxMixCalculator
             result.RemoveGas = ReverseTopUp(input);
         }
 
-        //If amount of Oxygen added plus the start pressure is over end pressure...still invalid.  Probably a better way to do this, but brute force by draining pressure 25 at a time
+        // If amount of Oxygen added plus the start pressure is over end pressure... calculate exact pressure to keep
         else if (result.AddOxygen + result.Inputs.StartPressure > result.Inputs.EndPressure)
         {
-            input.StartPressure -= 25;
-            result = CalculateMix(input);
-            result.Inputs.StartPressure = input.StartPressure + 25;
-            result.RemoveGas += 25;
-        }
-
-        //What if you only have 1000psi of oxygen?  System to get you close to your max pressure.
-        if (result.Inputs.EnableMaxOxygenPressure && result.AddOxygen > 0 && result.AddOxygen + result.Inputs.StartPressure > result.Inputs.MaxOxygenPressure)
-        {
-            double overPressure = (result.AddOxygen + result.Inputs.StartPressure - result.Inputs.MaxOxygenPressure) * 1.1;
-
-            if (overPressure > 0 && result.Inputs.StartPressure == 0)
+            double keepPressure = input.EndPressure * (1 - input.EndMixDecimal) / (1 - input.StartMixDecimal);
+            if (keepPressure < 0) 
             {
                 result.Invalid = true;
                 return result;
             }
+            if (keepPressure > input.StartPressure) keepPressure = input.StartPressure;
+
+            double overPressure = input.StartPressure - keepPressure;
+            
+            input.StartPressure -= overPressure;
+            result = MixFromExistingMix(input);
+            result.Inputs.StartPressure = input.StartPressure + overPressure;
+            result.RemoveGas += overPressure;
+        }
+
+        // What if you only have a limited amount of oxygen pressure? System to get you exactly to your max pressure.
+        if (result.Inputs.EnableMaxOxygenPressure && result.AddOxygen > 0 && result.AddOxygen + result.Inputs.StartPressure > result.Inputs.MaxOxygenPressure)
+        {
+            double keepPressure = (input.MaxOxygenPressure + (input.EndPressure - input.MaxOxygenPressure) * input.TopOffMixDecimal - input.EndPressure * input.EndMixDecimal) / (1 - input.StartMixDecimal);
+            if (keepPressure < 0) 
+            {
+                result.Invalid = true;
+                return result;
+            }
+            if (keepPressure > input.StartPressure) keepPressure = input.StartPressure;
+
+            double overPressure = input.StartPressure - keepPressure;
 
             input.StartPressure -= overPressure;
-            result = CalculateMix(input);
+            result = MixFromExistingMix(input);
             result.Inputs.StartPressure = input.StartPressure + overPressure;
             result.RemoveGas += overPressure;
         }

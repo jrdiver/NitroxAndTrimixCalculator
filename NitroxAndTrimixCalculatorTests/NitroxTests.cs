@@ -162,4 +162,38 @@ public class NitroxTests
 
         Assert.AreEqual(44.677, Math.Round(output, 3));
     }
+
+    [TestMethod]
+    public void CalculateMix_EmptyTank()
+    {
+        calculator.LoadUnit("Imperial");
+        MixInputs input = new()
+        {
+            StartMix = 0,
+            StartPressure = 0,
+            EndPressure = 3000,
+            TopOffMix = 21,
+            EndMix = 32
+        };
+        MixResult output = calculator.CalculateMix(input);
+
+        Assert.AreEqual(417.722, Math.Round(output.AddOxygen, 3));
+    }
+
+    [TestMethod]
+    public void CalculateMix_Overpressure_NeedsBleed()
+    {
+        calculator.LoadUnit("Imperial");
+        MixInputs input = new()
+        {
+            StartMix = 32,
+            StartPressure = 3200,
+            EndPressure = 3000,
+            TopOffMix = 21,
+            EndMix = 36
+        };
+        MixResult output = calculator.CalculateMix(input);
+
+        Assert.IsTrue(output.RemoveGas > 0);
+    }
 }
