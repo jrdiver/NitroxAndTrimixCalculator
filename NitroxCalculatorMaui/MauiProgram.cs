@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 namespace NitroxCalculatorMaui;
 
 public static class MauiProgram
@@ -17,6 +17,7 @@ public static class MauiProgram
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
 #endif
+        builder.Services.AddSingleton<NitroxCalculatorUI.Services.IAppSettings, NitroxCalculatorMaui.Services.MauiAppSettings>();
         return builder.Build();
     }
 }

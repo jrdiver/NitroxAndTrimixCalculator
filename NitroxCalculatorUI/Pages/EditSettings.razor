@@ -1,0 +1,249 @@
+@page "/editSettings"
+@using NitroxAndTrimixCalculatorLibrary.Object
+
+@using NitroxAndTrimixCalculatorLibrary
+@using System.Globalization
+@inject IJSRuntime JS
+
+<h1>Settings</h1>
+
+<h2 class="text-center">General</h2>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Color Mode:</div>
+    <div class="col-sm-7 col-md-6">
+        <select @bind="ColorMode" class="fullWidth">
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Unit:</div>
+    <div class="col-sm-7 col-md-6">
+        <select @bind="SelectedUnit" class="fullWidth">
+            @foreach (Unit unit in calculator.UnitList)
+            {
+                <option value="@unit.Name">@unit.Name</option>
+            }
+        </select>
+    </div>
+</div>
+<br />
+<h2 class="text-center">Nitrox Calculator Starting Values</h2>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Start Pressure (@calculator.SelectedUnit.PressureName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="NitroxStartPressure" @bind-value:event="oninput" type="number" min="0" step=".1" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">End Pressure (@calculator.SelectedUnit.PressureName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="NitroxEndPressure" @bind-value:event="oninput" type="number" min="0" step=".1" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Oxygen Pressure (@calculator.SelectedUnit.PressureName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="NitroxOxygenPressure" @bind-value:event="oninput" type="number" min="0" step=".1" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Start Mix:</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="NitroxStartMix" @bind-value:event="oninput" type="number" min="0" max="100" step="1" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">End Mix:</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="NitroxEndMix" @bind-value:event="oninput" type="number" min="0" max="100" step="1" />
+    </div>
+</div>
+<br />
+
+<h2 class="text-center">Equalization Starting Values</h2>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Default Tanks Size (@calculator.SelectedUnit.VolumeName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="EqualizationTankSize" @bind-value:event="oninput" type="number" min="0" step=".1" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Default Full Pressure (@calculator.SelectedUnit.PressureName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="EqualizationFullPressure" @bind-value:event="oninput" type="number" min="0" step=".1" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Default Tank 1 Pressure (@calculator.SelectedUnit.PressureName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="EqualizationTank1Pressure" @bind-value:event="oninput" type="number" min="0" step=".1" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-lg-3 rightAlign">Default Tank 2 Pressure (@calculator.SelectedUnit.PressureName):</div>
+    <div class="col-sm-7 col-md-6">
+        <input class="fullWidth" @bind-value="EqualizationTank2Pressure" @bind-value:event="oninput" type="number" min="0" step=".1" />
+    </div>
+</div>
+
+<br />
+<br />
+<div class="row">
+
+    <button class="btn btn-primary" @onclick="AppSettings.DefaultAll">Default All</button>
+</div>
+
+@code {
+    private readonly NitroxMixCalculator calculator = new();
+
+    private string ColorMode
+    {
+        get => AppSettings.ColorMode;
+        set
+        {
+            AppSettings.ColorMode = value;
+            _ = JS.InvokeVoidAsync("window.setTheme", value);
+        }
+    }
+
+    private string SelectedUnit
+    {
+        get
+        {
+            calculator.LoadUnit(AppSettings.SelectedUnit);
+            return AppSettings.SelectedUnit;
+        }
+        set
+        {
+            AppSettings.SelectedUnit = value;
+            calculator.LoadUnit(AppSettings.SelectedUnit);
+        }
+    }
+
+    private string NitroxStartPressure
+    {
+        get
+        {
+            calculator.SelectedUnit.PressureBar = AppSettings.StartPressure;
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Pressure = parsed;
+            AppSettings.StartPressure = calculator.SelectedUnit.PressureBar;
+        }
+    }
+
+    private string NitroxEndPressure
+    {
+        get
+        {
+            calculator.SelectedUnit.PressureBar = AppSettings.EndPressure;
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Pressure = parsed;
+            AppSettings.EndPressure = calculator.SelectedUnit.PressureBar;
+        }
+    }
+
+    private string NitroxOxygenPressure
+    {
+        get
+        {
+            calculator.SelectedUnit.PressureBar = AppSettings.MaxOxygenPressure;
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Pressure = parsed;
+            AppSettings.MaxOxygenPressure = calculator.SelectedUnit.PressureBar;
+        }
+    }
+
+    private string NitroxStartMix
+    {
+        get => AppSettings.StartMix.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            double.TryParse(value, out double parsed);
+            AppSettings.StartMix = parsed;
+        }
+    }
+
+    private string NitroxEndMix
+    {
+        get => AppSettings.EndMix.ToString(CultureInfo.InvariantCulture);
+        set
+        {
+            double.TryParse(value, out double parsed);
+            AppSettings.EndMix = parsed;
+        }
+    }
+
+    private string EqualizationFullPressure
+    {
+        get
+        {
+            calculator.SelectedUnit.PressureBar = AppSettings.EqualizationTankFullPressure;
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Pressure = parsed;
+            AppSettings.EqualizationTankFullPressure = calculator.SelectedUnit.PressureBar;
+        }
+    }
+
+    private string EqualizationTank1Pressure
+    {
+        get
+        {
+            calculator.SelectedUnit.PressureBar = AppSettings.EqualizationTank1Pressure;
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Pressure = parsed;
+            AppSettings.EqualizationTank1Pressure = calculator.SelectedUnit.PressureBar;
+        }
+    }
+
+    private string EqualizationTank2Pressure
+    {
+        get
+        {
+            calculator.SelectedUnit.PressureBar = AppSettings.EqualizationTank2Pressure;
+            return calculator.SelectedUnit.Pressure.ToString(CultureInfo.InvariantCulture);
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Pressure = parsed;
+            AppSettings.EqualizationTank2Pressure = calculator.SelectedUnit.PressureBar;
+        }
+    }
+
+    private string EqualizationTankSize
+    {
+        get
+        {
+            calculator.SelectedUnit.VolumeLiter = AppSettings.EqualizationTankSize;
+            return calculator.SelectedUnit.Volume.ToString(CultureInfo.InvariantCulture);
+        }
+        set
+        {
+            double.TryParse(value, out double parsed);
+            calculator.SelectedUnit.Volume = parsed;
+            AppSettings.EqualizationTankSize = calculator.SelectedUnit.VolumeLiter;
+        }
+    }
+}

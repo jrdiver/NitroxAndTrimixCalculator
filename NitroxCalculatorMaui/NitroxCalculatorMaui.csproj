@@ -30,7 +30,6 @@
 		<Authors>Jrdiver</Authors>
 		<Product>Jrdivers Nitrox Calculator</Product>
 		<Copyright>2024 Jrdiver</Copyright>
-		<ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
 		<AssemblyName>JrdiversNitroxCalculator</AssemblyName>
 		<DefaultLanguage>en-us</DefaultLanguage>
 		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
@@ -102,6 +101,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\NitroxandTrimixCalculatorLibrary\NitroxAndTrimixCalculatorLibrary.csproj" />
+		<ProjectReference Include="..\NitroxCalculatorUI\NitroxCalculatorUI.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Resources\Images\" />

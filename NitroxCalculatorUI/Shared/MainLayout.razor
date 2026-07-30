@@ -1,0 +1,36 @@
+@inherits LayoutComponentBase
+@inject IJSRuntime JS
+<style>
+    [data-bs-theme="light"] {
+        --bs-body-bg: #f8f9fa; /* Light gray for light mode */
+    }
+
+    [data-bs-theme="dark"] {
+        --bs-body-bg: #212529; /* Dark gray for dark mode */
+    }
+</style>
+<div class="page">
+	<div class="sidebar">
+		<NavMenu />
+	</div>
+
+	<main>
+		<article class="content px-4">
+			@Body
+		</article>
+	</main>
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var theme = AppSettings.ColorMode;
+            if (!string.IsNullOrEmpty(theme))
+            {
+                await JS.InvokeVoidAsync("window.setTheme", theme);
+            }
+        }
+    }
+}
